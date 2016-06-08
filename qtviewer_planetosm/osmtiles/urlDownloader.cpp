@@ -31,7 +31,20 @@ namespace QTVOSM{
 		if (m_map_pendingTasks.contains(rply)==true)
 		{
 			const tag_download_tasks & tk = m_map_pendingTasks[rply];
-			if (rply->error()==QNetworkReply::NoError)
+			QVariant vaurl = rply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+			if (vaurl.type()==QVariant::Url)
+			{
+				QUrl urlRd = vaurl.toUrl();
+				if (urlRd.isRelative())
+					urlRd = rply->request().url().resolved(urlRd);
+
+				redirect_tk = tk;
+				redirect_tk.str_url = urlRd.toString();
+				errMsg = tr("task redirected: %1").arg(redirect_tk.str_url);
+				redirect = true;
+				succeeded = true;
+			}
+			else if (rply->error()==QNetworkReply::NoError)
 			{
 				if (rply->bytesAvailable())
 				{
@@ -52,23 +65,7 @@ namespace QTVOSM{
 				}
 				else
 				{
-					QVariant vaurl = rply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-					if (vaurl.type()==QVariant::Url)
-					{
-						QUrl urlRd = vaurl.toUrl();
-						if (urlRd.isRelative())
-							urlRd = rply->request().url().resolved(urlRd);
-
-						redirect_tk = tk;
-						redirect_tk.str_url = urlRd.toString();
-						errMsg = tr("task redirected: %1").arg(redirect_tk.str_url);
-						redirect = true;
-						succeeded = true;
-					}
-					else
-					{
-						errMsg = tr("reply is empty: %1").arg(tk.str_url);
-					}
+					errMsg = tr("reply is empty: %1").arg(tk.str_url);
 				}
 			}
 			else
