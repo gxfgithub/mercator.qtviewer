@@ -12,6 +12,7 @@
 #include <assert.h>
 #include <QMessageBox>
 #include <QSettings>
+#include <math.h>
 /*!
  * The plugin dynamic library (.dll in windows or .so in linux) will be loaded into memory only once.
  * for example, a windows app like test_container will contain 2 qtaxviewer_planetosm OCX  ctrls ,
