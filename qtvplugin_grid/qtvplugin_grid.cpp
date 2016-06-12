@@ -12,6 +12,7 @@
 #include <assert.h>
 #include <QMessageBox>
 #include <QSettings>
+#include <math.h>
 /*!
  * The plugin dynamic library (.dll in windows or .so in linux) will be loaded into memory only once.
  * for example, a windows app like test_container will contain 2 qtaxviewer_planetosm OCX  ctrls ,
@@ -282,7 +283,7 @@ QString qtvplugin_grid::get_name()
 	if (m_SLLibName.left(3)=="lib")
 		strName = m_SLLibName.mid(13);
 	if (strName.length())
-		return strName + QString("%1").arg(m_nInstance);
+		return strName /*+ QString("%1").arg(m_nInstance)*/;
 	else
 		return "grid";
 }
@@ -727,7 +728,7 @@ void qtvplugin_grid::on_pushButton_add_mark_clicked()
 {
 	if (!m_pVi)
 		return;
-	QString strMarkerName = QString("geomarker%1").arg(m_nInstance);
+	QString strMarkerName = "geomarker";/*QString("geomarker%1").arg(m_nInstance);*/
 	layer_interface * pif =  m_pVi->layer(strMarkerName);
 	save_ini();
 	int tp = ui->combox_type->currentIndex();
@@ -837,7 +838,7 @@ void qtvplugin_grid::on_pushButton_clear_clicked()
 	if (!m_pVi || m_nMarks<=0)
 		return;
 	save_ini();
-	QString strMarkerName = QString("geomarker%1").arg(m_nInstance);
+	QString strMarkerName = "geomarker";/*QString("geomarker%1").arg(m_nInstance)*/;
 	layer_interface * pif =  m_pVi->layer(strMarkerName);
 	if (pif)
 	{
@@ -857,7 +858,7 @@ void qtvplugin_grid::on_pushButton_clear_all_clicked()
 	if (!m_pVi)
 		return;
 	save_ini();
-	QString strMarkerName = QString("geomarker%1").arg(m_nInstance);
+	QString strMarkerName = "geomarker";/*QString("geomarker%1").arg(m_nInstance);*/
 	layer_interface * pif =  m_pVi->layer(strMarkerName);
 	if (pif)
 	{

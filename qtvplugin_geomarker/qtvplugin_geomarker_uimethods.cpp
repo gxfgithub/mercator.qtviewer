@@ -611,7 +611,7 @@ void qtvplugin_geomarker::on_tableView_marks_doubleClicked(const QModelIndex & i
 void qtvplugin_geomarker::on_pushButton_getPolygon_clicked()
 {
 	if (!m_pVi)	return;
-	QString strGridName = QString("grid%1").arg(m_nInstance);
+	QString strGridName = "grid";/*QString("grid%1").arg(m_nInstance);*/
 	layer_interface * pif =  m_pVi->layer(strGridName);
 	if (pif)
 	{
