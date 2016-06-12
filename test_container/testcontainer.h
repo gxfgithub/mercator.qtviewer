@@ -23,9 +23,9 @@ protected:
 private:
 	Ui::testcontainer *ui;
 	int m_nAnTimer;
-	QString m_str_gridLayerName;
-	QString m_str_markerLayerName;
-	void confirmLayerNames();
+	//QString m_str_gridLayerName;
+	//QString m_str_markerLayerName;
+	//void confirmLayerNames();
 	void show_message(QString);
 #ifdef _WIN32
 protected slots:

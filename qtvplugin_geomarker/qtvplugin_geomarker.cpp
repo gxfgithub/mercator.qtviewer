@@ -364,7 +364,7 @@ QString qtvplugin_geomarker::get_name()
 	if (m_SLLibName.left(3)=="lib")
 		strName = m_SLLibName.mid(13);
 	if (strName.length())
-		return strName + QString("%1").arg(m_nInstance);
+		return strName/* + QString("%1").arg(m_nInstance)*/;
 	else
 		return "geomarker";
 }

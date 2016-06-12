@@ -22,25 +22,25 @@ testcontainer::testcontainer(QWidget *parent) :
 
 	m_nAnTimer = startTimer(150);
 
-	confirmLayerNames();
+	//confirmLayerNames();
 }
-void testcontainer::confirmLayerNames()
-{
-	//Get Total layers
-	int n_num = ui->osmmap->osm_layer_get_count();
+//void testcontainer::confirmLayerNames()
+//{
+//	//Get Total layers
+//	int n_num = ui->osmmap->osm_layer_get_count();
 
-	//Get Layer names
-	for (int i=0;i<n_num;++i)
-	{
-		QString strname = ui->osmmap->osm_layer_get_name(i);
+//	//Get Layer names
+//	for (int i=0;i<n_num;++i)
+//	{
+//		QString strname = ui->osmmap->osm_layer_get_name(i);
 
-		if (strname.indexOf("grid")>=0)
-			m_str_gridLayerName = strname;
-		else if (strname.indexOf("geomarker")>=0)
-			m_str_markerLayerName = strname;
-	}
+//		if (strname.indexOf("grid")>=0)
+//			m_str_gridLayerName = strname;
+//		else if (strname.indexOf("geomarker")>=0)
+//			m_str_markerLayerName = strname;
+//	}
 
-}
+//}
 
 testcontainer::~testcontainer()
 {
@@ -142,21 +142,21 @@ void testcontainer::on_pushButton_test_layers_clicked()
 void testcontainer::on_pushButton_test_layer_move_clicked()
 {
 	//Move layers up and down
-	ui->osmmap->osm_layer_move_up(m_str_gridLayerName);
+	ui->osmmap->osm_layer_move_up("grid"/*m_str_gridLayerName*/);
 	on_pushButton_test_layers_clicked();
-	ui->osmmap->osm_layer_move_bottom(m_str_gridLayerName);
+	ui->osmmap->osm_layer_move_bottom("grid"/*m_str_gridLayerName*/);
 	on_pushButton_test_layers_clicked();
-	ui->osmmap->osm_layer_move_top(m_str_gridLayerName);
+	ui->osmmap->osm_layer_move_top("grid"/*m_str_gridLayerName*/);
 	on_pushButton_test_layers_clicked();
-	ui->osmmap->osm_layer_move_down(m_str_gridLayerName);
+	ui->osmmap->osm_layer_move_down("grid"/*m_str_gridLayerName*/);
 	on_pushButton_test_layers_clicked();
 
 	//Set layer's visiblity
-	int bv = ui->osmmap->osm_layer_get_visiable(m_str_gridLayerName);
+	int bv = ui->osmmap->osm_layer_get_visiable("grid"/*m_str_gridLayerName*/);
 	QMessageBox::information(this,"visibility",QString("osm_layer_get_visiable(\"grid\") returns  %1").arg(bv));
-	bv = ui->osmmap->osm_layer_set_visiable(m_str_gridLayerName, bv==0?-1:0);
+	bv = ui->osmmap->osm_layer_set_visiable("grid"/*m_str_gridLayerName*/, bv==0?-1:0);
 	QMessageBox::information(this,"visibility",QString("osm_layer_set_visiable(\"grid\") returns  %1").arg(bv));
-	bv = ui->osmmap->osm_layer_set_visiable(m_str_gridLayerName, bv==0?-1:0);
+	bv = ui->osmmap->osm_layer_set_visiable("grid"/*m_str_gridLayerName*/, bv==0?-1:0);
 	QMessageBox::information(this,"visibility",QString("osm_layer_set_visiable(\"grid\") returns  %1").arg(bv));
 
 	//Set layer's activity
@@ -201,7 +201,7 @@ void testcontainer::on_pushButton_test_grid_enable_clicked()
 	//Get the grid plugin's ruler status
 	QString res = ui->osmmap->
 				osm_layer_call_function(
-				m_str_gridLayerName,
+				"grid"/*m_str_gridLayerName*/,
 				"function=get_ruler_status;");
 	QMessageBox::information(this,"grid::get_ruler_status",res);
 
@@ -211,14 +211,14 @@ void testcontainer::on_pushButton_test_grid_enable_clicked()
 	{
 		res = ui->osmmap->
 					osm_layer_call_function(
-					m_str_gridLayerName,
+					"grid"/*m_str_gridLayerName*/,
 					"function=set_ruler_status;status=0;");
 		QMessageBox::information(this,"grid::set_ruler_status to false, you can call get_polygon to get polygon strings..",res);
 	}
 	else
 	{
 		res = ui->osmmap->osm_layer_call_function(
-											 m_str_gridLayerName,
+											 "grid"/*m_str_gridLayerName*/,
 											 "function=set_ruler_status;status=-1;");
 		QMessageBox::information(this,"grid::set_ruler_status to true, you can draw polygons on map using mouse lbutton for begin and rbutton for end.",res);
 	}
@@ -229,7 +229,7 @@ void testcontainer::on_pushButton_test_grid_getPolygon_clicked()
 	//Get current ploygon lla.
 	QString res = ui->osmmap->
 				osm_layer_call_function(
-				m_str_gridLayerName,
+				"grid"/*m_str_gridLayerName*/,
 				"function=get_polygon;");
 	res.replace(";",";\n");
 	res.replace("=","=\t");
@@ -238,12 +238,12 @@ void testcontainer::on_pushButton_test_grid_getPolygon_clicked()
 }
 void testcontainer::on_pushButton_test_mark_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID3;name1=ID4;");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::delete_marks",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 										 QString("function=update_point;name=ID1;type=1;"
 												 "lat=%1;lon=%2;"
 												 "style_pen=2;color_pen=0,0,255,128;width_pen=3;"
@@ -257,7 +257,7 @@ void testcontainer::on_pushButton_test_mark_clicked()
 		QMessageBox::information(this,"geomarker::update_point",res);
 
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_props;name=ID1;"
 												 "LABEL=Shanghai;EXPRESS=Shunfeng;Pero=IMMEDIATE;"
 												 "CheckTime=2014-12-31 23:11:27;"
@@ -266,7 +266,7 @@ void testcontainer::on_pushButton_test_mark_clicked()
 		QMessageBox::information(this,"geomarker::update_props",res);
 
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_point;name=ID2;type=2;"
 												 "lat=40.3737;lon=111.34347;"
 												 "style_pen=3;color_pen=0,255,0,128;"
@@ -276,7 +276,7 @@ void testcontainer::on_pushButton_test_mark_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_point",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_props;name=ID2;"
 												 "LABEL=Neimeng;EXPRESS=YunDa;Pero=NORMAL;"
 												 "CheckTime=2014-12-30 07:18:32;"
@@ -284,7 +284,7 @@ void testcontainer::on_pushButton_test_mark_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_props",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_icon;name=ID7;"
 												 "lat=1.233;lon=2.28373;"
 												 "scale=2;rotate=0;smooth=1;"
@@ -294,7 +294,7 @@ void testcontainer::on_pushButton_test_mark_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_icon",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_props;name=ID7;"
 												 "LABEL=COSCO;EXPRESS=TianTian;Pero=IMMD;"
 												 "CheckTime=2012-12-30 07:18:32;"
@@ -302,19 +302,19 @@ void testcontainer::on_pushButton_test_mark_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_props",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=show_props;ID7=1;ID1=0");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_props",res);
 }
 void testcontainer::on_pushButton_test_line_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID1;name1=ID2;name2=ID4;");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::delete_marks",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 										 QString("function=update_line;name=ID3;type=3;"
 												 "lat0=%1;lon0=%2;"
 												 "lat1=%3;lon1=%4;"
@@ -329,7 +329,7 @@ void testcontainer::on_pushButton_test_line_clicked()
 		QMessageBox::information(this,"geomarker::update_line",res);
 
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_props;name=ID3;"
 												 "LABEL=HighWay;");
 	if (res.contains("error"))
@@ -338,12 +338,12 @@ void testcontainer::on_pushButton_test_line_clicked()
 
 void testcontainer::on_pushButton_test_polygon_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID1;name1=ID2;name2=ID3;");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::delete_marks",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_polygon;name=ID4;type=4;"
 												 "lat0=12.2;lon0=67.3;"
 												 "lat1=14.3;lon1=62.8;"
@@ -355,13 +355,13 @@ void testcontainer::on_pushButton_test_polygon_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_polygon",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_props;name=ID4;"
 												 "LABEL=Region;");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_point",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_polygon;name=ID40;type=6;"
 												 "lat0=42.2;lon0=-67.3;"
 												 "lat1=34.3;lon1=-62.8;"
@@ -373,7 +373,7 @@ void testcontainer::on_pushButton_test_polygon_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_polygon",res);
 
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=update_props;name=ID40;"
 												 "LABEL=Multiline;");
 	if (res.contains("error"))
@@ -385,13 +385,13 @@ void testcontainer::timerEvent(QTimerEvent * e)
 {
 	if (e->timerId()==m_nAnTimer)
 	{
-		QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+		QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 													 "function=exists;name=ID7;");
 		QMap<QString, QVariant> mres = string_to_map(res);
 		if (mres["return"].toInt())
 		{
 			//Get info of this mark
-			res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+			res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=mark;name=ID7");
 			QMap<QString, QVariant> mparas = string_to_map(res);
 			double lat = mparas["lat"].toDouble() + 0.173245467333;
@@ -400,7 +400,7 @@ void testcontainer::timerEvent(QTimerEvent * e)
 			if (rot>360) rot = 0;
 			if (lat >=85) lat = -85;
 			if (lon >=180) lon = -180;
-			ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+			ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 										   QString("function=update_icon;name=ID7;lat=%1;lon=%2;rotate=%4;")
 										   .arg(lat)
 										   .arg(lon).arg(rot)
@@ -413,7 +413,7 @@ void testcontainer::timerEvent(QTimerEvent * e)
 
 void testcontainer::on_pushButton_test_request_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=mark_names;");
 	show_message("geomarker::mark_names:"+res);
 
@@ -423,15 +423,15 @@ void testcontainer::on_pushButton_test_request_clicked()
 	foreach (QString key, mp.keys())
 	{
 		str_prop_vis += QString("name%1=%2;").arg(c++).arg(mp[key].toString());
-		res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+		res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 											 "function=mark;name="+mp[key].toString());
 
 		show_message("geomarker::mark:"+res);
-		res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+		res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 													 "function=props;name="+mp[key].toString());
 		show_message("geomarker::props:"+res);
 	}
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName, str_prop_vis);
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/, str_prop_vis);
 	show_message("geomarker::props_vis:"+res);
 
 
@@ -451,23 +451,23 @@ void testcontainer::on_pushButton_test_cache_clicked()
 }
 void testcontainer::on_pushButton_test_xml_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=load_xml;xml=.//test.xml;");
 	QMessageBox::information(this,"geomarker::load_xml",res);
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=save_xml;xml=.//test.xml;");
 	QMessageBox::information(this,"geomarker::save_xml",res);
 
 }
 void testcontainer::on_pushButton_test_resource_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=add_resource;name=lena;filename=./lena.png;centerx=32;centery=32;");
 	QMessageBox::information(this,"geomarker::add_resource",res);
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=load_resources;xml=.//resource.xml;");
 	QMessageBox::information(this,"geomarker::load_resources",res);
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=save_resources;xml=.//resource.xml;");
 	QMessageBox::information(this,"geomarker::save_resources",res);
 
@@ -493,7 +493,7 @@ void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 }
 void testcontainer::on_pushButton_test_geo_displayMod_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=set_mod;mod=0;");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::set_mod",res);
@@ -502,7 +502,7 @@ void testcontainer::on_pushButton_test_geo_displayMod_clicked()
 
 void testcontainer::on_pushButton_test_geo_selectionMod_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=set_mod;mod=1;");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::set_mod",res);
@@ -510,14 +510,14 @@ void testcontainer::on_pushButton_test_geo_selectionMod_clicked()
 
 void testcontainer::on_pushButton_test_geo_selected_marks_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=selected_items;");
 	QMessageBox::information(this,"geomarker::selected_items",res);
 }
 
 void testcontainer::on_pushButton_test_geo_clear_sel_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=selection_clear;");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::selection_clear",res);
@@ -526,7 +526,7 @@ void testcontainer::on_pushButton_test_geo_clear_sel_clicked()
 
 void testcontainer::on_pushButton_test_geo_del_sel_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=selection_delete;");
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::selection_delete",res);
@@ -534,10 +534,10 @@ void testcontainer::on_pushButton_test_geo_del_sel_clicked()
 }
 void testcontainer::on_pushButton_default_style_clicked()
 {
-	QString res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=default_style;");
 	QMessageBox::information(this,"geomarker::default_style",res);
-	res = ui->osmmap->osm_layer_call_function(m_str_markerLayerName,
+	res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 													"function=set_default_style;" + res);
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::selection_delete",res);
