@@ -16,7 +16,7 @@
         <translation type="vanished">缓存文件名</translation>
     </message>
     <message>
-        <location filename="osmtiles/layer_tiles_page.cpp" line="48"/>
+        <location filename="osmtiles/layer_tiles_page.cpp" line="53"/>
         <source>Select the local cache</source>
         <translation>选择本地缓存路径</translation>
     </message>
@@ -24,32 +24,32 @@
 <context>
     <name>QTVOSM::urlDownloader</name>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="64"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="43"/>
         <source>task redirected: %1</source>
         <translation>下载重定向:%1</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="70"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="68"/>
         <source>reply is empty: %1</source>
         <translation>下载内容为空: %1</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="93"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="90"/>
         <source>task succeeded: %1;%2</source>
         <translation>下载成功: %1;%2</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="98"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="95"/>
         <source>task failed: %1,msg %2</source>
         <translation>下载失败:%1, 信息 %2</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="148"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="145"/>
         <source>Bring task %1 to front.</source>
         <translation>将任务 %1 提到最前.</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="161"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="158"/>
         <source>Add task %1</source>
         <translation>开始任务 %1</translation>
     </message>
@@ -119,57 +119,57 @@
         <translation>Open Street Map 浏览器框架</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="70"/>
+        <location filename="osm_frame_widget.ui" line="74"/>
         <source>Map</source>
         <translation>地图</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="145"/>
+        <location filename="osm_frame_widget.ui" line="149"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="290"/>
+        <location filename="osm_frame_widget.ui" line="294"/>
         <source>Activate</source>
         <translation>激活图层</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="251"/>
+        <location filename="osm_frame_widget.ui" line="255"/>
         <source>export</source>
         <translation>截图保存</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="307"/>
+        <location filename="osm_frame_widget.ui" line="311"/>
         <source>Deactive</source>
         <translation>取消激活</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="331"/>
+        <location filename="osm_frame_widget.ui" line="335"/>
         <source>Show</source>
         <translation>显示</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="348"/>
+        <location filename="osm_frame_widget.ui" line="352"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="394"/>
+        <location filename="osm_frame_widget.ui" line="398"/>
         <source>Up</source>
         <translation>上移</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="411"/>
+        <location filename="osm_frame_widget.ui" line="415"/>
         <source>Top</source>
         <translation>置顶</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="435"/>
+        <location filename="osm_frame_widget.ui" line="439"/>
         <source>Down</source>
         <translation>下移</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.ui" line="452"/>
+        <location filename="osm_frame_widget.ui" line="456"/>
         <source>Bottom</source>
         <translation>置底</translation>
     </message>
@@ -189,7 +189,7 @@
         <translation>可见</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.cpp" line="406"/>
+        <location filename="osm_frame_widget.cpp" line="414"/>
         <source>save to image</source>
         <translation>保存到图像</translation>
     </message>

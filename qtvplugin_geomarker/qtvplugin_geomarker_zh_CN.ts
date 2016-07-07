@@ -374,5 +374,73 @@
         <source>This XML is not a geomarker_icons format file.</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Refresh</source>
+        <translation>刷新</translation>
+    </message>
+    <message>
+        <source>Collapse</source>
+        <translation>隐藏所有详细信息</translation>
+    </message>
+    <message>
+        <source>Map Operation</source>
+        <translation>地图操作</translation>
+    </message>
+    <message>
+        <source>Display Only</source>
+        <translation>只显示</translation>
+    </message>
+    <message>
+        <source>Rect Selection</source>
+        <translation>矩形框选</translation>
+    </message>
+    <message>
+        <source>All marks</source>
+        <translation>所有标记</translation>
+    </message>
+    <message>
+        <source>Selected marks</source>
+        <translation>选中标记</translation>
+    </message>
+    <message>
+        <source>Clear Sel</source>
+        <translation>清除选中</translation>
+    </message>
+    <message>
+        <source>Delete Selected  Items</source>
+        <translation>删除已选中项目</translation>
+    </message>
+    <message>
+        <source>Mark Type</source>
+        <translation>标记类型</translation>
+    </message>
+    <message>
+        <source>Multiline(Not close)</source>
+        <translation>非闭合折线</translation>
+    </message>
+    <message>
+        <source>Save to default style</source>
+        <translation>存储为默认样式</translation>
+    </message>
+    <message>
+        <source>Load from default style</source>
+        <translation>读取默认样式</translation>
+    </message>
+    <message>
+        <source>Update Prop</source>
+        <translation>更新自定属性</translation>
+    </message>
+    <message>
+        <source>Delete Prop</source>
+        <translation>删除自定属性</translation>
+    </message>
+    <message>
+        <source>mod must  exist in paraments.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>mod is not valid in paraments. 0=display, 1=rect selection</source>
+        <translation></translation>
+    </message>
 </context>
 </TS>

@@ -9,12 +9,52 @@
         <translation>坐标与量测</translation>
     </message>
     <message>
-        <location filename="qtvplugin_grid.ui" line="22"/>
+        <location filename="qtvplugin_grid.ui" line="26"/>
         <source>Ruler Active</source>
         <translation>量测功能激活</translation>
     </message>
     <message>
-        <location filename="qtvplugin_grid.ui" line="48"/>
+        <location filename="qtvplugin_grid.ui" line="52"/>
+        <source>Mark</source>
+        <translation>快速标记</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.ui" line="70"/>
+        <source>LatLon</source>
+        <translation>纬度，经度</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.ui" line="80"/>
+        <source>LonLat</source>
+        <translation>经度，纬度</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.ui" line="87"/>
+        <source>,West spliter</source>
+        <translation>西经标识</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.ui" line="97"/>
+        <source>South spliter</source>
+        <translation>南纬标识</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.ui" line="127"/>
+        <source>Add</source>
+        <translation>添加标记</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.ui" line="138"/>
+        <source>Clear</source>
+        <translation>清除标记</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.ui" line="149"/>
+        <source>Clear All</source>
+        <translation>全部清除</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.ui" line="165"/>
         <source>Cursor</source>
         <translation>标记位置</translation>
     </message>
@@ -39,13 +79,28 @@
         <translation type="vanished">WTF 点位</translation>
     </message>
     <message>
-        <location filename="qtvplugin_grid.ui" line="65"/>
+        <location filename="qtvplugin_grid.ui" line="182"/>
         <source>Results</source>
         <translation>结果</translation>
     </message>
     <message>
         <source>History</source>
         <translation type="vanished">漫游历史</translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.cpp" line="41"/>
+        <source>POINT</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.cpp" line="42"/>
+        <source>LINE</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="qtvplugin_grid.cpp" line="43"/>
+        <source>POLYGON</source>
+        <translation></translation>
     </message>
 </context>
 </TS>
