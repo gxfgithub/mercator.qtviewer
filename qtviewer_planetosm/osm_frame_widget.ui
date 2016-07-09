@@ -93,7 +93,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="tilesviewer" name="widget_mainMap" native="true">
+        <widget class="tilesviewer" name="widget_QTV_mainMap" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -116,7 +116,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QDockWidget" name="dockWidget_side">
+    <widget class="QDockWidget" name="dockWidget_QTV_side">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
        <horstretch>0</horstretch>
@@ -177,7 +177,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QDial" name="dial_zoom">
+          <widget class="QDial" name="dial_QTV_zoom">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -219,7 +219,7 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <widget class="QLCDNumber" name="lcdNumber_level">
+            <widget class="QLCDNumber" name="lcdNumber_QTV_level">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -244,7 +244,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_saveToFile">
+            <widget class="QPushButton" name="pushButton_QTV_saveToFile">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -283,7 +283,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <widget class="QPushButton" name="pushButton_active">
+          <widget class="QPushButton" name="pushButton_QTV_active">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -300,7 +300,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_deactive">
+          <widget class="QPushButton" name="pushButton_QTV_deactive">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -324,7 +324,7 @@
           <enum>QLayout::SetMinimumSize</enum>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_visible">
+          <widget class="QPushButton" name="pushButton_QTV_visible">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -341,7 +341,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_hide">
+          <widget class="QPushButton" name="pushButton_QTV_hide">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -360,7 +360,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableView" name="tableView_layers">
+        <widget class="QTableView" name="tableView_QTV_layers">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -387,7 +387,7 @@
           <enum>QLayout::SetMaximumSize</enum>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_moveUp">
+          <widget class="QPushButton" name="pushButton_QTV_moveUp">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -404,7 +404,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_moveTop">
+          <widget class="QPushButton" name="pushButton_QTV_moveTop">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -428,7 +428,7 @@
           <enum>QLayout::SetMaximumSize</enum>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_moveDown">
+          <widget class="QPushButton" name="pushButton_QTV_moveDown">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -445,7 +445,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_moveBtm">
+          <widget class="QPushButton" name="pushButton_QTV_moveBtm">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -484,9 +484,9 @@
  </resources>
  <connections>
   <connection>
-   <sender>dial_zoom</sender>
+   <sender>dial_QTV_zoom</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>lcdNumber_level</receiver>
+   <receiver>lcdNumber_QTV_level</receiver>
    <slot>display(int)</slot>
    <hints>
     <hint type="sourcelabel">

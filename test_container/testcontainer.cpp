@@ -10,8 +10,8 @@ testcontainer::testcontainer(QWidget *parent) :
 	ui->setupUi(this);
 	QFont ft;
 	ft.setPixelSize(9);
-	ui->tableView_msg->setFont(ft);
-	ui->tableView_msg->verticalHeader()->setDefaultSectionSize(16);
+	ui->tableView_QTV_msg->setFont(ft);
+	ui->tableView_QTV_msg->verticalHeader()->setDefaultSectionSize(16);
 	Qt::WindowFlags flg =  this->windowFlags();
 	flg |= Qt::WindowMinMaxButtonsHint;
 	this->setWindowFlags(flg);
@@ -19,7 +19,7 @@ testcontainer::testcontainer(QWidget *parent) :
 	m_pModel = new QStandardItemModel (0,2,this);
 	m_pModel->setHeaderData(0,Qt::Horizontal,tr("ctrl"));
 	m_pModel->setHeaderData(1,Qt::Horizontal,tr("msg"));
-	ui->tableView_msg->setModel(m_pModel);
+	ui->tableView_QTV_msg->setModel(m_pModel);
 
 	ui->axWidget_map1->setControl("{8FDF97AD-FEFA-44C9-973B-1B66D4C529DF}");
 	ui->axWidget_map2->setControl("{8FDF97AD-FEFA-44C9-973B-1B66D4C529DF}");
@@ -60,7 +60,7 @@ void testcontainer::slot_message(QString message)
 {
 	if (message.contains("MOUSE_MOVE"))
 	{
-		ui->label_mouseMove->setText(message);
+		ui->label_QTV_mouseMove->setText(message);
 	}
 	else
 	{
@@ -71,12 +71,12 @@ void testcontainer::slot_message(QString message)
 		m_pModel->appendRow(list_newrow);
 		while (m_pModel->rowCount()>1024)
 			m_pModel->removeRow(0);
-		ui->tableView_msg->scrollToBottom();
+		ui->tableView_QTV_msg->scrollToBottom();
 	}
 
 }
 
-void testcontainer::on_pushButton_test_adds_clicked()
+void testcontainer::on_pushButton_QTV_test_adds_clicked()
 {
 	//get raw address
 	QVariant vt_addr = ui->axWidget_map1->dynamicCall(
@@ -111,7 +111,7 @@ void testcontainer::on_pushButton_test_adds_clicked()
 	QMessageBox::information(this,"get osm address from LAYER \"OSM\"",str_addr3);
 
 }
-void testcontainer::on_pushButton_test_autodl_clicked()
+void testcontainer::on_pushButton_QTV_test_autodl_clicked()
 {
 	//get auto download flag
 	QVariant vt_addr = ui->axWidget_map1->dynamicCall(
@@ -133,7 +133,7 @@ void testcontainer::on_pushButton_test_autodl_clicked()
 	n_status = vt_addr.toInt();
 	QMessageBox::information(this,"get auto download from LAYER \"OSM\"",QString("status = %1").arg(n_status) );
 }
-void testcontainer::on_pushButton_test_navigate_clicked()
+void testcontainer::on_pushButton_QTV_test_navigate_clicked()
 {
 	//Get curent Level
 	QVariant vt_addr = ui->axWidget_map1->dynamicCall("osm_get_level()");
@@ -164,7 +164,7 @@ void testcontainer::on_pushButton_test_navigate_clicked()
 	lon = ui->axWidget_map1->dynamicCall("osm_get_center_lon()").toDouble();
 	QMessageBox::information(this,"osm_get_center_latlon",QString("lat = %1, lon=%2").arg(lat).arg(lon) );
 }
-void testcontainer::on_pushButton_test_layers_clicked()
+void testcontainer::on_pushButton_QTV_test_layers_clicked()
 {
 	//Get Total layers
 	QVariant vt_num = ui->axWidget_map1->dynamicCall("osm_layer_get_count()");
@@ -181,17 +181,17 @@ void testcontainer::on_pushButton_test_layers_clicked()
 	QMessageBox::information(this,"layer count",QString("osm_layer_get_count() returns  %1\n%2").arg(n_num).arg(strLayerNames) );
 
 }
-void testcontainer::on_pushButton_test_layer_move_clicked()
+void testcontainer::on_pushButton_QTV_test_layer_move_clicked()
 {
 	//Move layers up and down
 	ui->axWidget_map1->dynamicCall("osm_layer_move_up(QString)","grid"/*m_str_gridLayerName*/);
-	on_pushButton_test_layers_clicked();
+	on_pushButton_QTV_test_layers_clicked();
 	ui->axWidget_map1->dynamicCall("osm_layer_move_bottom(QString)","grid"/*m_str_gridLayerName*/);
-	on_pushButton_test_layers_clicked();
+	on_pushButton_QTV_test_layers_clicked();
 	ui->axWidget_map1->dynamicCall("osm_layer_move_top(QString)","grid"/*m_str_gridLayerName*/);
-	on_pushButton_test_layers_clicked();
+	on_pushButton_QTV_test_layers_clicked();
 	ui->axWidget_map1->dynamicCall("osm_layer_move_down(QString)","grid"/*m_str_gridLayerName*/);
-	on_pushButton_test_layers_clicked();
+	on_pushButton_QTV_test_layers_clicked();
 
 	//Set layer's visiblity
 	int bv = ui->axWidget_map1->dynamicCall("osm_layer_get_visiable(QString)","grid"/*m_str_gridLayerName*/).toInt();
@@ -238,7 +238,7 @@ QMap<QString, QVariant> testcontainer::string_to_map(const QString & s)
 	}
 	return std::move(res);
 }
-void testcontainer::on_pushButton_test_grid_enable_clicked()
+void testcontainer::on_pushButton_QTV_test_grid_enable_clicked()
 {
 	//Get the grid plugin's ruler status
 	QString res = ui->axWidget_map1->dynamicCall(
@@ -266,7 +266,7 @@ void testcontainer::on_pushButton_test_grid_enable_clicked()
 	}
 
 }
-void testcontainer::on_pushButton_test_grid_getPolygon_clicked()
+void testcontainer::on_pushButton_QTV_test_grid_getPolygon_clicked()
 {
 	//Get current ploygon lla.
 	QString res = ui->axWidget_map1->dynamicCall(
@@ -278,7 +278,7 @@ void testcontainer::on_pushButton_test_grid_getPolygon_clicked()
 	QMessageBox::information(this,"grid::get_polygon",res);
 
 }
-void testcontainer::on_pushButton_test_mark_clicked()
+void testcontainer::on_pushButton_QTV_test_mark_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID3;name1=ID4;").toString();
@@ -349,7 +349,7 @@ void testcontainer::on_pushButton_test_mark_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_props",res);
 }
-void testcontainer::on_pushButton_test_line_clicked()
+void testcontainer::on_pushButton_QTV_test_line_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID1;name1=ID2;name2=ID4;").toString();
@@ -378,7 +378,7 @@ void testcontainer::on_pushButton_test_line_clicked()
 		QMessageBox::information(this,"geomarker::update_point",res);
 }
 
-void testcontainer::on_pushButton_test_polygon_clicked()
+void testcontainer::on_pushButton_QTV_test_polygon_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID1;name1=ID2;name2=ID3;").toString();
@@ -453,7 +453,7 @@ void testcontainer::timerEvent(QTimerEvent * e)
 	}
 }
 
-void testcontainer::on_pushButton_test_request_clicked()
+void testcontainer::on_pushButton_QTV_test_request_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=mark_names;").toString();
@@ -478,7 +478,7 @@ void testcontainer::on_pushButton_test_request_clicked()
 
 
 }
-void testcontainer::on_pushButton_test_cache_clicked()
+void testcontainer::on_pushButton_QTV_test_cache_clicked()
 {
 	//Get the address of local cache
 	QString res = ui->axWidget_map1->dynamicCall("osm_get_local_cache(QString)","OSM").toString();
@@ -491,7 +491,7 @@ void testcontainer::on_pushButton_test_cache_clicked()
 	res = ui->axWidget_map1->dynamicCall("osm_set_cache_expire_days(QString,int)","OSM",res.toInt()+1).toString();
 	QMessageBox::information(this,"geomarker::osm_get_cache_expire_days",res);
 }
-void testcontainer::on_pushButton_test_xml_clicked()
+void testcontainer::on_pushButton_QTV_test_xml_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=load_xml;xml=.//test.xml;").toString();
@@ -501,7 +501,7 @@ void testcontainer::on_pushButton_test_xml_clicked()
 	QMessageBox::information(this,"geomarker::save_xml",res);
 
 }
-void testcontainer::on_pushButton_test_resource_clicked()
+void testcontainer::on_pushButton_QTV_test_resource_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=add_resource;name=lena;filename=./lena.png;centerx=32;centery=32;").toString();
@@ -522,7 +522,7 @@ void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 
 	if (message.contains("MOUSE_MOVE"))
 	{
-		ui->label_mouseMove->setText(message);
+		ui->label_QTV_mouseMove->setText(message);
 	}
 	else
 	{
@@ -530,10 +530,10 @@ void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 		m_pModel->appendRow(list_newrow);
 		while (m_pModel->rowCount()>1024)
 			m_pModel->removeRow(0);
-		ui->tableView_msg->scrollToBottom();
+		ui->tableView_QTV_msg->scrollToBottom();
 	}
 }
-void testcontainer::on_pushButton_test_geo_displayMod_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_displayMod_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=set_mod;mod=0;").toString();
@@ -542,7 +542,7 @@ void testcontainer::on_pushButton_test_geo_displayMod_clicked()
 
 }
 
-void testcontainer::on_pushButton_test_geo_selectionMod_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_selectionMod_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=set_mod;mod=1;").toString();
@@ -550,14 +550,14 @@ void testcontainer::on_pushButton_test_geo_selectionMod_clicked()
 		QMessageBox::information(this,"geomarker::set_mod",res);
 }
 
-void testcontainer::on_pushButton_test_geo_selected_marks_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_selected_marks_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=selected_items;").toString();
 	QMessageBox::information(this,"geomarker::selected_items",res);
 }
 
-void testcontainer::on_pushButton_test_geo_clear_sel_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_clear_sel_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=selection_clear;").toString();
@@ -566,7 +566,7 @@ void testcontainer::on_pushButton_test_geo_clear_sel_clicked()
 
 }
 
-void testcontainer::on_pushButton_test_geo_del_sel_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_del_sel_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=selection_delete;").toString();
@@ -574,7 +574,7 @@ void testcontainer::on_pushButton_test_geo_del_sel_clicked()
 		QMessageBox::information(this,"geomarker::selection_delete",res);
 
 }
-void testcontainer::on_pushButton_default_style_clicked()
+void testcontainer::on_pushButton_QTV_default_style_clicked()
 {
 	QString res = ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker" /*m_str_markerLayerName*/,
 												 "function=default_style;").toString();

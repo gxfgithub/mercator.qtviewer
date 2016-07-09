@@ -76,10 +76,10 @@ protected:
 	//Event filters
 	bool cb_event(const QMap<QString, QVariant>);
 protected slots:
-	void on_checkBox_measure_clicked(bool);
-	void on_pushButton_add_mark_clicked();
-	void on_pushButton_clear_clicked();
-	void on_pushButton_clear_all_clicked();
+	void on_checkBox_QTV_measure_clicked(bool);
+	void on_pushButton_QTV_add_mark_clicked();
+	void on_pushButton_QTV_clear_clicked();
+	void on_pushButton_QTV_clear_all_clicked();
 };
 
 #endif // QTVPLUGIN_GRID_H

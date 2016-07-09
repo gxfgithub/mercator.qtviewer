@@ -1379,8 +1379,8 @@ QMap<QString, QVariant>			qtvplugin_geomarker::func_set_mod		(const QMap<QString
 	int mod = paras["mod"].toInt();
 	if (mod==0)
 	{
-		ui->radioButton_display->setChecked(true);
-		ui->toolBox_marks->setCurrentIndex(0);
+		ui->radioButton_QTV_display->setChecked(true);
+		ui->toolBox_QTV_marks->setCurrentIndex(0);
 		m_sel_ptStart_World = m_sel_ptEnd_World = QPointF();
 		m_currentTools = qtvplugin_geomarker::TOOLS_DISPLAY_ONLY;
 		layer_interface * pOSM =  m_pVi->layer("OSM");
@@ -1394,8 +1394,8 @@ QMap<QString, QVariant>			qtvplugin_geomarker::func_set_mod		(const QMap<QString
 	}
 	else if (mod==1)
 	{
-		ui->radioButton_rect_selection->setChecked(true);
-		ui->toolBox_marks->setCurrentIndex(1);
+		ui->radioButton_QTV_rect_selection->setChecked(true);
+		ui->toolBox_QTV_marks->setCurrentIndex(1);
 		m_currentTools = qtvplugin_geomarker::TOOLS_RECT_SELECTION;
 		m_sel_ptStart_World = m_sel_ptEnd_World = QPointF();
 		m_pVi->adjust_layers(this);
@@ -1423,7 +1423,7 @@ QMap<QString, QVariant>			qtvplugin_geomarker::func_set_mod		(const QMap<QString
 QMap<QString, QVariant>			qtvplugin_geomarker::func_selection_clear(const QMap<QString, QVariant> & paras)
 {
 	QMap<QString, QVariant> res;
-	this->on_pushButton_sel_clear_clicked();
+	this->on_pushButton_QTV_sel_clear_clicked();
 	return std::move(res);
 }
 /**
@@ -1437,7 +1437,7 @@ QMap<QString, QVariant>			qtvplugin_geomarker::func_selection_clear(const QMap<Q
 QMap<QString, QVariant>			qtvplugin_geomarker::func_selection_delete(const QMap<QString, QVariant> & paras)
 {
 	QMap<QString, QVariant> res;
-	this->on_pushButton_sel_delselected_clicked();
+	this->on_pushButton_QTV_sel_delselected_clicked();
 	return std::move(res);
 }
 /**
@@ -1487,12 +1487,12 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_set_default_style(const QMap<Q
 			errMsg += "style_pen exceeds valid bound.";
 			ptdd = 1;
 		}
-		ui->comboBox_linePad->setCurrentIndex(ptdd);
+		ui->comboBox_QTV_linePad->setCurrentIndex(ptdd);
 	}
 	//! color_pen has 4 pen color band values splitted by comma, r,g,b,a
 	if ( paras.contains("color_pen"))
 	{
-		ui->lineEdit_PenColor->setText(paras["color_pen"].toString());
+		ui->lineEdit_QTV_PenColor->setText(paras["color_pen"].toString());
 	}
 	//! width_pen has a value >0 , stand for the point width of the pen on screen.
 	if ( paras.contains("width_pen"))
@@ -1503,7 +1503,7 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_set_default_style(const QMap<Q
 			errMsg += "width_pen must >0.";
 			penWidth = 1;
 		}
-		ui->spinBox_penWidth->setValue(penWidth);
+		ui->spinBox_QTV_penWidth->setValue(penWidth);
 	}
 	//! style_brush from 0~14, is corresponds to the brush style combo-box in UI system.
 	if ( paras.contains("style_brush"))
@@ -1514,13 +1514,13 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_set_default_style(const QMap<Q
 			btdd = 1;
 			errMsg += "style_brush exceeds valid bounds.";
 		}
-		ui->comboBox_fillPad->setCurrentIndex(btdd);
+		ui->comboBox_QTV_fillPad->setCurrentIndex(btdd);
 	}
 
 	//! color_brush has 4 brush color band values splitted by comma, r,g,b,a
 	if ( paras.contains("color_brush"))
 	{
-		ui->lineEdit_FillColor->setText( paras["color_brush"].toString());
+		ui->lineEdit_QTV_FillColor->setText( paras["color_brush"].toString());
 	}
 
 	//! width has is a integer, means the default width of a point mark
@@ -1528,14 +1528,14 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_set_default_style(const QMap<Q
 	{
 		int point_width = paras["width"].toInt();
 		if (point_width==0) point_width = 8;
-		ui->spinBox_point_width->setValue(point_width);
+		ui->spinBox_QTV_point_width->setValue(point_width);
 	}
 	//! height has is a integer, means the default width of a point mark
 	if ( paras.contains("height"))
 	{
 		int point_height = paras["height"].toInt();
 		if (point_height==0) point_height = 8;
-		ui->spinBox_point_height->setValue(point_height);
+		ui->spinBox_QTV_point_height->setValue(point_height);
 	}
 	//! mark default point_type select , 1 means rect, 2 means Ecilips
 	if (paras.contains("point_type"))
@@ -1544,10 +1544,10 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_set_default_style(const QMap<Q
 		switch (tpn)
 		{
 		case 1:
-			ui->radioButton_PointRect->setChecked(true);
+			ui->radioButton_QTV_PointRect->setChecked(true);
 			break;
 		case 2:
-			ui->radioButton_PointRound->setChecked(true);
+			ui->radioButton_QTV_PointRound->setChecked(true);
 			break;
 		default:
 			break;
@@ -1560,10 +1560,10 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_set_default_style(const QMap<Q
 		switch (tpn)
 		{
 		case 4:
-			ui->checkBox_multiline->setChecked(false);
+			ui->checkBox_QTV_multiline->setChecked(false);
 			break;
 		case 6:
-			ui->checkBox_multiline->setChecked(true);
+			ui->checkBox_QTV_multiline->setChecked(true);
 			break;
 		default:
 			break;
@@ -1574,27 +1574,27 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_set_default_style(const QMap<Q
 	{
 		int fontSz = paras["size_label"].toInt();
 		if (fontSz==0)	fontSz = 9;
-		ui->spinBox_fontSize->setValue(fontSz);
+		ui->spinBox_QTV_fontSize->setValue(fontSz);
 	}
 	//! weight_label is the bolder rate for  text renderring, from 1 ~ 99, 99 is the heaviest.
 	if ( paras.contains("weight_label"))
 	{
 		int fontWeight = paras["weight_label"].toInt();
 		if (fontWeight>=0 && fontWeight <100)
-			ui->spinBox_textWeight->setValue(fontWeight);
+			ui->spinBox_QTV_textWeight->setValue(fontWeight);
 	}
 
 	//! color_label has 4 text color band values splitted by comma, r,g,b,a
 	if ( paras.contains("color_label"))
 	{
-		ui->lineEdit_TextColor->setText(paras["color_label"].toString());
+		ui->lineEdit_QTV_TextColor->setText(paras["color_label"].toString());
 	}
 	//! icon is the name that this mark will use.
 	if ( paras.contains("icon"))
 	{
 		QString icn = paras["icon"].toString();
 		if (m_map_icons.contains(icn))
-			ui->comboBox_icons->setCurrentText(icn);
+			ui->comboBox_QTV_icons->setCurrentText(icn);
 		else
 			errMsg += "icon is not exist";
 	}
@@ -1603,19 +1603,19 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_set_default_style(const QMap<Q
 	{
 		qreal sc = paras["scale"].toReal();
 		if (sc >0 )
-			ui->lineEdit_icon_scale->setText(QString("%1").arg(sc));
+			ui->lineEdit_QTV_icon_scale->setText(QString("%1").arg(sc));
 	}
 	//! rotate is the rotate angle that this icon will use, 0.0 means no rotate
 	if ( paras.contains("rotate"))
 	{
 		qreal rt = paras["rotate"].toReal();
-		ui->lineEdit_icon_rotate->setText(QString("%1").arg(rt));
+		ui->lineEdit_QTV_icon_rotate->setText(QString("%1").arg(rt));
 	}
 	//!smooth is the transform mode that this icon will use. 0 mean not smooth, but faster. 1 mean smooth.
 	if ( paras.contains("smooth"))
 	{
 		int smt =paras["smooth"].toInt();
-		ui->checkBox_icon_smooth->setChecked(smt==0?false:true);
+		ui->checkBox_QTV_icon_smooth->setChecked(smt==0?false:true);
 	}
 	if (errMsg.size())
 		res["warning"] = errMsg;
@@ -1638,37 +1638,37 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_default_style(const QMap<QStri
 	//! this function call will first load default style.
 	this->style_load();
 	//! style_pen from 0~6, is corresponds to the pen combo-box in UI system.
-	res["style_pen"] = ui->comboBox_linePad->currentIndex();
+	res["style_pen"] = ui->comboBox_QTV_linePad->currentIndex();
 	//! color_pen has 4 pen color band values splitted by comma, r,g,b,a
-	res["color_pen"] = ui->lineEdit_PenColor->text();
+	res["color_pen"] = ui->lineEdit_QTV_PenColor->text();
 	//! width_pen has a value >0 , stand for the point width of the pen on screen.
-	res["width_pen"] = ui->spinBox_penWidth->value();
+	res["width_pen"] = ui->spinBox_QTV_penWidth->value();
 	//! style_brush from 0~14, is corresponds to the brush style combo-box in UI system.
-	res["style_brush"] = ui->comboBox_fillPad->currentIndex();
+	res["style_brush"] = ui->comboBox_QTV_fillPad->currentIndex();
 	//! color_brush has 4 brush color band values splitted by comma, r,g,b,a
-	res["color_brush"] = ui->lineEdit_FillColor->text();
+	res["color_brush"] = ui->lineEdit_QTV_FillColor->text();
 	//! width has is a integer, means the default width of a point mark
-	res["width"] = ui->spinBox_point_width->value();
+	res["width"] = ui->spinBox_QTV_point_width->value();
 	//! height has is a integer, means the default width of a point mark
-	res["height"] = ui->spinBox_point_height->value();
+	res["height"] = ui->spinBox_QTV_point_height->value();
 	//! mark default point_type select , 1 means rect, 2 means Ecilips
-	res["point_type"] = ui->radioButton_PointRect->isChecked()?1:2;
+	res["point_type"] = ui->radioButton_QTV_PointRect->isChecked()?1:2;
 	//! mark default polygon_type select , 4 means polygon, 6 mean multiline
-	res["polygon_type"] = ui->checkBox_multiline->isChecked()?6:4;
+	res["polygon_type"] = ui->checkBox_QTV_multiline->isChecked()?6:4;
 	//! size_label stands for the text label font pixel size from 1 - 720, with a normal value 9.
-	res["size_label"] = ui->spinBox_fontSize->value();
+	res["size_label"] = ui->spinBox_QTV_fontSize->value();
 	//! weight_label is the bolder rate for  text renderring, from 1 ~ 99, 99 is the heaviest.
-	res["weight_label"] = ui->spinBox_textWeight->value();
+	res["weight_label"] = ui->spinBox_QTV_textWeight->value();
 	//! color_label has 4 text color band values splitted by comma, r,g,b,a
-	res["color_label"] = ui->lineEdit_TextColor->text();
+	res["color_label"] = ui->lineEdit_QTV_TextColor->text();
 	//! icon is the name that this mark will use.
-	res["icon"] = ui->comboBox_icons->currentText();
+	res["icon"] = ui->comboBox_QTV_icons->currentText();
 	//! scale is the zoom ratio that this icon will use, 1.0 means no zoom
-	res["scale"] = ui->lineEdit_icon_scale->text();
+	res["scale"] = ui->lineEdit_QTV_icon_scale->text();
 	//! rotate is the rotate angle that this icon will use, 0.0 means no rotate
-	res["rotate"] = ui->lineEdit_icon_rotate->text();
+	res["rotate"] = ui->lineEdit_QTV_icon_rotate->text();
 	//!smooth is the transform mode that this icon will use. 0 mean not smooth, but faster. 1 mean smooth.
-	res["smooth"] = ui->checkBox_icon_smooth->isChecked()?-1:0;
+	res["smooth"] = ui->checkBox_QTV_icon_smooth->isChecked()?-1:0;
 	return std::move(res);
 }
 

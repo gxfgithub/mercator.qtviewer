@@ -21,7 +21,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QCheckBox" name="checkBox_measure">
+      <widget class="QCheckBox" name="checkBox_QTV_measure">
        <property name="text">
         <string>Ruler Active</string>
        </property>
@@ -47,13 +47,13 @@
     </layout>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="groupBox_qtv">
      <property name="title">
       <string>Mark</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPlainTextEdit" name="plainTextEdit_markcmd">
+       <widget class="QPlainTextEdit" name="plainTextEdit_QTV_markcmd">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -65,7 +65,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QRadioButton" name="radioButton_latfirst">
+         <widget class="QRadioButton" name="radioButton_QTV_latfirst">
           <property name="text">
            <string>LatLon</string>
           </property>
@@ -75,31 +75,31 @@
          </widget>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton_lonfirst">
+         <widget class="QRadioButton" name="radioButton_QTV_lonfirst">
           <property name="text">
            <string>LonLat</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="label_QTV_2">
           <property name="text">
            <string>,West spliter</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_west_spliter"/>
+         <widget class="QLineEdit" name="lineEdit_QTV_west_spliter"/>
         </item>
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="label_qtv">
           <property name="text">
            <string>South spliter</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_south_spliter"/>
+         <widget class="QLineEdit" name="lineEdit_QTV_south_spliter"/>
         </item>
        </layout>
       </item>
@@ -122,7 +122,7 @@
          <widget class="QComboBox" name="combox_type"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_add_mark">
+         <widget class="QPushButton" name="pushButton_QTV_add_mark">
           <property name="text">
            <string>Add</string>
           </property>
@@ -133,7 +133,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_clear">
+         <widget class="QPushButton" name="pushButton_QTV_clear">
           <property name="text">
            <string>Clear</string>
           </property>
@@ -144,7 +144,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_clear_all">
+         <widget class="QPushButton" name="pushButton_QTV_clear_all">
           <property name="text">
            <string>Clear All</string>
           </property>
@@ -160,14 +160,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="label_QTV_5">
      <property name="text">
       <string>Cursor</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="plainTextEdit_cursor">
+    <widget class="QPlainTextEdit" name="plainTextEdit_QTV_cursor">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -177,14 +177,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="label_QTV_4">
      <property name="text">
       <string>Results</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="plainTextEdit_RES">
+    <widget class="QPlainTextEdit" name="plainTextEdit_QTV_RES">
      <property name="lineWrapMode">
       <enum>QPlainTextEdit::NoWrap</enum>
      </property>

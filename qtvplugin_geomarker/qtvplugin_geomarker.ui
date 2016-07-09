@@ -34,7 +34,7 @@
     <number>3</number>
    </property>
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="groupBox_qtv">
      <property name="title">
       <string>Marks</string>
      </property>
@@ -57,7 +57,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QPushButton" name="pushButton_refresh_list">
+         <widget class="QPushButton" name="pushButton_QTV_refresh_list">
           <property name="text">
            <string>Refresh</string>
           </property>
@@ -68,7 +68,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_collaps_all">
+         <widget class="QPushButton" name="pushButton_QTV_collaps_all">
           <property name="text">
            <string>Collapse</string>
           </property>
@@ -94,7 +94,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QGroupBox" name="groupBox_operation">
+       <widget class="QGroupBox" name="groupBox_QTV_operation">
         <property name="title">
          <string>Map Operation</string>
         </property>
@@ -115,14 +115,14 @@
           <number>1</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="radioButton_display">
+          <widget class="QRadioButton" name="radioButton_QTV_display">
            <property name="text">
             <string>Display Only</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_rect_selection">
+          <widget class="QRadioButton" name="radioButton_QTV_rect_selection">
            <property name="text">
             <string>Rect Selection</string>
            </property>
@@ -132,7 +132,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolBox" name="toolBox_marks">
+       <widget class="QToolBox" name="toolBox_QTV_marks">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -178,7 +178,7 @@
            <number>1</number>
           </property>
           <item>
-           <widget class="QTableView" name="tableView_marks">
+           <widget class="QTableView" name="tableView_QTV_marks">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
@@ -222,21 +222,21 @@
            <number>1</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pushButton_sel_clear">
+           <widget class="QPushButton" name="pushButton_QTV_sel_clear">
             <property name="text">
              <string>Clear Sel</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_sel_delselected">
+           <widget class="QPushButton" name="pushButton_QTV_sel_delselected">
             <property name="text">
              <string>Delete Selected  Items</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QTableView" name="tableView_marks_sel">
+           <widget class="QTableView" name="tableView_QTV_marks_sel">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -250,7 +250,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QGroupBox" name="groupBox_2">
+       <widget class="QGroupBox" name="groupBox_QTV_2">
         <property name="title">
          <string>Mark Type</string>
         </property>
@@ -271,7 +271,7 @@
           <number>1</number>
          </property>
          <item row="0" column="0">
-          <widget class="QRadioButton" name="radioButton_tool_point">
+          <widget class="QRadioButton" name="radioButton_QTV_tool_point">
            <property name="text">
             <string>points</string>
            </property>
@@ -281,21 +281,21 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QRadioButton" name="radioButton_tool_line">
+          <widget class="QRadioButton" name="radioButton_QTV_tool_line">
            <property name="text">
             <string>lines</string>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QRadioButton" name="radioButton_tool_polygon">
+          <widget class="QRadioButton" name="radioButton_QTV_tool_polygon">
            <property name="text">
             <string>polygons</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QRadioButton" name="radioButton_tool_icons">
+          <widget class="QRadioButton" name="radioButton_QTV_tool_icons">
            <property name="text">
             <string>icons</string>
            </property>
@@ -318,17 +318,17 @@
         <number>1</number>
        </property>
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="label_QTV_3">
          <property name="text">
           <string>ID</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_currentID"/>
+        <widget class="QLineEdit" name="lineEdit_QTV_currentID"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_update">
+        <widget class="QPushButton" name="pushButton_QTV_update">
          <property name="text">
           <string>Update</string>
          </property>
@@ -339,7 +339,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_del">
+        <widget class="QPushButton" name="pushButton_QTV_del">
          <property name="text">
           <string>Delete</string>
          </property>
@@ -350,7 +350,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_save">
+        <widget class="QPushButton" name="pushButton_QTV_save">
          <property name="text">
           <string>Save</string>
          </property>
@@ -361,7 +361,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_load">
+        <widget class="QPushButton" name="pushButton_QTV_load">
          <property name="text">
           <string>Load</string>
          </property>
@@ -419,24 +419,24 @@
             <enum>QLayout::SetMaximumSize</enum>
            </property>
            <item>
-            <widget class="QLabel" name="label_4">
+            <widget class="QLabel" name="label_QTV_4">
              <property name="text">
               <string>Latitude</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_point_lat"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_point_lat"/>
            </item>
            <item>
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="label_QTV_6">
              <property name="text">
               <string>Longitude</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_point_lon"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_point_lon"/>
            </item>
           </layout>
          </item>
@@ -449,14 +449,14 @@
             <enum>QLayout::SetDefaultConstraint</enum>
            </property>
            <item>
-            <widget class="QLabel" name="label_15">
+            <widget class="QLabel" name="label_QTV_15">
              <property name="text">
               <string>width</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_point_width">
+            <widget class="QSpinBox" name="spinBox_QTV_point_width">
              <property name="minimum">
               <number>1</number>
              </property>
@@ -466,14 +466,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_20">
+            <widget class="QLabel" name="label_QTV_20">
              <property name="text">
               <string>height</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_point_height">
+            <widget class="QSpinBox" name="spinBox_QTV_point_height">
              <property name="minimum">
               <number>1</number>
              </property>
@@ -498,7 +498,7 @@
           </layout>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_PointRect">
+          <widget class="QRadioButton" name="radioButton_QTV_PointRect">
            <property name="text">
             <string>Rectangle Marks</string>
            </property>
@@ -508,7 +508,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="radioButton_PointRound">
+          <widget class="QRadioButton" name="radioButton_QTV_PointRound">
            <property name="text">
             <string>Ecilips Marks</string>
            </property>
@@ -539,27 +539,27 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_9">
            <item>
-            <widget class="QLabel" name="label_7">
+            <widget class="QLabel" name="label_QTV_7">
              <property name="text">
               <string>Lat1</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_lineLat1"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_lineLat1"/>
            </item>
            <item>
-            <widget class="QLabel" name="label_9">
+            <widget class="QLabel" name="label_QTV_9">
              <property name="text">
               <string>Lon1</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_lineLon1"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_lineLon1"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_pickToLine1">
+            <widget class="QPushButton" name="pushButton_QTV_pickToLine1">
              <property name="text">
               <string>Pick</string>
              </property>
@@ -574,27 +574,27 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_10">
            <item>
-            <widget class="QLabel" name="label_8">
+            <widget class="QLabel" name="label_QTV_8">
              <property name="text">
               <string>Lat2</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_lineLat2"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_lineLat2"/>
            </item>
            <item>
-            <widget class="QLabel" name="label_10">
+            <widget class="QLabel" name="label_QTV_10">
              <property name="text">
               <string>Lon2</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_lineLon2"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_lineLon2"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_pickToLine2">
+            <widget class="QPushButton" name="pushButton_QTV_pickToLine2">
              <property name="text">
               <string>Pick</string>
              </property>
@@ -626,14 +626,14 @@
           <number>1</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_13">
+          <widget class="QLabel" name="label_QTV_13">
            <property name="text">
             <string>corner Points</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPlainTextEdit" name="plainTextEdit_corners">
+          <widget class="QPlainTextEdit" name="plainTextEdit_QTV_corners">
            <property name="lineWrapMode">
             <enum>QPlainTextEdit::NoWrap</enum>
            </property>
@@ -642,7 +642,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_14">
            <item>
-            <widget class="QCheckBox" name="checkBox_multiline">
+            <widget class="QCheckBox" name="checkBox_QTV_multiline">
              <property name="text">
               <string>Multiline(Not close)</string>
              </property>
@@ -662,7 +662,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_getPolygon">
+            <widget class="QPushButton" name="pushButton_QTV_getPolygon">
              <property name="text">
               <string>Call Polygon Get</string>
              </property>
@@ -681,24 +681,24 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_18">
            <item>
-            <widget class="QLabel" name="label_5">
+            <widget class="QLabel" name="label_QTV_5">
              <property name="text">
               <string>icon</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_icons"/>
+            <widget class="QComboBox" name="comboBox_QTV_icons"/>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkBox_icon_smooth">
+            <widget class="QCheckBox" name="checkBox_QTV_icon_smooth">
              <property name="text">
               <string>smooth</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_import_icon">
+            <widget class="QPushButton" name="pushButton_QTV_import_icon">
              <property name="text">
               <string>add</string>
              </property>
@@ -713,48 +713,48 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_19">
            <item>
-            <widget class="QLabel" name="label_26">
+            <widget class="QLabel" name="label_QTV_26">
              <property name="text">
               <string>scale ratio</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_icon_scale"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_icon_scale"/>
            </item>
            <item>
-            <widget class="QLabel" name="label_18">
+            <widget class="QLabel" name="label_QTV_18">
              <property name="text">
               <string>rotate</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_icon_rotate"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_icon_rotate"/>
            </item>
           </layout>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_17">
            <item>
-            <widget class="QLabel" name="label_22">
+            <widget class="QLabel" name="label_QTV_22">
              <property name="text">
               <string>Latitude</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_icon_lat"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_icon_lat"/>
            </item>
            <item>
-            <widget class="QLabel" name="label_17">
+            <widget class="QLabel" name="label_QTV_17">
              <property name="text">
               <string>Longitude</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_icon_lon"/>
+            <widget class="QLineEdit" name="lineEdit_QTV_icon_lon"/>
            </item>
           </layout>
          </item>
@@ -774,7 +774,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_load_icons">
+            <widget class="QPushButton" name="pushButton_QTV_load_icons">
              <property name="text">
               <string>load</string>
              </property>
@@ -785,7 +785,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_save_icons">
+            <widget class="QPushButton" name="pushButton_QTV_save_icons">
              <property name="text">
               <string>save</string>
              </property>
@@ -802,7 +802,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox_3">
+      <widget class="QGroupBox" name="groupBox_QTV_3">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -844,7 +844,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_style_default_save">
+           <widget class="QPushButton" name="pushButton_QTV_style_default_save">
             <property name="text">
              <string>Save to default style</string>
             </property>
@@ -855,7 +855,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_style_default_load">
+           <widget class="QPushButton" name="pushButton_QTV_style_default_load">
             <property name="text">
              <string>Load from default style</string>
             </property>
@@ -870,27 +870,27 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_11">
           <item>
-           <widget class="QLabel" name="label_19">
+           <widget class="QLabel" name="label_QTV_19">
             <property name="text">
              <string>Pen Style</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_linePad"/>
+           <widget class="QComboBox" name="comboBox_QTV_linePad"/>
           </item>
           <item>
-           <widget class="QLabel" name="label_12">
+           <widget class="QLabel" name="label_QTV_12">
             <property name="text">
              <string>Pen Color</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_PenColor"/>
+           <widget class="QLineEdit" name="lineEdit_QTV_PenColor"/>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_selColorPen">
+           <widget class="QToolButton" name="toolButton_QTV_selColorPen">
             <property name="text">
              <string>...</string>
             </property>
@@ -901,14 +901,14 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_12">
           <item>
-           <widget class="QLabel" name="label_11">
+           <widget class="QLabel" name="label_QTV_11">
             <property name="text">
              <string>Pen width</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_penWidth">
+           <widget class="QSpinBox" name="spinBox_QTV_penWidth">
             <property name="minimum">
              <number>1</number>
             </property>
@@ -918,17 +918,17 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_16">
+           <widget class="QLabel" name="label_QTV_16">
             <property name="text">
              <string>Fill Color</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_FillColor"/>
+           <widget class="QLineEdit" name="lineEdit_QTV_FillColor"/>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_selColorFill">
+           <widget class="QToolButton" name="toolButton_QTV_selColorFill">
             <property name="text">
              <string>...</string>
             </property>
@@ -939,31 +939,31 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QLabel" name="label_14">
+           <widget class="QLabel" name="label_QTV_14">
             <property name="text">
              <string>Text Color</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_TextColor"/>
+           <widget class="QLineEdit" name="lineEdit_QTV_TextColor"/>
           </item>
           <item>
-           <widget class="QToolButton" name="toolButton_selColorText">
+           <widget class="QToolButton" name="toolButton_QTV_selColorText">
             <property name="text">
              <string>...</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_25">
+           <widget class="QLabel" name="label_QTV_25">
             <property name="text">
              <string>weight</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_textWeight">
+           <widget class="QSpinBox" name="spinBox_QTV_textWeight">
             <property name="minimum">
              <number>1</number>
             </property>
@@ -980,24 +980,24 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_15">
           <item>
-           <widget class="QLabel" name="label_24">
+           <widget class="QLabel" name="label_QTV_24">
             <property name="text">
              <string>Fill Style</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_fillPad"/>
+           <widget class="QComboBox" name="comboBox_QTV_fillPad"/>
           </item>
           <item>
-           <widget class="QLabel" name="label_23">
+           <widget class="QLabel" name="label_QTV_23">
             <property name="text">
              <string>Font Size</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_fontSize">
+           <widget class="QSpinBox" name="spinBox_QTV_fontSize">
             <property name="minimum">
              <number>1</number>
             </property>
@@ -1012,7 +1012,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableView" name="tableView_props">
+         <widget class="QTableView" name="tableView_QTV_props">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -1024,17 +1024,17 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="label_qtv">
             <property name="text">
              <string>Property Name</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_prop_name"/>
+           <widget class="QLineEdit" name="lineEdit_QTV_prop_name"/>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_prop_update">
+           <widget class="QPushButton" name="pushButton_QTV_prop_update">
             <property name="text">
              <string>Update Prop</string>
             </property>
@@ -1045,7 +1045,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_prop_delete">
+           <widget class="QPushButton" name="pushButton_QTV_prop_delete">
             <property name="text">
              <string>Delete Prop</string>
             </property>
@@ -1060,14 +1060,14 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_16">
           <item>
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="label_QTV_2">
             <property name="text">
              <string>Property String</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_prop_string"/>
+           <widget class="QLineEdit" name="lineEdit_QTV_prop_string"/>
           </item>
          </layout>
         </item>

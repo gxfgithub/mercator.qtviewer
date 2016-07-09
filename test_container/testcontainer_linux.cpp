@@ -9,8 +9,8 @@ testcontainer::testcontainer(QWidget *parent) :
 	ui->setupUi(this);
 	QFont ft;
 	ft.setPixelSize(9);
-	ui->tableView_msg->setFont(ft);
-	ui->tableView_msg->verticalHeader()->setDefaultSectionSize(16);
+	ui->tableView_QTV_msg->setFont(ft);
+	ui->tableView_QTV_msg->verticalHeader()->setDefaultSectionSize(16);
 	Qt::WindowFlags flg =  this->windowFlags();
 	flg |= Qt::WindowMinMaxButtonsHint;
 	this->setWindowFlags(flg);
@@ -18,7 +18,7 @@ testcontainer::testcontainer(QWidget *parent) :
 	m_pModel = new QStandardItemModel (0,2,this);
 	m_pModel->setHeaderData(0,Qt::Horizontal,tr("ctrl"));
 	m_pModel->setHeaderData(1,Qt::Horizontal,tr("msg"));
-	ui->tableView_msg->setModel(m_pModel);
+	ui->tableView_QTV_msg->setModel(m_pModel);
 
 	m_nAnTimer = startTimer(150);
 
@@ -58,10 +58,10 @@ void testcontainer::show_message(QString message)
 	m_pModel->appendRow(list_newrow);
 	while (m_pModel->rowCount()>1024)
 		m_pModel->removeRow(0);
-	ui->tableView_msg->scrollToBottom();
+	ui->tableView_QTV_msg->scrollToBottom();
 }
 
-void testcontainer::on_pushButton_test_adds_clicked()
+void testcontainer::on_pushButton_QTV_test_adds_clicked()
 {
 	//get raw address
 	QString str_addr = ui->osmmap->osm_get_remote_address("OSM");
@@ -82,7 +82,7 @@ void testcontainer::on_pushButton_test_adds_clicked()
 	QMessageBox::information(this,"get osm address from LAYER \"OSM\"",str_addr3);
 
 }
-void testcontainer::on_pushButton_test_autodl_clicked()
+void testcontainer::on_pushButton_QTV_test_autodl_clicked()
 {
 	//get auto download flag
 	int n_status = ui->osmmap->osm_get_auto_download("OSM");
@@ -97,7 +97,7 @@ void testcontainer::on_pushButton_test_autodl_clicked()
 	n_status = ui->osmmap->osm_get_auto_download("OSM");
 	QMessageBox::information(this,"get auto download from LAYER \"OSM\"",QString("status = %1").arg(n_status) );
 }
-void testcontainer::on_pushButton_test_navigate_clicked()
+void testcontainer::on_pushButton_QTV_test_navigate_clicked()
 {
 	//Get curent Level
 	int n_level = ui->osmmap->osm_get_level();
@@ -124,7 +124,7 @@ void testcontainer::on_pushButton_test_navigate_clicked()
 	lon = ui->osmmap->osm_get_center_lon();
 	QMessageBox::information(this,"osm_get_center_latlon",QString("lat = %1, lon=%2").arg(lat).arg(lon) );
 }
-void testcontainer::on_pushButton_test_layers_clicked()
+void testcontainer::on_pushButton_QTV_test_layers_clicked()
 {
 	//Get Total layers
 	int n_num = ui->osmmap->osm_layer_get_count();
@@ -139,17 +139,17 @@ void testcontainer::on_pushButton_test_layers_clicked()
 	QMessageBox::information(this,"layer count",QString("osm_layer_get_count() returns  %1\n%2").arg(n_num).arg(strLayerNames) );
 
 }
-void testcontainer::on_pushButton_test_layer_move_clicked()
+void testcontainer::on_pushButton_QTV_test_layer_move_clicked()
 {
 	//Move layers up and down
 	ui->osmmap->osm_layer_move_up("grid"/*m_str_gridLayerName*/);
-	on_pushButton_test_layers_clicked();
+	on_pushButton_QTV_test_layers_clicked();
 	ui->osmmap->osm_layer_move_bottom("grid"/*m_str_gridLayerName*/);
-	on_pushButton_test_layers_clicked();
+	on_pushButton_QTV_test_layers_clicked();
 	ui->osmmap->osm_layer_move_top("grid"/*m_str_gridLayerName*/);
-	on_pushButton_test_layers_clicked();
+	on_pushButton_QTV_test_layers_clicked();
 	ui->osmmap->osm_layer_move_down("grid"/*m_str_gridLayerName*/);
-	on_pushButton_test_layers_clicked();
+	on_pushButton_QTV_test_layers_clicked();
 
 	//Set layer's visiblity
 	int bv = ui->osmmap->osm_layer_get_visiable("grid"/*m_str_gridLayerName*/);
@@ -196,7 +196,7 @@ QMap<QString, QVariant> testcontainer::string_to_map(const QString & s)
 	}
 	return std::move(res);
 }
-void testcontainer::on_pushButton_test_grid_enable_clicked()
+void testcontainer::on_pushButton_QTV_test_grid_enable_clicked()
 {
 	//Get the grid plugin's ruler status
 	QString res = ui->osmmap->
@@ -224,7 +224,7 @@ void testcontainer::on_pushButton_test_grid_enable_clicked()
 	}
 
 }
-void testcontainer::on_pushButton_test_grid_getPolygon_clicked()
+void testcontainer::on_pushButton_QTV_test_grid_getPolygon_clicked()
 {
 	//Get current ploygon lla.
 	QString res = ui->osmmap->
@@ -236,7 +236,7 @@ void testcontainer::on_pushButton_test_grid_getPolygon_clicked()
 	QMessageBox::information(this,"grid::get_polygon",res);
 
 }
-void testcontainer::on_pushButton_test_mark_clicked()
+void testcontainer::on_pushButton_QTV_test_mark_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID3;name1=ID4;");
@@ -307,7 +307,7 @@ void testcontainer::on_pushButton_test_mark_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::update_props",res);
 }
-void testcontainer::on_pushButton_test_line_clicked()
+void testcontainer::on_pushButton_QTV_test_line_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID1;name1=ID2;name2=ID4;");
@@ -336,7 +336,7 @@ void testcontainer::on_pushButton_test_line_clicked()
 		QMessageBox::information(this,"geomarker::update_point",res);
 }
 
-void testcontainer::on_pushButton_test_polygon_clicked()
+void testcontainer::on_pushButton_QTV_test_polygon_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=delete_marks;name0=ID1;name1=ID2;name2=ID3;");
@@ -411,7 +411,7 @@ void testcontainer::timerEvent(QTimerEvent * e)
 	}
 }
 
-void testcontainer::on_pushButton_test_request_clicked()
+void testcontainer::on_pushButton_QTV_test_request_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=mark_names;");
@@ -436,20 +436,20 @@ void testcontainer::on_pushButton_test_request_clicked()
 
 
 }
-void testcontainer::on_pushButton_test_cache_clicked()
+void testcontainer::on_pushButton_QTV_test_cache_clicked()
 {
 	//Get the address of local cache
 	QString res = ui->osmmap->osm_get_local_cache("OSM");
 	QMessageBox::information(this,"geomarker::osm_get_local_cache",res);
 	//set it to /
-	ui->osmmap->osm_set_local_cache("OSM","/OSMCache");
+	ui->osmmap->osm_set_local_cache("OSM","./OSMCache");
 	//Get expire Days
-	res = ui->osmmap->osm_get_cache_expire_days("OSM");
-	QMessageBox::information(this,"geomarker::osm_get_cache_expire_days",res);
-	res = ui->osmmap->osm_set_cache_expire_days("OSM",res.toInt()+1);
-	QMessageBox::information(this,"geomarker::osm_get_cache_expire_days",res);
+	int exp = ui->osmmap->osm_get_cache_expire_days("OSM");
+	QMessageBox::information(this,"geomarker::osm_get_cache_expire_days",QString("%1").arg(exp));
+	res = ui->osmmap->osm_set_cache_expire_days("OSM",exp+1);
+	QMessageBox::information(this,"geomarker::osm_get_cache_expire_days",QString("%1").arg(exp+1));
 }
-void testcontainer::on_pushButton_test_xml_clicked()
+void testcontainer::on_pushButton_QTV_test_xml_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=load_xml;xml=.//test.xml;");
@@ -459,7 +459,7 @@ void testcontainer::on_pushButton_test_xml_clicked()
 	QMessageBox::information(this,"geomarker::save_xml",res);
 
 }
-void testcontainer::on_pushButton_test_resource_clicked()
+void testcontainer::on_pushButton_QTV_test_resource_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=add_resource;name=lena;filename=./lena.png;centerx=32;centery=32;");
@@ -480,7 +480,7 @@ void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 
 	if (message.contains("MOUSE_MOVE"))
 	{
-		ui->label_mouseMove->setText(message);
+		ui->label_QTV_mouseMove->setText(message);
 	}
 	else
 	{
@@ -488,10 +488,10 @@ void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 		m_pModel->appendRow(list_newrow);
 		while (m_pModel->rowCount()>1024)
 			m_pModel->removeRow(0);
-		ui->tableView_msg->scrollToBottom();
+		ui->tableView_QTV_msg->scrollToBottom();
 	}
 }
-void testcontainer::on_pushButton_test_geo_displayMod_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_displayMod_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=set_mod;mod=0;");
@@ -500,7 +500,7 @@ void testcontainer::on_pushButton_test_geo_displayMod_clicked()
 
 }
 
-void testcontainer::on_pushButton_test_geo_selectionMod_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_selectionMod_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=set_mod;mod=1;");
@@ -508,14 +508,14 @@ void testcontainer::on_pushButton_test_geo_selectionMod_clicked()
 		QMessageBox::information(this,"geomarker::set_mod",res);
 }
 
-void testcontainer::on_pushButton_test_geo_selected_marks_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_selected_marks_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=selected_items;");
 	QMessageBox::information(this,"geomarker::selected_items",res);
 }
 
-void testcontainer::on_pushButton_test_geo_clear_sel_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_clear_sel_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=selection_clear;");
@@ -524,7 +524,7 @@ void testcontainer::on_pushButton_test_geo_clear_sel_clicked()
 
 }
 
-void testcontainer::on_pushButton_test_geo_del_sel_clicked()
+void testcontainer::on_pushButton_QTV_test_geo_del_sel_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=selection_delete;");
@@ -532,7 +532,7 @@ void testcontainer::on_pushButton_test_geo_del_sel_clicked()
 		QMessageBox::information(this,"geomarker::selection_delete",res);
 
 }
-void testcontainer::on_pushButton_default_style_clicked()
+void testcontainer::on_pushButton_QTV_default_style_clicked()
 {
 	QString res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
 												 "function=default_style;");

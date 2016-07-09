@@ -17,17 +17,17 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_qtv">
        <property name="text">
         <string>Filename</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_filename"/>
+      <widget class="QLineEdit" name="lineEdit_QTV_filename"/>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButton_browser">
+      <widget class="QToolButton" name="toolButton_QTV_browser">
        <property name="text">
         <string>...</string>
        </property>
@@ -38,48 +38,48 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="label_QTV_4">
        <property name="text">
         <string>centerx</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_centx"/>
+      <widget class="QLineEdit" name="lineEdit_QTV_centx"/>
      </item>
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="label_QTV_3">
        <property name="text">
         <string>centery</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_centy"/>
+      <widget class="QLineEdit" name="lineEdit_QTV_centy"/>
      </item>
     </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="label_QTV_2">
        <property name="text">
         <string>name</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_name"/>
+      <widget class="QLineEdit" name="lineEdit_QTV_name"/>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_ok">
+      <widget class="QPushButton" name="pushButton_QTV_ok">
        <property name="text">
         <string>Ok</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_cancel">
+      <widget class="QPushButton" name="pushButton_QTV_cancel">
        <property name="text">
         <string>Cancel</string>
        </property>
