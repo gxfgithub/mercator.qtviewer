@@ -30,9 +30,9 @@ namespace QTVOSM{
 	public slots:
 		void slot_message(QString);
 	protected slots:
-		void on_toolButton_browser_clicked();
-		void on_pushButton_apply_clicked();
-		void on_checkBox_connect_clicked(bool);
+		void on_toolButton_QTV_browser_clicked();
+		void on_pushButton_QTV_apply_clicked();
+		void on_checkBox_QTV_connect_clicked(bool);
 	};
 }
 #endif // LAYER_TILES_PAGE_H

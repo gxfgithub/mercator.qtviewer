@@ -295,14 +295,14 @@ bool qtvplugin_grid::is_active()
 void qtvplugin_grid::set_active(bool ab)
 {
 	m_bActive = ab;
-	ui->checkBox_measure->setChecked(m_bActive);
+	ui->checkBox_QTV_measure->setChecked(m_bActive);
 }
 
 void qtvplugin_grid::set_name(QString /*vb*/)
 {
 
 }
-void qtvplugin_grid::on_checkBox_measure_clicked(bool acti)
+void qtvplugin_grid::on_checkBox_QTV_measure_clicked(bool acti)
 {
 	save_ini();
 	m_bActive = acti;
@@ -330,7 +330,7 @@ bool qtvplugin_grid::cb_mouseMoveEvent(QMouseEvent * e )
 		m_pVi->centerLLA(&clat,&clon);
 		sprintf (buftmp,"Center LAT=%14.9lf, LON=%14.9lf",clat,clon);
 		strMsg += buftmp;
-		ui->plainTextEdit_cursor->setPlainText(strMsg);
+		ui->plainTextEdit_QTV_cursor->setPlainText(strMsg);
 	}
 	if (m_bActive==false)
 		return false;
@@ -403,7 +403,7 @@ void qtvplugin_grid::CalArea()
 	str_Polygon = ("ST_Transform(ST_GeomFromText('POLYGON(\n(");
 	str_LineString = ("ST_Transform(ST_GeomFromText('LINESTRING(\n(");
 
-	bool bLatFirst = ui->radioButton_latfirst->isChecked();
+	bool bLatFirst = ui->radioButton_QTV_latfirst->isChecked();
 
 	for (int i=0;i<Count;i++)
 	{
@@ -457,8 +457,8 @@ void qtvplugin_grid::CalArea()
 	delete [] PointY;
 	delete [] buffertmp;
 
-	ui->plainTextEdit_RES->setPlainText(strMsg);
-	ui->plainTextEdit_markcmd->setPlainText(str_QuickMark);
+	ui->plainTextEdit_QTV_RES->setPlainText(strMsg);
+	ui->plainTextEdit_QTV_markcmd->setPlainText(str_QuickMark);
 }
 
 /**
@@ -724,7 +724,7 @@ QMap<QString, QVariant> qtvplugin_grid::call_func(const  QMap<QString, QVariant>
 		res["error"] = "\"function\" keyword not specified, nothing to do.";
 	return std::move(res);
 }
-void qtvplugin_grid::on_pushButton_add_mark_clicked()
+void qtvplugin_grid::on_pushButton_QTV_add_mark_clicked()
 {
 	if (!m_pVi)
 		return;
@@ -732,15 +732,15 @@ void qtvplugin_grid::on_pushButton_add_mark_clicked()
 	layer_interface * pif =  m_pVi->layer(strMarkerName);
 	save_ini();
 	int tp = ui->combox_type->currentIndex();
-	QString strAll = ui->plainTextEdit_markcmd->toPlainText();
+	QString strAll = ui->plainTextEdit_QTV_markcmd->toPlainText();
 	QStringList strLines = strAll.split("\n",QString::SkipEmptyParts);
 	int c = 0;
-	bool bLatFirst = ui->radioButton_latfirst->isChecked();
+	bool bLatFirst = ui->radioButton_QTV_latfirst->isChecked();
 	QMap<QString, QVariant> map_multi;
 	foreach (QString str, strLines)
 	{
-		QString strRegWest = QString("([%1])+").arg(ui->lineEdit_west_spliter->text());
-		QString strRegsout = QString("([%1])+").arg(ui->lineEdit_south_spliter->text());
+		QString strRegWest = QString("([%1])+").arg(ui->lineEdit_QTV_west_spliter->text());
+		QString strRegsout = QString("([%1])+").arg(ui->lineEdit_QTV_south_spliter->text());
 		int latNG = 1, lonNG = 1;
 
 		if (str.indexOf(QRegExp(strRegWest))>=0)
@@ -833,7 +833,7 @@ void qtvplugin_grid::on_pushButton_add_mark_clicked()
 	}
 }
 
-void qtvplugin_grid::on_pushButton_clear_clicked()
+void qtvplugin_grid::on_pushButton_QTV_clear_clicked()
 {
 	if (!m_pVi || m_nMarks<=0)
 		return;
@@ -852,7 +852,7 @@ void qtvplugin_grid::on_pushButton_clear_clicked()
 
 
 }
-void qtvplugin_grid::on_pushButton_clear_all_clicked()
+void qtvplugin_grid::on_pushButton_QTV_clear_all_clicked()
 {
 
 	if (!m_pVi)
@@ -879,24 +879,24 @@ QString qtvplugin_grid::ini_file()
 void  qtvplugin_grid::load_ini()
 {
 	QSettings settings(ini_file(),QSettings::IniFormat);
-	ui->lineEdit_south_spliter->setText(settings.value("settings/lineEdit_south_spliter","S").toString());
-	ui->lineEdit_west_spliter->setText(settings.value("settings/lineEdit_west_spliter","W").toString());
-	ui->plainTextEdit_markcmd->setPlainText(settings.value("settings/plainTextEdit_markcmd","").toString());
+	ui->lineEdit_QTV_south_spliter->setText(settings.value("settings/lineEdit_QTV_south_spliter","S").toString());
+	ui->lineEdit_QTV_west_spliter->setText(settings.value("settings/lineEdit_QTV_west_spliter","W").toString());
+	ui->plainTextEdit_QTV_markcmd->setPlainText(settings.value("settings/plainTextEdit_QTV_markcmd","").toString());
 	ui->combox_type->setCurrentIndex(settings.value("settings/combox_type",0).toInt());
 	bool bLatFirst = settings.value("settings/latfirst",true).toBool();
 	if (bLatFirst)
-		ui->radioButton_latfirst->setChecked(true);
+		ui->radioButton_QTV_latfirst->setChecked(true);
 	else
-		ui->radioButton_lonfirst->setChecked(true);
+		ui->radioButton_QTV_lonfirst->setChecked(true);
 }
 
 void  qtvplugin_grid::save_ini()
 {
 	QSettings settings(ini_file(),QSettings::IniFormat);
-	settings.setValue("settings/lineEdit_south_spliter",ui->lineEdit_south_spliter->text());
-	settings.setValue("settings/lineEdit_west_spliter",ui->lineEdit_west_spliter->text());
-	settings.setValue("settings/plainTextEdit_markcmd",ui->plainTextEdit_markcmd->toPlainText());
+	settings.setValue("settings/lineEdit_QTV_south_spliter",ui->lineEdit_QTV_south_spliter->text());
+	settings.setValue("settings/lineEdit_QTV_west_spliter",ui->lineEdit_QTV_west_spliter->text());
+	settings.setValue("settings/plainTextEdit_QTV_markcmd",ui->plainTextEdit_QTV_markcmd->toPlainText());
 	settings.setValue("settings/combox_type",ui->combox_type->currentIndex());
-	bool bLatFirst = ui->radioButton_latfirst->isChecked();
+	bool bLatFirst = ui->radioButton_QTV_latfirst->isChecked();
 	settings.setValue("settings/latfirst",bLatFirst);
 }

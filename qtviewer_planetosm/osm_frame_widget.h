@@ -47,15 +47,15 @@ protected:
 protected slots:
 	void delacmd_refresh_layer_view();
 	void on_tabWidget_main_tabCloseRequested(int index);
-	void on_pushButton_visible_clicked();
-	void on_pushButton_hide_clicked();
-	void on_pushButton_moveUp_clicked();
-	void on_pushButton_moveTop_clicked();
-	void on_pushButton_moveDown_clicked();
-	void on_pushButton_moveBtm_clicked();
-	void on_pushButton_active_clicked();
-	void on_pushButton_deactive_clicked();
-	void on_pushButton_saveToFile_clicked();
+	void on_pushButton_QTV_visible_clicked();
+	void on_pushButton_QTV_hide_clicked();
+	void on_pushButton_QTV_moveUp_clicked();
+	void on_pushButton_QTV_moveTop_clicked();
+	void on_pushButton_QTV_moveDown_clicked();
+	void on_pushButton_QTV_moveBtm_clicked();
+	void on_pushButton_QTV_active_clicked();
+	void on_pushButton_QTV_deactive_clicked();
+	void on_pushButton_QTV_saveToFile_clicked();
 };
 
 #endif // OSM_FRAME_WIDGET_H

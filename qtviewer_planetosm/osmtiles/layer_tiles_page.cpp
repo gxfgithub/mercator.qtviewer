@@ -20,19 +20,19 @@ namespace QTVOSM{
 		int nCacheExpireDays = settings.value(QString("settings/CacheExpireDays_%1").arg(layer->get_name()), 30).toInt();
 		int nAutoDownload = settings.value(QString("settings/nAutoDownload_%1").arg(layer->get_name()), 0).toInt();
 
-		ui->lineEdit_cacheFolder->setText(strLocalCache);
-		ui->lineEdit_addressUrl->setText(strServerURL);
-		ui->spinBox_cacheExpireDays->setValue(nCacheExpireDays);
+		ui->lineEdit_QTV_cacheFolder->setText(strLocalCache);
+		ui->lineEdit_QTV_addressUrl->setText(strServerURL);
+		ui->spinBox_QTV_cacheExpireDays->setValue(nCacheExpireDays);
 		this->setWindowTitle(layer->get_name());
 		//the pending tasks model
 		m_pPendingTasksModel = new QStandardItemModel(this);
-		ui->listView_messages->setModel(m_pPendingTasksModel);
+		ui->listView_QTV_messages->setModel(m_pPendingTasksModel);
 
-		connect (layer, &layer_tiles::connected ,this->ui->checkBox_connect, &QCheckBox::setChecked);
-		connect (layer, &layer_tiles::svrurlChanged ,this->ui->lineEdit_addressUrl, &QLineEdit::setText);
-		connect (layer, &layer_tiles::cacheChanged ,this->ui->lineEdit_cacheFolder, &QLineEdit::setText);
-		connect (layer, &layer_tiles::cacheExpireChanged ,this->ui->spinBox_cacheExpireDays, &QSpinBox::setValue);
-		//ui->checkBox_connect->setChecked(layer->isConnected());
+		connect (layer, &layer_tiles::connected ,this->ui->checkBox_QTV_connect, &QCheckBox::setChecked);
+		connect (layer, &layer_tiles::svrurlChanged ,this->ui->lineEdit_QTV_addressUrl, &QLineEdit::setText);
+		connect (layer, &layer_tiles::cacheChanged ,this->ui->lineEdit_QTV_cacheFolder, &QLineEdit::setText);
+		connect (layer, &layer_tiles::cacheExpireChanged ,this->ui->spinBox_QTV_cacheExpireDays, &QSpinBox::setValue);
+		//ui->checkBox_QTV_connect->setChecked(layer->isConnected());
 		if (nAutoDownload!=0)
 			layer->connectToTilesServer(true);
 
@@ -46,24 +46,24 @@ namespace QTVOSM{
 	{
 		delete ui;
 	}
-	void layer_tiles_page::on_toolButton_browser_clicked()
+	void layer_tiles_page::on_toolButton_QTV_browser_clicked()
 	{
 		QSettings settings(QCoreApplication::applicationFilePath()+".ini",QSettings::IniFormat);
 		QString strLocalCache = settings.value(QString("settings/LocalCache_%1").arg(m_pLayer->get_name()), QCoreApplication::applicationDirPath() +"/OSMCache").toString();
 		QString strFolder = QFileDialog::getExistingDirectory(this,tr("Select the local cache"),strLocalCache,QFileDialog::ShowDirsOnly);
 		if (strFolder.length())
-			ui->lineEdit_cacheFolder->setText(strFolder);
+			ui->lineEdit_QTV_cacheFolder->setText(strFolder);
 	}
 
-	void layer_tiles_page::on_pushButton_apply_clicked()
+	void layer_tiles_page::on_pushButton_QTV_apply_clicked()
 	{
-		m_pLayer->setLocalCache(ui->lineEdit_cacheFolder->text());
-		m_pLayer->setServerUrl(ui->lineEdit_addressUrl->text());
-		m_pLayer->setCacheExpireDays(ui->spinBox_cacheExpireDays->value());
+		m_pLayer->setLocalCache(ui->lineEdit_QTV_cacheFolder->text());
+		m_pLayer->setServerUrl(ui->lineEdit_QTV_addressUrl->text());
+		m_pLayer->setCacheExpireDays(ui->spinBox_QTV_cacheExpireDays->value());
 		m_pLayer->UpdateLayer();
 	}
 
-	void layer_tiles_page::on_checkBox_connect_clicked(bool ps)
+	void layer_tiles_page::on_checkBox_QTV_connect_clicked(bool ps)
 	{
 		m_pLayer->connectToTilesServer(ps);
 	}
@@ -72,6 +72,6 @@ namespace QTVOSM{
 		m_pPendingTasksModel->appendRow(new QStandardItem(message));
 		if (m_pPendingTasksModel->rowCount()>128)
 			m_pPendingTasksModel->removeRows(0,m_pPendingTasksModel->rowCount()-128);
-		ui->listView_messages->scrollToBottom();
+		ui->listView_QTV_messages->scrollToBottom();
 	}
 }

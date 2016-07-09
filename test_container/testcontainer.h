@@ -32,26 +32,26 @@ protected slots:
 	void slot_message(QString);
 #endif
 protected slots:
-	void on_pushButton_test_adds_clicked();
-	void on_pushButton_test_cache_clicked();
-	void on_pushButton_test_autodl_clicked();
-	void on_pushButton_test_navigate_clicked();
-	void on_pushButton_test_layers_clicked();
-	void on_pushButton_test_layer_move_clicked();
-	void on_pushButton_test_grid_enable_clicked();
-	void on_pushButton_test_grid_getPolygon_clicked();
-	void on_pushButton_test_mark_clicked();
-	void on_pushButton_test_line_clicked();
-	void on_pushButton_test_polygon_clicked();
-	void on_pushButton_test_request_clicked();
-	void on_pushButton_test_xml_clicked();
-	void on_pushButton_test_resource_clicked();
-	void on_pushButton_test_geo_displayMod_clicked();
-	void on_pushButton_test_geo_selectionMod_clicked();
-	void on_pushButton_test_geo_selected_marks_clicked();
-	void on_pushButton_test_geo_clear_sel_clicked();
-	void on_pushButton_test_geo_del_sel_clicked();
-	void on_pushButton_default_style_clicked();
+	void on_pushButton_QTV_test_adds_clicked();
+	void on_pushButton_QTV_test_cache_clicked();
+	void on_pushButton_QTV_test_autodl_clicked();
+	void on_pushButton_QTV_test_navigate_clicked();
+	void on_pushButton_QTV_test_layers_clicked();
+	void on_pushButton_QTV_test_layer_move_clicked();
+	void on_pushButton_QTV_test_grid_enable_clicked();
+	void on_pushButton_QTV_test_grid_getPolygon_clicked();
+	void on_pushButton_QTV_test_mark_clicked();
+	void on_pushButton_QTV_test_line_clicked();
+	void on_pushButton_QTV_test_polygon_clicked();
+	void on_pushButton_QTV_test_request_clicked();
+	void on_pushButton_QTV_test_xml_clicked();
+	void on_pushButton_QTV_test_resource_clicked();
+	void on_pushButton_QTV_test_geo_displayMod_clicked();
+	void on_pushButton_QTV_test_geo_selectionMod_clicked();
+	void on_pushButton_QTV_test_geo_selected_marks_clicked();
+	void on_pushButton_QTV_test_geo_clear_sel_clicked();
+	void on_pushButton_QTV_test_geo_del_sel_clicked();
+	void on_pushButton_QTV_default_style_clicked();
 	void on_osmmap_map_event(QMap<QString, QVariant> p);
 
 };

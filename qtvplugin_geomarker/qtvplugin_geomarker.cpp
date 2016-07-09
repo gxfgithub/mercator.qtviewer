@@ -42,19 +42,19 @@ qtvplugin_geomarker::qtvplugin_geomarker(QWidget *parent) :
 	m_pGeoItemModel->setHeaderData(0,Qt::Horizontal,tr("Name"));
 	m_pGeoItemModel->setHeaderData(1,Qt::Horizontal,tr("Type"));
 	m_pGeoItemModel->setHeaderData(2,Qt::Horizontal,tr("Props"));
-	ui->tableView_marks->setModel(m_pGeoItemModel);
+	ui->tableView_QTV_marks->setModel(m_pGeoItemModel);
 
 	m_pSelItemNameModel = new QStandardItemModel(this);
 	m_pSelItemNameModel->setColumnCount(1);
 	m_pSelItemNameModel->setHeaderData(0,Qt::Horizontal,tr("Name"));
-	ui->tableView_marks_sel->setModel(m_pSelItemNameModel);
+	ui->tableView_QTV_marks_sel->setModel(m_pSelItemNameModel);
 
 
 	m_pGeoPropModel = new QStandardItemModel(this);
 	m_pGeoPropModel->setColumnCount(2);
 	m_pGeoPropModel->setHeaderData(0,Qt::Horizontal,tr("Name"));
 	m_pGeoPropModel->setHeaderData(1,Qt::Horizontal,tr("Value"));
-	ui->tableView_props->setModel(m_pGeoPropModel);
+	ui->tableView_QTV_props->setModel(m_pGeoPropModel);
 
 	m_pLineStyleModel = new QStandardItemModel(this);
 	m_pLineStyleModel->appendRow(new QStandardItem("NoPen"));
@@ -64,7 +64,7 @@ qtvplugin_geomarker::qtvplugin_geomarker(QWidget *parent) :
 	m_pLineStyleModel->appendRow(new QStandardItem("DashDotLine"));
 	m_pLineStyleModel->appendRow(new QStandardItem("DashDotDotLine"));
 	m_pLineStyleModel->appendRow(new QStandardItem("CustomDashLine"));
-	ui->comboBox_linePad->setModel(m_pLineStyleModel);
+	ui->comboBox_QTV_linePad->setModel(m_pLineStyleModel);
 
 	m_pFillStyleModel = new QStandardItemModel(this);
 	m_pFillStyleModel->appendRow(new QStandardItem("NoBrush"));
@@ -82,7 +82,7 @@ qtvplugin_geomarker::qtvplugin_geomarker(QWidget *parent) :
 	m_pFillStyleModel->appendRow(new QStandardItem("BDiagPattern"));
 	m_pFillStyleModel->appendRow(new QStandardItem("FDiagPattern"));
 	m_pFillStyleModel->appendRow(new QStandardItem("DiagCrossPattern"));
-	ui->comboBox_fillPad->setModel(m_pFillStyleModel);
+	ui->comboBox_QTV_fillPad->setModel(m_pFillStyleModel);
 
 	//insert 1 icons
 	QTVP_GEOMARKER::tag_icon icon;
@@ -96,7 +96,7 @@ qtvplugin_geomarker::qtvplugin_geomarker(QWidget *parent) :
 
 	m_pIconsModel = new QStandardItemModel(this);
 	refreshIconModel();
-	ui->comboBox_icons->setModel(m_pIconsModel);
+	ui->comboBox_QTV_icons->setModel(m_pIconsModel);
 
 	m_bNeedRefresh = false;
 	m_bNeedUpdateView = false;
@@ -104,7 +104,7 @@ qtvplugin_geomarker::qtvplugin_geomarker(QWidget *parent) :
 	m_nTimerID_refreshMap = startTimer(100);
 	m_nTimerID_levelQueue = startTimer(100);
 
-	ui->radioButton_display->setChecked(true);
+	ui->radioButton_QTV_display->setChecked(true);
 }
 
 qtvplugin_geomarker::~qtvplugin_geomarker()
@@ -346,14 +346,14 @@ void qtvplugin_geomarker::set_active(bool ab)
 	{
 		if (m_currentTools==qtvplugin_geomarker::TOOLS_DISPLAY_ONLY)
 		{
-			ui->radioButton_rect_selection->setChecked(true);
+			ui->radioButton_QTV_rect_selection->setChecked(true);
 			m_currentTools = qtvplugin_geomarker::TOOLS_RECT_SELECTION;
 		}
 	}
 	else
 	{
 		m_currentTools = qtvplugin_geomarker::TOOLS_DISPLAY_ONLY;
-		ui->radioButton_display->setChecked(true);
+		ui->radioButton_QTV_display->setChecked(true);
 	}
 
 }
@@ -498,10 +498,10 @@ bool		qtvplugin_geomarker::cb_mouseDoubleClickEvent(QMouseEvent * e)
 	m_pVi->CV_DP2LLA(mouse_view_pt.x(),mouse_view_pt.y(),&mlat,&mlon);
 	if (e->button()==Qt::RightButton)
 	{
-		ui->lineEdit_point_lat->setText(QString("%1").arg(mlat,0,'f',7));
-		ui->lineEdit_point_lon->setText(QString("%1").arg(mlon,0,'f',7));
-		ui->lineEdit_icon_lat->setText(QString("%1").arg(mlat,0,'f',7));
-		ui->lineEdit_icon_lon->setText(QString("%1").arg(mlon,0,'f',7));
+		ui->lineEdit_QTV_point_lat->setText(QString("%1").arg(mlat,0,'f',7));
+		ui->lineEdit_QTV_point_lon->setText(QString("%1").arg(mlon,0,'f',7));
+		ui->lineEdit_QTV_icon_lat->setText(QString("%1").arg(mlat,0,'f',7));
+		ui->lineEdit_QTV_icon_lon->setText(QString("%1").arg(mlon,0,'f',7));
 	}
 	//Warp
 	while (wx < 0) wx += winsz;

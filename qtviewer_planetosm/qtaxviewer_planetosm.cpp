@@ -14,7 +14,7 @@ qtaxviewer_planetosm::qtaxviewer_planetosm(QWidget *parent )
 	m_mutex_proteced.lock();
 	QTVOSM_DEBUG("The qtaxviewer_planetosm class is constructing.");
 	connect (this,&qtaxviewer_planetosm::_evt_next_pending_evts,this,&qtaxviewer_planetosm::_next_pending_evts,Qt::QueuedConnection);
-	ui->widget_mainMap->listen_event("ACTIVEX", std::bind(&qtaxviewer_planetosm::evt_listener,this,std::placeholders::_1));
+	ui->widget_QTV_mainMap->listen_event("ACTIVEX", std::bind(&qtaxviewer_planetosm::evt_listener,this,std::placeholders::_1));
 	QCoreApplication * app =  QCoreApplication::instance();
 	if (app)
 	{
@@ -35,7 +35,7 @@ qtaxviewer_planetosm::qtaxviewer_planetosm(QWidget *parent )
 
 	ui->retranslateUi(this);
 
-	QVector<layer_interface *> vec =  ui->widget_mainMap->layers();
+	QVector<layer_interface *> vec =  ui->widget_QTV_mainMap->layers();
 	foreach(layer_interface * p, vec)
 	{
 		p->load_retranslate_UI();
@@ -46,7 +46,7 @@ qtaxviewer_planetosm::qtaxviewer_planetosm(QWidget *parent )
 
 qtaxviewer_planetosm::~qtaxviewer_planetosm()
 {
-	ui->widget_mainMap->unlisten_event("ACTIVEX") ;
+	ui->widget_QTV_mainMap->unlisten_event("ACTIVEX") ;
 }
 
 /*!
@@ -61,7 +61,7 @@ qtaxviewer_planetosm::~qtaxviewer_planetosm()
 */
 void qtaxviewer_planetosm::osm_set_remote_address (QString layerName, QString addr)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -74,7 +74,7 @@ void qtaxviewer_planetosm::osm_set_remote_address (QString layerName, QString ad
 QString qtaxviewer_planetosm::osm_get_remote_address(QString layerName) const
 {
 	QString res = "http://c.tile.openstreetmap.org/%1/%2/%3.png";
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -88,7 +88,7 @@ QString qtaxviewer_planetosm::osm_get_remote_address(QString layerName) const
 QString qtaxviewer_planetosm::osm_get_local_cache(QString layerName) const
 {
 	QString res = "./OSMCache";
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -100,7 +100,7 @@ QString qtaxviewer_planetosm::osm_get_local_cache(QString layerName) const
 }
 void	qtaxviewer_planetosm::osm_set_local_cache (QString layerName, QString addr)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -111,7 +111,7 @@ void	qtaxviewer_planetosm::osm_set_local_cache (QString layerName, QString addr)
 }
 int		qtaxviewer_planetosm::osm_get_cache_expire_days(QString layerName)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -125,7 +125,7 @@ int		qtaxviewer_planetosm::osm_get_cache_expire_days(QString layerName)
 int		qtaxviewer_planetosm::osm_set_cache_expire_days(QString layerName,int days)
 {
 	int res = 0;
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -148,7 +148,7 @@ int		qtaxviewer_planetosm::osm_set_cache_expire_days(QString layerName,int days)
 */
 void qtaxviewer_planetosm::osm_set_auto_download (QString LayerName, int v)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(LayerName);
 	if (la)
 	{
@@ -168,7 +168,7 @@ void qtaxviewer_planetosm::osm_set_auto_download (QString LayerName, int v)
 */
 int qtaxviewer_planetosm::osm_get_auto_download(QString LayerName)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(LayerName);
 	if (la)
 	{
@@ -181,13 +181,13 @@ int qtaxviewer_planetosm::osm_get_auto_download(QString LayerName)
 
 int qtaxviewer_planetosm::osm_get_level(void)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	return pv->level();
 }
 
 int qtaxviewer_planetosm::osm_set_level(int lv)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	int res =  pv->level();
 	pv->setLevel(lv);
 	return res;
@@ -195,7 +195,7 @@ int qtaxviewer_planetosm::osm_set_level(int lv)
 
 double qtaxviewer_planetosm::osm_get_center_lat()
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	double lat,lon;
 	pv->centerLLA(&lat,&lon);
 	return lat;
@@ -203,7 +203,7 @@ double qtaxviewer_planetosm::osm_get_center_lat()
 
 double qtaxviewer_planetosm::osm_get_center_lon()
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	double lat,lon;
 	pv->centerLLA(&lat,&lon);
 	return lon;
@@ -211,7 +211,7 @@ double qtaxviewer_planetosm::osm_get_center_lon()
 
 int qtaxviewer_planetosm::osm_set_center_pos(double lat,double lon)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	pv->setCenterLLA(lat,lon);
 	return 1;
 }
@@ -226,7 +226,7 @@ int qtaxviewer_planetosm::osm_set_center_pos(double lat,double lon)
 */
 int qtaxviewer_planetosm::osm_save_view(QString fm)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	bool ok = pv->saveToImage(fm);
 	return ok==true?1:0;
 }
@@ -295,12 +295,12 @@ void qtaxviewer_planetosm::_next_pending_evts()
 
 int qtaxviewer_planetosm::osm_layer_get_count()
 {
-	return ui->widget_mainMap->layerNames().size();
+	return ui->widget_QTV_mainMap->layerNames().size();
 }
 
 QString qtaxviewer_planetosm::osm_layer_get_name(int n)
 {
-	QVector<QString> names = ui->widget_mainMap->layerNames();
+	QVector<QString> names = ui->widget_QTV_mainMap->layerNames();
 	if (n>=0 && n<names.size())
 		return names[n];
 	return "";
@@ -308,7 +308,7 @@ QString qtaxviewer_planetosm::osm_layer_get_name(int n)
 
 int qtaxviewer_planetosm::osm_layer_set_visiable(QString layerName, int v)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -321,7 +321,7 @@ int qtaxviewer_planetosm::osm_layer_set_visiable(QString layerName, int v)
 
 int qtaxviewer_planetosm::osm_layer_get_visiable(QString layerName)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 		return la->is_visible()==false?0:-1;
@@ -330,7 +330,7 @@ int qtaxviewer_planetosm::osm_layer_get_visiable(QString layerName)
 
 int qtaxviewer_planetosm::osm_layer_set_active(QString layerName, int v)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -345,7 +345,7 @@ int qtaxviewer_planetosm::osm_layer_set_active(QString layerName, int v)
 
 int qtaxviewer_planetosm::osm_layer_get_active(QString layerName)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 		return la->is_active()==false?0:-1;
@@ -353,7 +353,7 @@ int qtaxviewer_planetosm::osm_layer_get_active(QString layerName)
 }
 int		qtaxviewer_planetosm::osm_layer_move_up(QString layerName)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -366,7 +366,7 @@ int		qtaxviewer_planetosm::osm_layer_move_up(QString layerName)
 
 int		qtaxviewer_planetosm::osm_layer_move_down(QString layerName)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -379,7 +379,7 @@ int		qtaxviewer_planetosm::osm_layer_move_down(QString layerName)
 
 int		qtaxviewer_planetosm::osm_layer_move_top(QString layerName)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -392,7 +392,7 @@ int		qtaxviewer_planetosm::osm_layer_move_top(QString layerName)
 
 int		qtaxviewer_planetosm::osm_layer_move_bottom(QString layerName)
 {
-	tilesviewer * pv = this->ui->widget_mainMap ;
+	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{
@@ -447,7 +447,7 @@ QMap<QString, QVariant> qtaxviewer_planetosm::string_to_map(const QString & s)
 QString qtaxviewer_planetosm::osm_layer_call_function(QString layerName, QString args)
 {
 	QString strRes;
-	tilesviewer * pv = ui->widget_mainMap ;
+	tilesviewer * pv = ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
 	{

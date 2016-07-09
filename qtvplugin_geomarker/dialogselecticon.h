@@ -20,9 +20,9 @@ private:
 	QString iniFileName;
 	Ui::DialogSelectIcon *ui;
 protected slots:
-	void on_pushButton_ok_clicked();
-	void on_pushButton_cancel_clicked();
-	void on_toolButton_browser_clicked();
+	void on_pushButton_QTV_ok_clicked();
+	void on_pushButton_QTV_cancel_clicked();
+	void on_toolButton_QTV_browser_clicked();
 };
 
 #endif // DIALOGSELECTICON_H
