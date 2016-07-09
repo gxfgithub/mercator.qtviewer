@@ -172,7 +172,7 @@ void CMFC_ContainerDlg::OnBnClickedButtonPlay()
 				),
 				fm.c_str()
 				);
-			m_map.osm_layer_call_function(_T("geomarker1"), cmd);
+			m_map.osm_layer_call_function(_T("geomarker"), cmd);
 		}
 
 	}
@@ -224,14 +224,14 @@ void CMFC_ContainerDlg::OnTimer(UINT_PTR nIDEvent)
 			),
 			m_currentLat, m_currentLon, 90-m_direct
 			);
-		m_map.osm_layer_call_function(_T("geomarker1"), cmd);
+		m_map.osm_layer_call_function(_T("geomarker"), cmd);
 
 		cmd.Format(_T("function=update_props;name=point1;"
 			"lat=%.8lf;lon=%.8lf;direct=%.8lf;"
 			),
 			m_currentLat, m_currentLon, m_direct
 			);
-		m_map.osm_layer_call_function(_T("geomarker1"), cmd);
+		m_map.osm_layer_call_function(_T("geomarker"), cmd);
 
 		//Lines
 		m_list_old_lats.push_front(m_currentLat);
@@ -261,7 +261,7 @@ void CMFC_ContainerDlg::OnTimer(UINT_PTR nIDEvent)
 				int((1 - c * 1.0/ maxsz)*255),
 				int((1 - c * 1.0 / maxsz) * 6)+1
 				);
-			m_map.osm_layer_call_function(_T("geomarker1"), cmd);
+			m_map.osm_layer_call_function(_T("geomarker"), cmd);
 
 			lastlat = *latp, lastlon = *lonp;
 
