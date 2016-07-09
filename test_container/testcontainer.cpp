@@ -47,6 +47,16 @@ testcontainer::testcontainer(QWidget *parent) :
 //	}
 
 //}
+void testcontainer::show_message(QString message)
+{
+	QList<QStandardItem *> list_newrow;
+	list_newrow << new QStandardItem(QString("map"));
+	list_newrow << new QStandardItem(QString("%1").arg(message));
+	m_pModel->appendRow(list_newrow);
+	while (m_pModel->rowCount()>1024)
+		m_pModel->removeRow(0);
+	ui->tableView_QTV_msg->scrollToBottom();
+}
 
 testcontainer::~testcontainer()
 {

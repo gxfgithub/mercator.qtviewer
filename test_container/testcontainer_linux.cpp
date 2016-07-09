@@ -60,7 +60,25 @@ void testcontainer::show_message(QString message)
 		m_pModel->removeRow(0);
 	ui->tableView_QTV_msg->scrollToBottom();
 }
+void testcontainer::slot_message(QString message)
+{
+	if (message.contains("MOUSE_MOVE"))
+	{
+		ui->label_QTV_mouseMove->setText(message);
+	}
+	else
+	{
+		QObject * base = qobject_cast<QObject *>(sender());
+		QList<QStandardItem *> list_newrow;
+		list_newrow << new QStandardItem(QString("%1").arg((quint64)base));
+		list_newrow << new QStandardItem(QString("%1").arg(message));
+		m_pModel->appendRow(list_newrow);
+		while (m_pModel->rowCount()>1024)
+			m_pModel->removeRow(0);
+		ui->tableView_QTV_msg->scrollToBottom();
+	}
 
+}
 void testcontainer::on_pushButton_QTV_test_adds_clicked()
 {
 	//get raw address
