@@ -54,7 +54,57 @@ namespace QTVP_GEOMARKER{
 		setOffset(px - m_pIcon->centerx, py - m_pIcon->centery);
 		QGraphicsPixmapItem::setTransformOriginPoint(px, py);
 	}
+	void geoGraphicsPixmapItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
+	{
+		QGraphicsPixmapItem::hoverEnterEvent(event);
+		//this->show_props(true);
+		//post enent
+		QMap<QString, QVariant > map_evt;
+		geoGraphicsScene * pscene = dynamic_cast<geoGraphicsScene *>(this->scene());
+		if (pscene)
+		{
+			QObject * pPlg = pscene->parent();
+			if (pPlg)
+			{
+				qtvplugin_geomarker * pMarker = dynamic_cast<qtvplugin_geomarker *>(pPlg) ;
+				if (pMarker)
+				{
+					map_evt["source"] = pMarker->get_name();
+					map_evt["destin"] = "ALL";
+					map_evt["name"] = "ITEM_MOUSE_ENTER";
+					map_evt["id"] = this->item_name();
+					vi()->post_event(map_evt);
+				}
+			}
 
+		}
+	}
+
+	void geoGraphicsPixmapItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
+	{
+		QGraphicsPixmapItem::hoverLeaveEvent(event);
+		//this->show_props(false);
+		//post enent
+		QMap<QString, QVariant > map_evt;
+		geoGraphicsScene * pscene = dynamic_cast<geoGraphicsScene *>(this->scene());
+		if (pscene)
+		{
+			QObject * pPlg = pscene->parent();
+			if (pPlg)
+			{
+				qtvplugin_geomarker * pMarker = dynamic_cast<qtvplugin_geomarker *>(pPlg) ;
+				if (pMarker)
+				{
+					map_evt["source"] = pMarker->get_name();
+					map_evt["destin"] = "ALL";
+					map_evt["name"] = "ITEM_MOUSE_LEAVE";
+					map_evt["id"] = this->item_name();
+					vi()->post_event(map_evt);
+				}
+			}
+
+		}
+	}
 	void geoGraphicsPixmapItem::setGeo(qreal cent_lat,qreal cent_lon)
 	{
 		m_lat = cent_lat;
@@ -68,8 +118,11 @@ namespace QTVP_GEOMARKER{
 	void geoGraphicsPixmapItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 	{
 		QGraphicsPixmapItem ::mousePressEvent(event);
-		bool bshow = this->props_visible();
-		this->show_props(!bshow);
+		//if (wantMouseHoverEvent()==false)
+		{
+			bool bshow = this->props_visible();
+			this->show_props(!bshow);
+		}
 		//post enent
 		QMap<QString, QVariant > map_evt;
 		geoGraphicsScene * pscene = dynamic_cast<geoGraphicsScene *>(this->scene());

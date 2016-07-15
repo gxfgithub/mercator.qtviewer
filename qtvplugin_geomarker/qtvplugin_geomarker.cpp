@@ -610,7 +610,28 @@ bool qtvplugin_geomarker::cb_mouseMoveEvent ( QMouseEvent * e )
 	//Warp
 	while (wx < 0) wx += winsz;
 	while (wx > winsz-1) wx -= winsz;
-
+	QPointF mouse_scene_pt(wx,wy);
+	QPoint mouse_screen_pt = e->globalPos();
+	Qt::MouseButton mouse_button = e->button();
+	QWidget * pwig = dynamic_cast<QWidget *> (m_pVi);
+	if (m_bVisible && pwig  && too_many_items()==false)
+	{
+		// Convert and deliver the mouse event to the scene.
+		QGraphicsSceneMouseEvent * pmouseEvent = new QGraphicsSceneMouseEvent(QEvent::GraphicsSceneMouseMove);
+		QGraphicsSceneMouseEvent & mouseEvent = * pmouseEvent;
+		mouseEvent.setWidget(pwig);
+		mouseEvent.setButtonDownScenePos(mouse_button, mouse_scene_pt);
+		mouseEvent.setButtonDownScreenPos(mouse_button, mouse_screen_pt);
+		mouseEvent.setScenePos(mouse_scene_pt);
+		mouseEvent.setScreenPos(mouse_screen_pt);
+		mouseEvent.setLastScenePos(mouse_scene_pt);
+		mouseEvent.setLastScreenPos(mouse_screen_pt);
+		mouseEvent.setButtons(e->buttons());
+		mouseEvent.setButton(e->button());
+		mouseEvent.setModifiers(e->modifiers());
+		mouseEvent.setAccepted(false);
+		QApplication::postEvent(m_pScene, &mouseEvent);
+	}
 	//tools
 	switch (m_currentTools)
 	{

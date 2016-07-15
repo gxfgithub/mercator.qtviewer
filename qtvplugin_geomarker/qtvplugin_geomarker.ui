@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>538</width>
-    <height>424</height>
+    <width>547</width>
+    <height>465</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -150,8 +150,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>165</width>
-           <height>225</height>
+           <width>160</width>
+           <height>194</height>
           </rect>
          </property>
          <attribute name="icon">
@@ -194,8 +194,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>166</width>
-           <height>220</height>
+           <width>174</width>
+           <height>186</height>
           </rect>
          </property>
          <attribute name="icon">
@@ -304,6 +304,13 @@
         </layout>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_QTV_acceptHoverEvent">
+        <property name="text">
+         <string>Accept &quot;Hover&quot; Event(Slow!)</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -344,7 +351,7 @@
           <string>Delete</string>
          </property>
          <property name="icon">
-          <iconset resource="resources.qrc">
+          <iconset resource="../qtvplugin_grid/resources.qrc">
            <normaloff>:/icons/delete-21.png</normaloff>:/icons/delete-21.png</iconset>
          </property>
         </widget>
@@ -703,7 +710,7 @@
               <string>add</string>
              </property>
              <property name="icon">
-              <iconset resource="resources.qrc">
+              <iconset resource="../qtvplugin_grid/resources.qrc">
                <normaloff>:/icons/Add to favourites.png</normaloff>:/icons/Add to favourites.png</iconset>
              </property>
             </widget>
@@ -1050,7 +1057,7 @@
              <string>Delete Prop</string>
             </property>
             <property name="icon">
-             <iconset resource="resources.qrc">
+             <iconset resource="../qtvplugin_grid/resources.qrc">
               <normaloff>:/icons/delete-21.png</normaloff>:/icons/delete-21.png</iconset>
             </property>
            </widget>
@@ -1079,6 +1086,7 @@
   </layout>
  </widget>
  <resources>
+  <include location="../qtvplugin_grid/resources.qrc"/>
   <include location="resources.qrc"/>
  </resources>
  <connections/>

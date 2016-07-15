@@ -80,6 +80,8 @@ namespace QTVP_GEOMARKER{
 		void			setLabelColor	(QColor col)		{m_LabelTextColor = col;if (m_pLabelItem) m_pLabelItem->setDefaultTextColor(m_LabelTextColor);}
 		QColor			labelColor		()					{return m_LabelTextColor;}
 		void			adjustLabelPos	();
+		bool			wantMouseHoverEvent();
+		void			setWantMouseHoverEvent(bool );
 
 		QStringList			prop_names();
 		QVariantList		prop_values();

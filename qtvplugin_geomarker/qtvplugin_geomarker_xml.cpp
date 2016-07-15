@@ -57,8 +57,7 @@ bool qtvplugin_geomarker::xml_save(QString xml)
 				stream.writeTextElement("style_pen",QString("%1").arg(int(pU->pen().style())));
 				stream.writeTextElement("width_pen",QString("%1").arg(int(pU->pen().width())));
 				stream.writeTextElement("color_brush",color2string(pU->brush().color()));
-				stream.writeTextElement("style_brush",QString("%1").arg(int(pU->brush().style())));
-
+				stream.writeTextElement("style_brush",QString("%1").arg(int(pU->brush().style())));				
 			}
 		}
 			break;
@@ -186,7 +185,7 @@ bool qtvplugin_geomarker::xml_save(QString xml)
 
 		int weight = item->labelFont().weight();
 		stream.writeTextElement("weight_label",QString("%1").arg(weight));
-
+		stream.writeTextElement("want_hover",QString("%1").arg(item->wantMouseHoverEvent()==true?1:0));
 		stream.writeEndElement(); // style
 
 		//1.2 properties
@@ -490,6 +489,8 @@ bool qtvplugin_geomarker::xml_update_mark(tag_xml_mark & mark)
 		{
 			newitem->set_prop_data(p.key(),p.value());
 		}
+		bool bWantHover = mark.styles["want_hover"].toInt()!=0?true:false;
+		newitem->setWantMouseHoverEvent(bWantHover);
 
 	}
 

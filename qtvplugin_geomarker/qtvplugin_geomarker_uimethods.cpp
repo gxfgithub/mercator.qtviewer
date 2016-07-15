@@ -178,6 +178,7 @@ void qtvplugin_geomarker::ini_save()
 	settings.setValue("ui/lineEdit_QTV_icon_rotate",ui->lineEdit_QTV_icon_rotate->text());
 	settings.setValue("ui/lineEdit_QTV_icon_scale",ui->lineEdit_QTV_icon_scale->text());
 	settings.setValue("ui/checkBox_QTV_multiline",ui->checkBox_QTV_multiline->isChecked()?-1:0);
+	settings.setValue("ui/checkBox_QTV_acceptHoverEvent",ui->checkBox_QTV_acceptHoverEvent->isChecked()?-1:0);
 }
 
 void qtvplugin_geomarker::ini_load()
@@ -273,6 +274,8 @@ void qtvplugin_geomarker::ini_load()
 	int checkBox_QTV_multiline = settings.value("ui/checkBox_QTV_multiline",0).toInt();
 	ui->checkBox_QTV_multiline->setChecked(checkBox_QTV_multiline?true:false);
 
+	int checkBox_QTV_acceptHoverEvent = settings.value("ui/checkBox_QTV_acceptHoverEvent",0).toInt();
+	ui->checkBox_QTV_acceptHoverEvent->setChecked(checkBox_QTV_acceptHoverEvent?true:false);
 }
 
 
@@ -526,8 +529,7 @@ void qtvplugin_geomarker::on_pushButton_QTV_update_clicked()
 		f.setWeight(fontWeight);
 		newitem->setLabelFont(f);
 		newitem->setLabelColor(textColor);
-
-
+		newitem->setWantMouseHoverEvent(ui->checkBox_QTV_acceptHoverEvent->isChecked());
 	}
 	scheduleRefreshMarks();
 	m_pVi->UpdateWindow();
@@ -763,6 +765,9 @@ void qtvplugin_geomarker::refreshItemUI(QString markname)
 
 		int weight = item->labelFont().weight();
 		ui->spinBox_QTV_textWeight->setValue(weight);
+
+		bool bwant_hover = item->wantMouseHoverEvent();
+		ui->checkBox_QTV_acceptHoverEvent->setChecked(bwant_hover);
 
 		refreshProps(item);
 	}//end if item

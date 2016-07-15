@@ -72,8 +72,11 @@ namespace QTVP_GEOMARKER{
 	void geoGraphicsMultilineItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 	{
 		QGraphicsPathItem::mousePressEvent(event);
-		bool bshow = this->props_visible();
-		this->show_props(!bshow);
+		//if (wantMouseHoverEvent()==false)
+		{
+			bool bshow = this->props_visible();
+			this->show_props(!bshow);
+		}
 		//post enent
 		QMap<QString, QVariant > map_evt;
 		geoGraphicsScene * pscene = dynamic_cast<geoGraphicsScene *>(this->scene());
@@ -102,6 +105,58 @@ namespace QTVP_GEOMARKER{
 
 		}
 	}
+	void geoGraphicsMultilineItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
+	{
+		QGraphicsPathItem::hoverEnterEvent(event);
+		//this->show_props(true);
+		//post enent
+		QMap<QString, QVariant > map_evt;
+		geoGraphicsScene * pscene = dynamic_cast<geoGraphicsScene *>(this->scene());
+		if (pscene)
+		{
+			QObject * pPlg = pscene->parent();
+			if (pPlg)
+			{
+				qtvplugin_geomarker * pMarker = dynamic_cast<qtvplugin_geomarker *>(pPlg) ;
+				if (pMarker)
+				{
+					map_evt["source"] = pMarker->get_name();
+					map_evt["destin"] = "ALL";
+					map_evt["name"] = "ITEM_MOUSE_ENTER";
+					map_evt["id"] = this->item_name();
+					vi()->post_event(map_evt);
+				}
+			}
+
+		}
+	}
+
+	void geoGraphicsMultilineItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
+	{
+		QGraphicsPathItem::hoverLeaveEvent(event);
+		//this->show_props(false);
+		//post enent
+		QMap<QString, QVariant > map_evt;
+		geoGraphicsScene * pscene = dynamic_cast<geoGraphicsScene *>(this->scene());
+		if (pscene)
+		{
+			QObject * pPlg = pscene->parent();
+			if (pPlg)
+			{
+				qtvplugin_geomarker * pMarker = dynamic_cast<qtvplugin_geomarker *>(pPlg) ;
+				if (pMarker)
+				{
+					map_evt["source"] = pMarker->get_name();
+					map_evt["destin"] = "ALL";
+					map_evt["name"] = "ITEM_MOUSE_LEAVE";
+					map_evt["id"] = this->item_name();
+					vi()->post_event(map_evt);
+				}
+			}
+
+		}
+	}
+
 	void geoGraphicsMultilineItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event)
 	{
 		QGraphicsPathItem::mouseDoubleClickEvent(event);

@@ -261,6 +261,15 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_point		(const QMap<QStr
 		}
 		else
 			newitem->setLabelColor(m_default_style.text_color);
+
+		//! want_hover is the boolean para that tells the plugin this mark want mouse hover event.
+		//! this is SLOW!
+		if ( paras.contains("want_hover"))
+		{
+			bool want_hover = paras["want_hover"].toInt()==0?false:true;
+			newitem->setWantMouseHoverEvent(want_hover);
+		}
+
 		//scheduleRefreshMarks();
 		scheduleUpdateMap();
 	}
@@ -366,6 +375,13 @@ QMap<QString, QVariant>			qtvplugin_geomarker:: func_update_icon	(const QMap<QSt
 		}
 		else
 			newitem->setLabelColor( m_default_style.text_color);
+		//! want_hover is the boolean para that tells the plugin this mark want mouse hover event.
+		//! this is SLOW!
+		if ( paras.contains("want_hover"))
+		{
+			bool want_hover = paras["want_hover"].toInt()==0?false:true;
+			newitem->setWantMouseHoverEvent(want_hover);
+		}
 		//scheduleRefreshMarks();
 		scheduleUpdateMap();
 	}
@@ -482,6 +498,13 @@ QMap<QString, QVariant>  qtvplugin_geomarker::func_update_line		(const QMap<QStr
 		}
 		else
 			newitem->setLabelColor(m_default_style.text_color);
+		//! want_hover is the boolean para that tells the plugin this mark want mouse hover event.
+		//! this is SLOW!
+		if ( paras.contains("want_hover"))
+		{
+			bool want_hover = paras["want_hover"].toInt()==0?false:true;
+			newitem->setWantMouseHoverEvent(want_hover);
+		}
 		//scheduleRefreshMarks();
 		scheduleUpdateMap();
 	}
@@ -669,6 +692,13 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_polygon		(const QMap<QS
 		}
 		else
 			newitem->setLabelColor(m_default_style.text_color);
+		//! want_hover is the boolean para that tells the plugin this mark want mouse hover event.
+		//! this is SLOW!
+		if ( paras.contains("want_hover"))
+		{
+			bool want_hover = paras["want_hover"].toInt()==0?false:true;
+			newitem->setWantMouseHoverEvent(want_hover);
+		}
 		//scheduleRefreshMarks();
 		scheduleUpdateMap();
 	}
@@ -1043,6 +1073,10 @@ QMap<QString, QVariant>			qtvplugin_geomarker::func_mark			(const QMap<QString, 
 
 		int weight = item->labelFont().weight();
 		res["weight_label"] = QString("%1").arg(weight);
+
+		bool want_hover = item->wantMouseHoverEvent();
+		res["want_hover"] = QString("%1").arg(want_hover?1:0);
+
 
 	}
 	else

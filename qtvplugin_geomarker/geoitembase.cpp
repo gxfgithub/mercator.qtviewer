@@ -256,4 +256,25 @@ namespace QTVP_GEOMARKER{
 				m_pSelectionBound->setRect(pc->boundingRect());
 		}
 	}
+
+	bool geoItemBase::wantMouseHoverEvent()
+	{
+		QGraphicsItem * pc = dynamic_cast<QGraphicsItem *> (this);
+		if (pc)
+		{
+			return pc->acceptHoverEvents();
+		}
+		return false;
+	}
+
+	void geoItemBase::setWantMouseHoverEvent(bool w)
+	{
+		QGraphicsItem * pc = dynamic_cast<QGraphicsItem *> (this);
+		if (pc)
+		{
+			pc->setAcceptHoverEvents(w);
+		}
+
+	}
+
 }

@@ -266,7 +266,7 @@ void testcontainer::on_pushButton_QTV_test_mark_clicked()
 												 "lat=%1;lon=%2;"
 												 "style_pen=2;color_pen=0,0,255,128;width_pen=3;"
 												 "style_brush=1;color_brush=0,255,0,128;"
-												 "color_label=0,0,255,96;weight_label=99;size_label=12;"
+												 "color_label=0,0,255,96;weight_label=99;size_label=12;want_hover=1;"
 												 "width=16;height=20;")
 										 .arg(rand()%1700/10.0-85)
 										 .arg(rand()%3600/10.0-180)
@@ -337,7 +337,7 @@ void testcontainer::on_pushButton_QTV_test_line_clicked()
 												 "lat0=%1;lon0=%2;"
 												 "lat1=%3;lon1=%4;"
 												 "style_pen=4;color_pen=255,0,0,96;"
-												 "width_pen=2;")
+												 "width_pen=2;want_hover=1;")
 										 .arg(rand()%1700/10.0-85)
 										 .arg(rand()%3600/10.0-180)
 										 .arg(rand()%1700/10.0-85)
