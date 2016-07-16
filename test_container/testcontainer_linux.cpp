@@ -492,16 +492,35 @@ void testcontainer::on_pushButton_QTV_test_resource_clicked()
 }
 void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 {
-	QList<QStandardItem *> list_newrow;
-	list_newrow << new QStandardItem(QString("%1").arg((quint64)ui->osmmap));
-	QString message = this->map_to_string(p);
-
-	if (message.contains("MOUSE_MOVE"))
+	if (p["name"] == QString("MOUSE_MOVE"))
 	{
+		QString message = this->map_to_string(p);
 		ui->label_QTV_mouseMove->setText(message);
 	}
 	else
 	{
+		if (p["name"]==QString("ITEM_MOUSE_ENTER"))
+		{
+			QString id = p["id"].toString();
+			//SHow detailed items
+			QMap<QString, QVariant> para_d;
+			para_d["function"] = "show_props";
+			para_d[id] = 1;
+			ui->osmmap->osm_layer_call_function("geomarker",para_d);
+		}
+		else if (p["name"]==QString("ITEM_MOUSE_LEAVE"))
+		{
+			QString id = p["name"].toString();
+			//SHow detailed items
+			QMap<QString, QVariant> para_d;
+			para_d["function"] = "show_props";
+			para_d[id] = 0;
+			ui->osmmap->osm_layer_call_function("geomarker",para_d);
+		}
+
+		QString message = this->map_to_string(p);
+		QList<QStandardItem *> list_newrow;
+		list_newrow << new QStandardItem(QString("%1").arg((quint64)ui->osmmap));
 		list_newrow << new QStandardItem(QString("%1").arg(message));
 		m_pModel->appendRow(list_newrow);
 		while (m_pModel->rowCount()>1024)
