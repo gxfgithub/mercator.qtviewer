@@ -100,9 +100,9 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_point		(const QMap<QStr
 {
 	QMap<QString, QVariant> res;
 	//!name, lat, lon has no default values. user should specify these values or the function calll will fail;
-	if (paras.contains("name")==false || paras.contains("lat")==false || paras.contains("lon")==false)
+	if (paras.contains("name")==false /*|| paras.contains("lat")==false || paras.contains("lon")==false*/)
 	{
-		res["error"] = tr("name, lat, lon must  exist in paraments.");
+		res["error"] = tr("name must  exist in paraments.");
 		return std::move(res);
 
 	}
@@ -117,7 +117,9 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_point		(const QMap<QStr
 	QBrush brush (m_default_style.brush);
 	qreal width = m_default_style.n_point_width;
 	qreal height =  m_default_style.n_point_height;
+	int tpn = m_default_style.n_point_rect == 0 ? 2:1;
 	//if the mark is already exist, we will get its orgional style as default .
+	double lat = 0, lon = 0;
 	if (base)
 	{
 		if (base->item_type()==QTVP_GEOMARKER::ITEAMTYPE_RECT_POINT)
@@ -129,6 +131,9 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_point		(const QMap<QStr
 				brush = it->brush();
 				width = it->width();
 				height = it->height();
+				lat = it->lat();
+				lon = it->lon();
+				tpn = 2;
 			}
 		}
 		else if (base->item_type()==QTVP_GEOMARKER::ITEAMTYPE_ELLIPSE_POINT)
@@ -140,6 +145,9 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_point		(const QMap<QStr
 				brush = it->brush();
 				width = it->width();
 				height = it->height();
+				lat = it->lat();
+				lon = it->lon();
+				tpn = 1;
 			}
 		}
 	}
@@ -221,15 +229,27 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_point		(const QMap<QStr
 		if (height ==0)	height = 8;
 	}
 	QTVP_GEOMARKER::geoItemBase * newitem = 0;
-	/*! geo coordinate in WGS84 lattitude, longitude should be saved as lat and lon.
-	*/
-	double lat =paras["lat"].toDouble();
-	double lon = paras["lon"].toDouble();
 
-	int tpn = m_default_style.n_point_rect == 0 ? 2:1;
+	if (paras.contains("lat"))
+	{
+		/*! geo coordinate in WGS84 lattitude, longitude should be saved as lat and lon.
+		*/
+		lat =paras["lat"].toDouble();
+	}
+	if (paras.contains("lon"))
+	{
+		/*! geo coordinate in WGS84 lattitude, longitude should be saved as lat and lon.
+		*/
+		lon = paras["lon"].toDouble();
+	}
+
 	if (paras.contains("type"))
-			tpn = paras["type"].toInt();
-	if (tpn > 2 || tpn <1) tpn = 1;
+	{
+		int tpn_sett = paras["type"].toInt();
+		if (tpn_sett == 2 || tpn_sett ==1)
+			tpn = tpn_sett;
+	}
+
 	QTVP_GEOMARKER::geo_item_type tpe = static_cast< QTVP_GEOMARKER::geo_item_type > (tpn);
 	//update using same function in UI
 	if (tpe==QTVP_GEOMARKER::ITEAMTYPE_RECT_POINT)
@@ -289,9 +309,9 @@ QMap<QString, QVariant>			qtvplugin_geomarker:: func_update_icon	(const QMap<QSt
 {
 	QMap<QString, QVariant> res;
 	//!name, lat, lon has no default values. user should specify these values or the function calll will fail;
-	if (paras.contains("name")==false || paras.contains("lat")==false || paras.contains("lon")==false)
+	if (paras.contains("name")==false /*|| paras.contains("lat")==false || paras.contains("lon")==false*/)
 	{
-		res["error"] = tr("name, lat, lon must  exist in paraments.");
+		res["error"] = tr("name must  exist in paraments.");
 		return std::move(res);
 
 	}
@@ -306,6 +326,8 @@ QMap<QString, QVariant>			qtvplugin_geomarker:: func_update_icon	(const QMap<QSt
 	qreal scale = m_default_style.scale;
 	qreal rot = m_default_style.rotate;
 	int smooth = m_default_style.smooth;
+	//get existing item's lat, lon
+	double lat = 0, lon = 0;
 	//if the mark is already exist, we will get its orgional style as default .
 	if (base)
 	{
@@ -316,6 +338,8 @@ QMap<QString, QVariant>			qtvplugin_geomarker:: func_update_icon	(const QMap<QSt
 			scale = it->scale();
 			rot = it->rotation();
 			smooth = it->transformationMode()==Qt::SmoothTransformation?1:0;
+			lat = it->lat();
+			lon = it->lon();
 		}
 	}
 
@@ -343,11 +367,20 @@ QMap<QString, QVariant>			qtvplugin_geomarker:: func_update_icon	(const QMap<QSt
 		int smt =paras["smooth"].toInt();
 		if (smt ==0)	smooth = 0; else smooth = 1;
 	}
+
+	if (paras.contains("lat"))
+	{
+		/*! geo coordinate in WGS84 lattitude, longitude should be saved as lat and lon.
+		*/
+		lat =paras["lat"].toDouble();
+	}
+	if (paras.contains("lon"))
+	{
+		/*! geo coordinate in WGS84 lattitude, longitude should be saved as lat and lon.
+		*/
+		lon = paras["lon"].toDouble();
+	}
 	QTVP_GEOMARKER::geoItemBase * newitem = 0;
-	/*! geo coordinate in WGS84 lattitude, longitude should be saved as lat and lon.
-	*/
-	double lat =paras["lat"].toDouble();
-	double lon = paras["lon"].toDouble();
 
 	newitem = update_icon(name,lat,lon,scale,rot,smooth,icon_name);
 	if (newitem)
@@ -402,10 +435,9 @@ QMap<QString, QVariant>  qtvplugin_geomarker::func_update_line		(const QMap<QStr
 {
 	QMap<QString, QVariant> res;
 	//!name, lat0, lon0, lat1,lon1 has no default values. user should specify these values or the function calll will fail;
-	if (paras.contains("name")==false || paras.contains("lat0")==false || paras.contains("lon0")==false
-			|| paras.contains("lat1")==false || paras.contains("lon1")==false)
+	if (paras.contains("name")==false )
 	{
-		res["error"] = tr("name, lat0, lon0,lat1,lon1 must  exist in paraments.");
+		res["error"] = tr("name must  exist in paraments.");
 		return std::move(res);
 	}
 
@@ -417,6 +449,13 @@ QMap<QString, QVariant>  qtvplugin_geomarker::func_update_line		(const QMap<QStr
 	}
 	QTVP_GEOMARKER::geoItemBase * base = m_pScene->geoitem_by_name(name);
 	QPen pen (m_default_style.pen);
+	/*! geo coordinates in WGS84 lattitude, longitude should be saved like this:
+	 * lat0, lon0 stand for point1, lat1,lon1 stand for point2
+	*/
+	double lat1 = 0;//paras["lat0"].toDouble();
+	double lon1 = 0;//paras["lon0"].toDouble();
+	double lat2 = 0;//paras["lat1"].toDouble();
+	double lon2 = 0;//paras["lon1"].toDouble();
 
 	//if the mark is already exist, we will get its orgional style as default .
 	if (base)
@@ -424,7 +463,11 @@ QMap<QString, QVariant>  qtvplugin_geomarker::func_update_line		(const QMap<QStr
 		if (base->item_type()==QTVP_GEOMARKER::ITEAMTYPE_LINE)
 		{
 			QTVP_GEOMARKER::geoGraphicsLineItem * it = dynamic_cast<QTVP_GEOMARKER::geoGraphicsLineItem * >(base);
-				pen = it->pen();
+			pen = it->pen();
+			lat1 = it->lat1();
+			lon1 = it->lon1();
+			lat2 = it->lat2();
+			lon2 = it->lon2();
 		}
 
 	}
@@ -463,14 +506,16 @@ QMap<QString, QVariant>  qtvplugin_geomarker::func_update_line		(const QMap<QStr
 
 	}
 
+	if (paras.contains("lat0"))
+		lat1 = paras["lat0"].toDouble();
+	if (paras.contains("lat1"))
+		lat2 = paras["lat1"].toDouble();
+	if (paras.contains("lon0"))
+		lon1 = paras["lon0"].toDouble();
+	if (paras.contains("lon1"))
+		lon2 = paras["lon1"].toDouble();
+
 	QTVP_GEOMARKER::geoItemBase * newitem = 0;
-	/*! geo coordinates in WGS84 lattitude, longitude should be saved like this:
-	 * lat0, lon0 stand for point1, lat1,lon1 stand for point2
-	*/
-	double lat1 =paras["lat0"].toDouble();
-	double lon1 = paras["lon0"].toDouble();
-	double lat2 =paras["lat1"].toDouble();
-	double lon2 = paras["lon1"].toDouble();
 	//update using same function in UI
 	newitem = update_line(name,lat1,lon1,lat2,lon2,pen);
 	if (newitem)
@@ -541,10 +586,6 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_polygon		(const QMap<QS
 	}
 
 	int type = m_default_style.multiline==0?4:6;//polygon
-	if (paras.contains("type")==true)
-	{
-		type = paras["type"].toInt();
-	}
 
 	if (name.size()==0)
 	{
@@ -556,6 +597,10 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_polygon		(const QMap<QS
 	QTVP_GEOMARKER::geoItemBase * base = m_pScene->geoitem_by_name(name);
 	QPen pen(m_default_style.pen);
 	QBrush brush(m_default_style.brush);
+	/*! geo coordinates in WGS84 lattitude, longitude should be saved like this:
+	 * lat0, lon0 stand for point1, lat1,lon1 stand for point2,latn-1, lonn-1 stand for point n.
+	*/
+	QPolygonF pl;
 
 	//if the mark is already exist, we will get its orgional style as default .
 	if (base)
@@ -567,15 +612,27 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_polygon		(const QMap<QS
 			{
 				pen = it->pen();
 				brush = it->brush();
+				pl = it->llas();
+				type = 4;
 			}
 		}
 		else if (base->item_type()==QTVP_GEOMARKER::ITEAMTYPE_MULTILINE && type !=4)
 		{
 			QTVP_GEOMARKER::geoGraphicsMultilineItem * it = dynamic_cast<QTVP_GEOMARKER::geoGraphicsMultilineItem * >(base);
 			if (it)
+			{
 				pen = it->pen();
+				pl = it->llas();
+				type = 6;
+			}
 		}
 
+	}
+	if (paras.contains("type")==true)
+	{
+		int type_sett = paras["type"].toInt();
+		if (type_sett==4 || type_sett==6)
+			type = type_sett;
 	}
 
 	//! style_pen from 0~6, is corresponds to the pen combo-box in UI system.
@@ -645,15 +702,14 @@ QMap<QString, QVariant> qtvplugin_geomarker::func_update_polygon		(const QMap<QS
 	}
 
 	QTVP_GEOMARKER::geoItemBase * newitem = 0;
-	/*! geo coordinates in WGS84 lattitude, longitude should be saved like this:
-	 * lat0, lon0 stand for point1, lat1,lon1 stand for point2,latn-1, lonn-1 stand for point n.
-	*/
-	QPolygonF pl;
 	int ct = 0;
 	QString strKeyLat = QString("lat%1").arg(ct);
 	QString strKeyLon = QString("lon%1").arg(ct);
 	while (paras.contains(strKeyLat) && paras.contains(strKeyLon))
 	{
+		//if pl is already exist, we will override it with new polygons.
+		if (ct==0 && pl.empty()==false)
+			pl.clear();
 		double lat =paras[strKeyLat].toDouble();
 		double lon = paras[strKeyLon].toDouble();
 		pl.push_back(QPointF(lon,lat));

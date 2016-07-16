@@ -426,6 +426,22 @@ void testcontainer::timerEvent(QTimerEvent * e)
 
 		}
 
+		res = ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
+												  "function=exists;name=ID1;");
+		mres = string_to_map(res);
+		if (mres["return"].toInt())
+		{
+			//change color
+			ui->osmmap->osm_layer_call_function("geomarker"/*m_str_markerLayerName*/,
+												QString("function=update_point;name=ID1;"
+														"color_brush=%1,%2,%3,128;"
+														"width=%4;height=%5;")
+												.arg(rand()%256).arg(rand()%256).arg(rand()%256)
+												.arg(rand()%8+4).arg(rand()%8+4)
+												);
+
+		}
+
 	}
 }
 
