@@ -74,6 +74,24 @@ void testcontainer::slot_message(QString message)
 	}
 	else
 	{
+		if  (message.contains("ITEM_MOUSE_ENTER"))
+		{
+			QMap<QString, QVariant> p = string_to_map (message);
+			QString id = p["id"].toString();
+			//SHow detailed items
+			QString strcmd = "function=show_props;"+id+"=1;";
+			ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker",strcmd);
+		}
+		else if  (message.contains("ITEM_MOUSE_LEAVE"))
+		{
+			QMap<QString, QVariant> p = string_to_map (message);
+			QString id = p["name"].toString();
+			//SHow detailed items
+			QString strcmd = "function=show_props;"+id+"=0;";
+			ui->axWidget_map1->dynamicCall("osm_layer_call_function(QString,QString)","geomarker",strcmd);
+		}
+
+
 		QAxBase * base = qobject_cast<QAxBase *>(sender());
 		QList<QStandardItem *> list_newrow;
 		list_newrow << new QStandardItem(QString("%1").arg((quint64)base));
