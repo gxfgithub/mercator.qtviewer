@@ -123,7 +123,7 @@ namespace QTVOSM{
 		m_downloadThread->quit();
 		m_downloadThread->wait();
 		m_downloader->deleteLater();
-		if (!m_propPage)
+		if (m_propPage)
 			m_propPage->deleteLater();
 	}
 

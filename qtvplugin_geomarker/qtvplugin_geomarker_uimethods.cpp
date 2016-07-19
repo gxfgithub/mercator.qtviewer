@@ -787,6 +787,8 @@ void qtvplugin_geomarker::refreshIconModel()
 
 void qtvplugin_geomarker::refreshProps(QTVP_GEOMARKER::geoItemBase * itm)
 {
+	if (itm==0)
+		return;
 	m_pGeoPropModel->removeRows(0,m_pGeoPropModel->rowCount());
 	int ct = itm->prop_counts();
 	QStringList lstNames = itm->prop_names();

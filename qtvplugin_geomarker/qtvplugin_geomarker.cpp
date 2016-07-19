@@ -928,7 +928,10 @@ QTVP_GEOMARKER::geoItemBase *	qtvplugin_geomarker::update_icon(const QString & n
 	else if (false==this->m_pScene->addItem(pitem,0))
 	{
 		if (base != pitem)
+		{
 			delete pitem;
+			pitem = 0;
+		}
 	}
 	else
 	{

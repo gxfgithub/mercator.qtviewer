@@ -1366,7 +1366,6 @@ QMap<QString, QVariant>			qtvplugin_geomarker::func_props_vis		(const QMap<QStri
 	}while (ct<1024*1024*1024);
 	if (set_names.size())
 	{
-		ct = 0;
 		foreach (QString key,set_names)
 		{
 			QTVP_GEOMARKER::geoItemBase * base = m_pScene->geoitem_by_name(key);
