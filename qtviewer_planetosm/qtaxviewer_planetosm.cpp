@@ -269,22 +269,26 @@ void qtaxviewer_planetosm::_next_pending_evts()
 		e = & *m_list_events.constBegin();
 	m_mutex_evts.unlock();
 
-	QString str_props;
-	//!3,Extract props.just put it into str_prop, split by ;
-	for(QMap<QString, QVariant>::const_iterator p = e->begin();p!=e->end();++p)
+	if (e)
 	{
-		str_props += p.key();
-		str_props +="=";
-		str_props +=p.value().toString();
-		str_props +=";";
+		QString str_props;
+		//!3,Extract props.just put it into str_prop, split by ;
+		for(QMap<QString, QVariant>::const_iterator p = e->begin();p!=e->end();++p)
+		{
+			str_props += p.key();
+			str_props +="=";
+			str_props +=p.value().toString();
+			str_props +=";";
+		}
+		//!5,Fire the OCX Event
+		emit evt_Message(str_props);
 	}
-	//!5,Fire the OCX Event
-	emit evt_Message(str_props);
 
 	//pop from queue
 	m_mutex_evts.lock();
 	e = 0;
-	m_list_events.pop_front();
+	if (m_list_events.empty()==false)
+		m_list_events.pop_front();
 	if (m_list_events.size())
 		needFire = true;
 	m_mutex_evts.unlock();

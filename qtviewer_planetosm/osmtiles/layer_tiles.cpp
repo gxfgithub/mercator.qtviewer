@@ -123,8 +123,10 @@ namespace QTVOSM{
 		m_downloadThread->quit();
 		m_downloadThread->wait();
 		m_downloader->deleteLater();
-		if (m_propPage)
-			m_propPage->deleteLater();
+		//! m_propPage is a child object of other widgets,
+		//! it will be deleted automatically.
+		//if (m_propPage)
+		//	m_propPage->deleteLater();
 	}
 
 	bool layer_tiles::cb_mousePressEvent ( QMouseEvent * event )
