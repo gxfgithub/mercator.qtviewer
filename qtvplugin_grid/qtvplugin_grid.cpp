@@ -233,6 +233,17 @@ void qtvplugin_grid::cb_paintEvent( QPainter * pImage )
 
 	}
 
+	//draw
+	{
+		double clat,clon;
+		char buftmp[256];
+
+		m_pVi->CV_DP2LLA(m_mousePos.x(),m_mousePos.y(),&clat,&clon);
+		sprintf (buftmp,"Mouse LAT=%14.9lf, LON=%14.9lf\n",clat,clon);
+		QString strMsg = buftmp;
+		pImage->drawText(0,16,strMsg);
+
+	}
 
 
 	int x1,y1,x2,y2;
@@ -264,6 +275,7 @@ void qtvplugin_grid::cb_paintEvent( QPainter * pImage )
 		QPointF pos = QLineF(x1,y1,x2,y2).pointAt(1*0.8 / sz+0.1);
 		pImage->drawText(pos,str);
 	}
+
 	pImage->setPen(oldpen);
 }
 

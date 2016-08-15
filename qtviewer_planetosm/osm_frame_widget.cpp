@@ -78,8 +78,11 @@ osm_frame_widget::osm_frame_widget(QWidget *parent) :
 	ui->tab_map->installEventFilter(this);
 	//adjust layers, make exclusive layrs being de-activated.
 	ui->widget_QTV_mainMap->adjust_layers(pOSMTile);
-
-
+	EnumPlugins();
+	UpdateLayerTable();
+	//Dock is closable
+	ui->dockWidget_QTV_side->installEventFilter(this);
+	m_mutex_proteced.unlock();
 	//! 2. source=MAIN_MAP,  destin = ALL, msg = MAP_INITED
 	if ( this->isEnabled())
 	{
@@ -91,11 +94,7 @@ osm_frame_widget::osm_frame_widget(QWidget *parent) :
 		ui->widget_QTV_mainMap->post_event(map_evt);
 	}
 	QTVOSM_DEBUG("The osm_frame_widget class constructed.");
-	EnumPlugins();
-	UpdateLayerTable();
-	//Dock is closable
-	ui->dockWidget_QTV_side->installEventFilter(this);
-	m_mutex_proteced.unlock();
+
 }
 void osm_frame_widget::UpdateLayerTable()
 {
