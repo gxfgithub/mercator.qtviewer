@@ -17,23 +17,23 @@
    <iconset resource="resource/resource.qrc">
     <normaloff>:/ui/icons/Folder Online aqua.png</normaloff>:/ui/icons/Folder Online aqua.png</iconset>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout_5">
+   <property name="spacing">
+    <number>1</number>
+   </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <item row="0" column="0">
+   <item>
     <widget class="QTabWidget" name="tabWidget_main">
      <property name="tabPosition">
       <enum>QTabWidget::South</enum>
@@ -115,7 +115,7 @@
      </widget>
     </widget>
    </item>
-   <item row="0" column="1">
+   <item>
     <widget class="QDockWidget" name="dockWidget_QTV_side">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
@@ -479,6 +479,7 @@
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="resource/resource.qrc"/>
   <include location="resource/resource.qrc"/>
   <include location="resource/resource.qrc"/>
  </resources>

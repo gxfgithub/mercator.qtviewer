@@ -465,3 +465,8 @@ QString qtwidget_planetosm::osm_layer_call_function(QString layerName, QString a
 	return strRes;
 }
 
+void qtwidget_planetosm::enableLiteMode(bool bEnabled)
+{
+	osm_frame_widget * mp = qobject_cast<osm_frame_widget *>(m_map_widget);
+	mp->enableLiteMode(bEnabled);
+}

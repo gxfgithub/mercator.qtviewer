@@ -138,9 +138,7 @@ bool osm_frame_widget::eventFilter(QObject *obj, QEvent *event)
 		}
 		else if (obj == ui->dockWidget_QTV_side)
 		{
-			ui->dockWidget_QTV_side->hide();
-			QMargins m = this->layout()->contentsMargins();
-			this->layout()->setContentsMargins(m.left(),m.top(),12,m.bottom());
+			enableLiteMode(true);
 			return true;
 		}
 		else if (m_PropPageslayer.contains(obj))
@@ -198,10 +196,7 @@ void osm_frame_widget::mousePressEvent(QMouseEvent * e)
 	{
 		if (ui->dockWidget_QTV_side->isVisible()==false)
 		{
-			ui->dockWidget_QTV_side->show();
-
-			QMargins m = this->layout()->contentsMargins();
-			this->layout()->setContentsMargins(m.left(),m.top(),m.left(),m.bottom());
+			enableLiteMode(false);
 		}
 	}
 
@@ -427,5 +422,46 @@ void osm_frame_widget::on_pushButton_QTV_saveToFile_clicked()
 				settings.setValue("history/last_save_img_dir",info.absolutePath());
 			}
 		}
+	}
+}
+void osm_frame_widget::enableLiteMode(bool bEnabled)
+{
+	if (bEnabled==true)
+	{
+		if (ui->tab_map->parent()==this)
+			return;
+		ui->tabWidget_main->hide();
+		int idx = ui->tabWidget_main->indexOf(ui->tab_map);
+		ui->tab_map->setParent(this);
+		if (idx>=0)
+			ui->tabWidget_main->removeTab(idx);
+		//remove topmost flag
+		Qt::WindowFlags flg = ui->tab_map->windowFlags();
+		flg &= ~(Qt::WindowMinMaxButtonsHint|Qt::WindowStaysOnTopHint|Qt::Window );
+		ui->tab_map->setWindowFlags(flg);
+		//add to current Layer
+		this->layout()->addWidget(ui->tab_map);
+		ui->tab_map->show();
+		ui->dockWidget_QTV_side->hide();
+		QMargins m = this->layout()->contentsMargins();
+		this->layout()->setContentsMargins(m.left(),m.top(),12,m.bottom());
+
+	}
+	else
+	{
+		Qt::WindowFlags flg = ui->tab_map->windowFlags();
+		flg &= ~(Qt::WindowMinMaxButtonsHint|Qt::WindowStaysOnTopHint|Qt::Window );
+		ui->tab_map->setWindowFlags(flg);
+		int idx = ui->tabWidget_main->addTab(
+					ui->tab_map,
+					"Map"
+					);
+		ui->tabWidget_main->setTabIcon(idx,ui->tab_map->windowIcon());
+		ui->tabWidget_main->show();
+		ui->tabWidget_main->setCurrentIndex(idx);
+		QMargins m = this->layout()->contentsMargins();
+		this->layout()->setContentsMargins(m.left(),m.top(),m.left(),m.bottom());
+		ui->dockWidget_QTV_side->show();
+
 	}
 }

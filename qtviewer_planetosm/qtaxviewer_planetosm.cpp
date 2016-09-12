@@ -460,8 +460,26 @@ QString qtaxviewer_planetosm::osm_layer_call_function(QString layerName, QString
 		p_out = la->call_func(p_in);
 		strRes = map_to_string(p_out);
 	}
+	else if (layerName=="MAIN_MAP")
+	{
+		QMap<QString, QVariant> p_in;
+		p_in = string_to_map(args);
+		if (p_in["function"].toString().toUpper()=="ENABLELITEMODE")
+		{
+			if (p_in["mode"].toInt()==0)
+				this->enableLiteMode(false);
+			else
+				this->enableLiteMode(true);
+
+		}
+		else
+		{
+			strRes = QString("error=Layer name \"%1\" does not have this function.;").arg(layerName);
+		}
+
+	}
 	else
-		strRes = QString("error=Layer name \"%1\" does not exist.;").arg(layerName);
+		strRes = QString("error=Layer name \"%1\" does not exist.MAIN_MAP means the main map frame.;").arg(layerName);
 	return strRes;
 }
 

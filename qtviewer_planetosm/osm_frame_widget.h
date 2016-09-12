@@ -30,7 +30,7 @@ public:
 public:
 	//Get tile viewer
 	tilesviewer * viewer();
-
+	void enableLiteMode(bool bEnabled);
 protected:
 	bool eventFilter(QObject *obj, QEvent *event);
 protected:

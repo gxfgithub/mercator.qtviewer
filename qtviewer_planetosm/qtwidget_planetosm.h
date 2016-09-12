@@ -30,6 +30,7 @@ protected:
 public:
 	explicit qtwidget_planetosm(QWidget *parent = 0);
 	~qtwidget_planetosm();
+	void enableLiteMode(bool bEnabled);
 	//! slots below is designed for widget interfaces
 public:
 	QTVOSM::viewer_interface * viewer();
