@@ -56,7 +56,9 @@ QString osm_designer_plugin::whatsThis() const
 }
 QWidget *osm_designer_plugin::createWidget(QWidget *parent)
 {
-	return new qtwidget_planetosm(parent);
+	qtwidget_planetosm * newWig = new qtwidget_planetosm(parent);
+	newWig->enableLiteMode(true);
+	return newWig;
 }
 
 void osm_designer_plugin::initialize(QDesignerFormEditorInterface *core)
