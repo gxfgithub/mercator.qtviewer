@@ -432,9 +432,9 @@ void osm_frame_widget::enableLiteMode(bool bEnabled)
 			return;
 		ui->tabWidget_main->hide();
 		int idx = ui->tabWidget_main->indexOf(ui->tab_map);
-		ui->tab_map->setParent(this);
 		if (idx>=0)
 			ui->tabWidget_main->removeTab(idx);
+		ui->tab_map->setParent(this);
 		//remove topmost flag
 		Qt::WindowFlags flg = ui->tab_map->windowFlags();
 		flg &= ~(Qt::WindowMinMaxButtonsHint|Qt::WindowStaysOnTopHint|Qt::Window );

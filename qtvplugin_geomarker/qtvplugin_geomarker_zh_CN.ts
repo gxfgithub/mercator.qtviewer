@@ -311,19 +311,11 @@
         <translation>正在重新计算坐标，完成 %1 %%</translation>
     </message>
     <message>
-        <source>name, lat, lon must  exist in paraments.</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>name could not be empty.</source>
         <translation></translation>
     </message>
     <message>
         <source>can not create graphical object, the pointer is zero.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>name, lat0, lon0,lat1,lon1 must  exist in paraments.</source>
         <translation></translation>
     </message>
     <message>
@@ -441,6 +433,10 @@
     <message>
         <source>mod is not valid in paraments. 0=display, 1=rect selection</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Accept &quot;Hover&quot; Event(Slow!)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
