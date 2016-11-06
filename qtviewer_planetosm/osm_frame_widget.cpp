@@ -192,7 +192,7 @@ osm_frame_widget::~osm_frame_widget()
 }
 void osm_frame_widget::mousePressEvent(QMouseEvent * e)
 {
-	if (e->pos().x() >= this->rect().right()-12)
+	if (e->pos().x() >= this->rect().right()-12 && m_bLiteModeLocked==false)
 	{
 		if (ui->dockWidget_QTV_side->isVisible()==false)
 		{
@@ -464,4 +464,8 @@ void osm_frame_widget::enableLiteMode(bool bEnabled)
 		ui->dockWidget_QTV_side->show();
 
 	}
+}
+void osm_frame_widget::lockLiteMode(bool blocked)
+{
+	m_bLiteModeLocked = blocked;
 }

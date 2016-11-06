@@ -472,6 +472,14 @@ QString qtaxviewer_planetosm::osm_layer_call_function(QString layerName, QString
 				this->enableLiteMode(true);
 
 		}
+		else if (p_in["function"].toString().toUpper()=="LOCKLITEMODE")
+		{
+			if (p_in["mode"].toInt()==0)
+				this->lockLiteMode(false);
+			else
+				this->lockLiteMode(true);
+
+		}
 		else
 		{
 			strRes = QString("error=Layer name \"%1\" does not have this function.;").arg(layerName);

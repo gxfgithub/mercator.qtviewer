@@ -31,14 +31,17 @@ public:
 	//Get tile viewer
 	tilesviewer * viewer();
 	void enableLiteMode(bool bEnabled);
+	void lockLiteMode(bool blocked);
 protected:
 	bool eventFilter(QObject *obj, QEvent *event);
 protected:
 	static QMutex m_mutex_proteced;
 	Ui::osm_frame_widget *ui;
+	bool m_bLiteModeLocked = false;
 	QStandardItemModel *m_pLayerDispMod;
 	QMap<layer_interface *, QObject *> m_layerPropPages;
 	QMap<QObject *, layer_interface *> m_PropPageslayer;
+protected:
 	void UpdateLayerTable();
 	bool AppendLayer(QString SLName,layer_interface * interface);
 	void EnumPlugins();

@@ -470,3 +470,9 @@ void qtwidget_planetosm::enableLiteMode(bool bEnabled)
 	osm_frame_widget * mp = qobject_cast<osm_frame_widget *>(m_map_widget);
 	mp->enableLiteMode(bEnabled);
 }
+void qtwidget_planetosm::lockLiteMode(bool blocked)
+{
+	osm_frame_widget * mp = qobject_cast<osm_frame_widget *>(m_map_widget);
+	mp->lockLiteMode(blocked);
+
+}
