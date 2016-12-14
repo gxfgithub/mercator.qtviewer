@@ -26,7 +26,7 @@ namespace QTVOSM{
 		m_downloadThread->start();
 		//!2,init basic cache and server site.if user does not give address, default set to "http://localhost/osm/%1/%2/%3.png"
 		this->m_strLocalCache = "/OSMCache";
-		this->m_strServerURL = "http://c.tile.openstreetmap.org/%1/%2/%3.png";
+		this->m_strServerURL = "http://%4.tile.openstreetmap.org/%1/%2/%3.png";
 		m_bconnected = false;
 		m_propPage = 0;
 		//!3, init the Drag position, for mouse drag and explore.
@@ -137,7 +137,7 @@ namespace QTVOSM{
 		{
 			this->m_nStartPosX = event->pos().x();
 			this->m_nStartPosY = event->pos().y();
-		}		
+		}
 		return res;
 	}
 
@@ -212,7 +212,7 @@ namespace QTVOSM{
 		connect(m_downloader,SIGNAL(evt_all_taskFinished()),this,SLOT(updateViewer()));
 		//Get Cache Address
 		QSettings settings(QCoreApplication::applicationFilePath()+".ini",QSettings::IniFormat);
-		m_strServerURL = settings.value(QString("settings/ServerURL_%1").arg(m_name),"http://c.tile.openstreetmap.org/%1/%2/%3.png").toString();
+		m_strServerURL = settings.value(QString("settings/ServerURL_%1").arg(m_name),"http://%4.tile.openstreetmap.org/%1/%2/%3.png").toString();
 		m_strLocalCache = settings.value(QString("settings/LocalCache_%1").arg(m_name), QCoreApplication::applicationDirPath() +"/OSMCache").toString();
 		m_nCacheExpireDays = settings.value(QString("settings/CacheExpireDays_%1").arg(m_name), 30).toInt();
 		return this;
@@ -350,7 +350,11 @@ namespace QTVOSM{
 		LFix += ".png";
 		strFileName = QString::number(nY,10);
 		strFileName += ".png";
-		strSourceUrl = m_strServerURL.arg(nLevel).arg(nX).arg(nY);
+		QChar mirr[3] = {QChar('a'),QChar('b'),QChar('c')};
+		if (m_strServerURL.contains("%4"))
+			strSourceUrl = m_strServerURL.arg(nLevel).arg(nX).arg(nY).arg(mirr[nY%3]);
+		else
+			strSourceUrl = m_strServerURL.arg(nLevel).arg(nX).arg(nY);
 
 		this->m_downloader->addDownloadUrl(strSourceUrl,strDestinDir,strFileName);
 		return true;

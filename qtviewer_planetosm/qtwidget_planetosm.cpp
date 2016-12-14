@@ -96,7 +96,7 @@ void qtwidget_planetosm::osm_set_remote_address (QString layerName, QString addr
 
 QString qtwidget_planetosm::osm_get_remote_address(QString layerName) const
 {
-	QString res = "http://c.tile.openstreetmap.org/%1/%2/%3.png";
+	QString res = "http://%4.tile.openstreetmap.org/%1/%2/%3.png";
 	osm_frame_widget * mp = qobject_cast<osm_frame_widget *>(m_map_widget);tilesviewer * pv=mp->viewer();
 	layer_interface * la = pv->layer(layerName);
 	if (la)

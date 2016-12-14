@@ -73,7 +73,7 @@ void qtaxviewer_planetosm::osm_set_remote_address (QString layerName, QString ad
 
 QString qtaxviewer_planetosm::osm_get_remote_address(QString layerName) const
 {
-	QString res = "http://c.tile.openstreetmap.org/%1/%2/%3.png";
+	QString res = "http://%4.tile.openstreetmap.org/%1/%2/%3.png";
 	tilesviewer * pv = this->ui->widget_QTV_mainMap ;
 	layer_interface * la = pv->layer(layerName);
 	if (la)
