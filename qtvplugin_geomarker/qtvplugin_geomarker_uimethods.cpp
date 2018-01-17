@@ -808,17 +808,30 @@ void qtvplugin_geomarker::on_pushButton_QTV_save_clicked()
 	QSettings settings(ini_file(),QSettings::IniFormat);
 	QString strLastSaveImgDir = settings.value("history/last_save_xml_dir","./").toString();
 	QString newfm = QFileDialog::getSaveFileName(this,tr("save to xml"),strLastSaveImgDir,
-								 "xml (*.xml);;All files(*.*)"
+                                 "xml (*.xml);;cmd (*.cmd);;All files(*.*)"
 								 );
 	if (newfm.size()>2)
 	{
-		if (true==xml_save(newfm))
-		{
-			settings.setValue("history/last_save_xml_dir",newfm);
-			//QMessageBox::information(this,tr("succeed"),tr("Successfully saved XML file") + newfm);
-		}
-		else
-			QMessageBox::warning(this,tr("failed"),tr("Save XML file") + newfm + tr(" Failed"));
+        if (newfm.right(3).toUpper()=="XML")
+        {
+            if (true==xml_save(newfm))
+            {
+                settings.setValue("history/last_save_xml_dir",newfm);
+                //QMessageBox::information(this,tr("succeed"),tr("Successfully saved XML file") + newfm);
+            }
+            else
+                QMessageBox::warning(this,tr("failed"),tr("Save XML file") + newfm + tr(" Failed"));
+        }
+        else
+        {
+			if (true==cmd_save(newfm))
+			{
+				settings.setValue("history/last_save_xml_dir",newfm);
+				//QMessageBox::information(this,tr("succeed"),tr("Successfully saved XML file") + newfm);
+			}
+			else
+				QMessageBox::warning(this,tr("failed"),tr("Save CMD file") + newfm + tr(" Failed"));
+        }
 	}
 }
 
@@ -827,17 +840,30 @@ void qtvplugin_geomarker::on_pushButton_QTV_load_clicked()
 	QSettings settings(ini_file(),QSettings::IniFormat);
 	QString strLastSaveImgDir = settings.value("history/last_open_xml_dir","./").toString();
 	QString newfm = QFileDialog::getOpenFileName(this,tr("load from xml"),strLastSaveImgDir,
-								 "xml (*.xml);;All files(*.*)"
+                                 "xml (*.xml);;cmd (*.cmd);;All files(*.*)"
 								 );
 	if (newfm.size()>2)
 	{
-		if (true==xml_load(newfm))
-		{
-			settings.setValue("history/last_open_xml_dir",newfm);
-			//QMessageBox::information(this,tr("succeed"),tr("Successfully load XML file") + newfm);
-		}
-		else
-			QMessageBox::warning(this,tr("failed"),tr("Load XML file") + newfm + tr(" Failed"));
+        if (newfm.right(3).toUpper()=="XML")
+        {
+            if (true==xml_load(newfm))
+            {
+                settings.setValue("history/last_open_xml_dir",newfm);
+                //QMessageBox::information(this,tr("succeed"),tr("Successfully load XML file") + newfm);
+            }
+            else
+                QMessageBox::warning(this,tr("failed"),tr("Load XML file") + newfm + tr(" Failed"));
+        }
+        else
+        {
+			if (true==cmd_load(newfm))
+			{
+				settings.setValue("history/last_open_xml_dir",newfm);
+				//QMessageBox::information(this,tr("succeed"),tr("Successfully load XML file") + newfm);
+			}
+			else
+				QMessageBox::warning(this,tr("failed"),tr("Load CMD file") + newfm + tr(" Failed"));
+        }
 	}
 	scheduleRefreshMarks();
 	m_pVi->UpdateWindow();

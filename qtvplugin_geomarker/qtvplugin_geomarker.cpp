@@ -10,6 +10,7 @@
 #include <QMutex>
 #include <QGraphicsSceneMouseEvent>
 #include <QMap>
+#include <QTextStream>
 #include <assert.h>
 #include "geographicsellipseitem.h"
 #include "geographicsrectitem.h"
@@ -953,6 +954,206 @@ QTVP_GEOMARKER::geoItemBase *	qtvplugin_geomarker::update_icon(const QString & n
 		else
 			pitem->setTransformationMode(Qt::FastTransformation);
 		pitem->adjustLabelPos();
+	}
+	return res;
+}
+bool qtvplugin_geomarker::cmd_save (QString cmdFile)
+{
+	QFile fp(cmdFile);
+	if (fp.open(QIODevice::WriteOnly)==false)
+		return false;
+	QTextStream stream_out(&fp);
+	//1. for each mark, write a root element
+	QList<QTVP_GEOMARKER::geoItemBase *> items = m_pScene->geo_items();
+	foreach (QTVP_GEOMARKER::geoItemBase * item, items)
+	{
+		QString cmd_str;
+		QTVP_GEOMARKER::geo_item_type x_tp = item->item_type();
+		QString x_name = item->item_name();
+
+		//1.1. Mark
+		switch (x_tp)
+		{
+		case QTVP_GEOMARKER::ITEAMTYPE_RECT_POINT:
+		{
+			QTVP_GEOMARKER::geoGraphicsRectItem * pU = dynamic_cast<QTVP_GEOMARKER::geoGraphicsRectItem *>(item);
+			if (pU)
+			{
+				cmd_str += "function=update_point;name="+x_name+QString(";type=%1;").arg(x_tp);
+				cmd_str += QString("lat=%1;lon=%2;").arg(pU->lat(),0,'f',7).arg(pU->lon(),0,'f',7);
+				//1.2 style
+				cmd_str += "width="+ QString("%1;").arg(pU->width());
+				cmd_str += "height="+ QString("%1;").arg(pU->height());
+				cmd_str += "color_pen="+ color2string(pU->pen().color())+";";
+				cmd_str += "style_pen="+ QString("%1;").arg(int(pU->pen().style()));
+				cmd_str += "width_pen="+ QString("%1;").arg(int(pU->pen().width()));
+				cmd_str += "color_brush="+ color2string(pU->brush().color())+";";
+				cmd_str += "style_brush="+ QString("%1;").arg(int(pU->brush().style()));
+			}
+		}
+			break;
+		case QTVP_GEOMARKER::ITEAMTYPE_ELLIPSE_POINT:
+		{
+			QTVP_GEOMARKER::geoGraphicsEllipseItem * pU = dynamic_cast<QTVP_GEOMARKER::geoGraphicsEllipseItem *>(item);
+			if (pU)
+			{
+				cmd_str += "function=update_point;name="+x_name+QString(";type=%1;").arg(x_tp);
+				cmd_str += QString("lat=%1;lon=%2;").arg(pU->lat(),0,'f',7).arg(pU->lon(),0,'f',7);
+				//1.2 style
+				cmd_str += "width="+ QString("%1;").arg(pU->width());
+				cmd_str += "height="+ QString("%1;").arg(pU->height());
+				cmd_str += "color_pen="+ color2string(pU->pen().color())+";";
+				cmd_str += "style_pen="+ QString("%1;").arg(int(pU->pen().style()));
+				cmd_str += "width_pen="+ QString("%1;").arg(int(pU->pen().width()));
+				cmd_str += "color_brush="+ color2string(pU->brush().color())+";";
+				cmd_str += "style_brush="+ QString("%1;").arg(int(pU->brush().style()));
+				}
+		}
+			break;
+		case QTVP_GEOMARKER::ITEAMTYPE_LINE:
+		{
+			QTVP_GEOMARKER::geoGraphicsLineItem * pU = dynamic_cast<QTVP_GEOMARKER::geoGraphicsLineItem *>(item);
+			if (pU)
+			{
+				cmd_str += "function=update_line;name="+x_name+QString(";type=%1;").arg(x_tp);
+				cmd_str += QString("lat0=%1;lon0=%2;").arg(pU->lat1(),0,'f',7).arg(pU->lon1(),0,'f',7);
+				cmd_str += QString("lat1=%1;lon1=%2;").arg(pU->lat2(),0,'f',7).arg(pU->lon2(),0,'f',7);
+				//1.2 style
+				cmd_str += "color_pen=" + color2string(pU->pen().color())+";";
+				cmd_str += "style_pen=" + QString("%1;").arg(int(pU->pen().style()));
+				cmd_str += "width_pen=" + QString("%1;").arg(int(pU->pen().width()));
+			}
+		}
+			break;
+		case QTVP_GEOMARKER::ITEAMTYPE_POLYGON:
+		{
+			QTVP_GEOMARKER::geoGraphicsPolygonItem * pU = dynamic_cast<QTVP_GEOMARKER::geoGraphicsPolygonItem *>(item);
+			if (pU)
+			{
+				cmd_str += "function=update_polygon;name="+x_name+QString(";type=%1;").arg(x_tp);
+				QPolygonF pl = pU->llas();
+				int nPl = pl.size();
+				int ct_pg = 0;
+				foreach (QPointF pf, pl)
+				{
+					cmd_str += QString("lat%3=%1;lon%3=%2;").arg(pf.y(),0,'f',7).arg(pf.x(),0,'f',7).arg(ct_pg);
+					++ct_pg;
+				}
+				cmd_str += "color_pen=" + color2string(pU->pen().color())+";";
+				cmd_str += "style_pen=" + QString("%1;").arg(int(pU->pen().style()));
+				cmd_str += "width_pen=" + QString("%1;").arg(int(pU->pen().width()));
+				cmd_str += "color_brush=" + color2string(pU->brush().color())+";";
+				cmd_str += "style_brush=" + QString("%1;").arg(int(pU->brush().style()));
+			}
+		}
+			break;
+		case QTVP_GEOMARKER::ITEAMTYPE_PIXMAP:
+		{
+			QTVP_GEOMARKER::geoGraphicsPixmapItem * pU = dynamic_cast<QTVP_GEOMARKER::geoGraphicsPixmapItem *>(item);
+			if (pU)
+			{
+				cmd_str += "function=update_icon;name="+x_name+QString(";type=%1;").arg(x_tp);
+				//1.2. geo
+				cmd_str += QString("lat=%1;lon=%2;").arg(pU->lat(),0,'f',7).arg(pU->lon(),0,'f',7);
+				//1.2 style
+				cmd_str += "icon=" +QString("%1;").arg(pU->icon()->name);
+				cmd_str += "scale=" +QString("%1;").arg(pU->scale());
+				cmd_str += "rotate=" +QString("%1;").arg(pU->rotation());
+				cmd_str += "smooth=" +QString("%1;").arg(pU->transformationMode()==Qt::SmoothTransformation?1:0);
+			}
+		}
+			break;
+		case QTVP_GEOMARKER::ITEAMTYPE_MULTILINE:
+		{
+			QTVP_GEOMARKER::geoGraphicsMultilineItem * pU = dynamic_cast<QTVP_GEOMARKER::geoGraphicsMultilineItem *>(item);
+			if (pU)
+			{
+				cmd_str += "function=update_polygon;name="+x_name+QString(";type=%1;").arg(x_tp);
+				QPolygonF pl = pU->llas();
+				int nPl = pl.size();
+				int ct_pg = 0;
+				foreach (QPointF pf, pl)
+				{
+					cmd_str += QString("lat%3=%1;lon%3=%2;").arg(pf.y(),0,'f',7).arg(pf.x(),0,'f',7).arg(ct_pg);
+					++ct_pg;
+				}
+				cmd_str += "color_pen=" + color2string(pU->pen().color())+";";
+				cmd_str += "style_pen=" + QString("%1;").arg(int(pU->pen().style()));
+				cmd_str += "width_pen=" + QString("%1;").arg(int(pU->pen().width()));
+				cmd_str += "color_brush=" + color2string(pU->brush().color())+";";
+				cmd_str += "style_brush=" + QString("%1;").arg(int(pU->brush().style()));
+			}
+		}
+			break;
+		default:
+			break;
+		}
+
+		QColor colorText = item->labelColor();
+		cmd_str += "color_label="+color2string(colorText)+";";
+
+		int fsize = item->labelFont().pointSize();
+		cmd_str += "size_label="+QString("%1;").arg(fsize);
+
+		int weight = item->labelFont().weight();
+		cmd_str += "weight_label="+QString("%1;").arg(weight);
+		cmd_str += "want_hover="+QString("%1;\015\012").arg(item->wantMouseHoverEvent()==true?1:0);
+
+		cmd_str += "function=update_props;name="+x_name+";";
+		//1.2 properties
+		int props = item->prop_counts();
+		QStringList lstNames = item->prop_names();
+		QVariantList lstValues = item->prop_values();
+		for (int i=0;i<props;++i)
+		{
+			cmd_str += lstNames[i]+"="+lstValues[i].toString()+";";
+		}
+		stream_out<<cmd_str<<"\015\012";
+	}
+	fp.flush();
+	fp.close();
+	return true;
+}
+bool qtvplugin_geomarker::cmd_load (QString cmdFile)
+{
+	bool res = true;
+	QString errMessage;
+	QFile fp(cmdFile);
+	if (fp.open(QIODevice::ReadOnly)==false)
+		return false;
+	QTextStream sfile(&fp);
+	while (sfile.atEnd()==false)
+	{
+		QString linered = sfile.readLine();
+		if (linered.contains("function"))
+		{
+			QMap<QString, QVariant> res;
+			QStringList lst = linered.split(";");
+			foreach (QString s, lst)
+			{
+				int t = s.indexOf("=");
+				if (t>0 && t< s.size())
+				{
+					QString name = s.left(t).trimmed();
+					QString value = s.mid(t+1).trimmed();
+					res[name] = value;
+				}
+			}
+			this->call_func(res);
+		}
+	}
+	fp.close();
+	if (res==false)
+	{
+		QMap<QString,QVariant> evt_error;
+		evt_error["source"] = get_name();
+		evt_error["destin"] = "ALL";
+		evt_error["name"] = "error";
+		evt_error["class"] = "cmd reader";
+		evt_error["file"] = cmdFile;
+		evt_error["detail"] = errMessage;
+		m_pVi->post_event(evt_error);
+
 	}
 	return res;
 }

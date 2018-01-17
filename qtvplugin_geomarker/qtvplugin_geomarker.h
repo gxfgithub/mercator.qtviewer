@@ -144,6 +144,9 @@ private:
 	bool		xml_icon_save	(QString xml);
 	bool		xml_icon_load	(QString xml);
 
+	bool		cmd_save		(QString cmdFile);
+	bool		cmd_load		(QString cmdFile);
+
 	//UI refreshing functions
 private:
 	QList<QString> m_items_to_insert;
