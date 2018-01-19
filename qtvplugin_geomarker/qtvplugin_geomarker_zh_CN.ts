@@ -256,7 +256,7 @@
     </message>
     <message>
         <source> Failed</source>
-        <translation>失败</translation>
+        <translation> 失败</translation>
     </message>
     <message>
         <source>load from xml</source>
@@ -436,7 +436,19 @@
     </message>
     <message>
         <source>Accept &quot;Hover&quot; Event(Slow!)</source>
-        <translation type="unfinished"></translation>
+        <translation>接收鼠标悬停事件(慢)</translation>
+    </message>
+    <message>
+        <source>Auto Collapse Labels</source>
+        <translation>在鼠标悬停时展开详情</translation>
+    </message>
+    <message>
+        <source>Save CMD file</source>
+        <translation>保存绘图指令文件</translation>
+    </message>
+    <message>
+        <source>Load CMD file</source>
+        <translation>加载绘图指令文件</translation>
     </message>
 </context>
 </TS>
