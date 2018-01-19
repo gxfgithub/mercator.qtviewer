@@ -473,7 +473,38 @@ void qtvplugin_geomarker::addSelection(QRectF rectWorld)
 
 bool qtvplugin_geomarker::cb_event(const QMap<QString, QVariant> para)
 {
-	return false;
+	if (para["source"]==this->get_name() && para["name"]=="ITEM_MOUSE_ENTER")
+	{
+		if (ui->checkBox_QTV_hoverEvt_AutoLabel->isChecked())
+		{
+			const QString key = para["id"].toString();
+			if (key.length())
+			{
+				QTVP_GEOMARKER::geoItemBase * base = m_pScene->geoitem_by_name(key);
+				if (base)
+				{
+					base->show_props(true);
+					scheduleUpdateMap();
+				}
+			}
+		}
+	}
+	if (para["source"]==this->get_name() && para["name"]=="ITEM_MOUSE_LEAVE")
+	{
+		if (ui->checkBox_QTV_hoverEvt_AutoLabel->isChecked())
+		{
+			const QString key = para["id"].toString();
+			if (key.length())
+			{
+				QTVP_GEOMARKER::geoItemBase * base = m_pScene->geoitem_by_name(key);
+				if (base)
+				{
+					base->show_props(false);
+					scheduleUpdateMap();
+				}
+			}
+		}
+	}	return false;
 }
 
 /*! qtvplugin_geomarker::cb_mouseXXXEvent tranfer mouse events from main view to

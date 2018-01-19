@@ -179,6 +179,7 @@ void qtvplugin_geomarker::ini_save()
 	settings.setValue("ui/lineEdit_QTV_icon_scale",ui->lineEdit_QTV_icon_scale->text());
 	settings.setValue("ui/checkBox_QTV_multiline",ui->checkBox_QTV_multiline->isChecked()?-1:0);
 	settings.setValue("ui/checkBox_QTV_acceptHoverEvent",ui->checkBox_QTV_acceptHoverEvent->isChecked()?-1:0);
+	settings.setValue("ui/checkBox_QTV_hoverEvt_AutoLabel",ui->checkBox_QTV_hoverEvt_AutoLabel->isChecked()?-1:0);
 }
 
 void qtvplugin_geomarker::ini_load()
@@ -276,7 +277,8 @@ void qtvplugin_geomarker::ini_load()
 
 	int checkBox_QTV_acceptHoverEvent = settings.value("ui/checkBox_QTV_acceptHoverEvent",0).toInt();
 	ui->checkBox_QTV_acceptHoverEvent->setChecked(checkBox_QTV_acceptHoverEvent?true:false);
-}
+	int checkBox_QTV_hoverEvt_AutoLabel = settings.value("ui/checkBox_QTV_hoverEvt_AutoLabel",1).toInt();
+	ui->checkBox_QTV_hoverEvt_AutoLabel->setChecked(checkBox_QTV_hoverEvt_AutoLabel?true:false);}
 
 
 void qtvplugin_geomarker::style_save()
