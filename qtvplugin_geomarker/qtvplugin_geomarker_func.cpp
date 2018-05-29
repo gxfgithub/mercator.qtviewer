@@ -864,6 +864,7 @@ QMap<QString, QVariant>			qtvplugin_geomarker::func_delete_marks	(const QMap<QSt
 		ct = 0;
 		foreach (QString key,set_names)
 		{
+			m_set_itemNameSelected.remove(key);
 			QString keystr = QString("name%1").arg(ct++);
 			QTVP_GEOMARKER::geoItemBase * base = m_pScene->geoitem_by_name(key);
 			if (base)
@@ -883,6 +884,7 @@ QMap<QString, QVariant>			qtvplugin_geomarker::func_delete_marks	(const QMap<QSt
 			m_pScene->removeItem(key,0);
 		res["ALL"] = 1;
 		needUpdate = true;
+		m_set_itemNameSelected.clear();
 		scheduleRefreshMarks();
 	}
 	if (needUpdate)
