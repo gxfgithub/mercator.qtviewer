@@ -96,7 +96,7 @@ namespace QTVP_GEOMARKER{
 
 	QStringList geoItemBase::prop_names()
 	{
-		return std::move(m_props.keys());
+		return /*std::move*/(m_props.keys());
 	}
 	int geoItemBase::prop_counts()
 	{
@@ -104,7 +104,7 @@ namespace QTVP_GEOMARKER{
 	}
 	QVariantList geoItemBase::prop_values()
 	{
-		return std::move(m_props.values());
+		return /*std::move*/(m_props.values());
 	}
 
 	const QVariant & geoItemBase::prop_data(const QString & k)

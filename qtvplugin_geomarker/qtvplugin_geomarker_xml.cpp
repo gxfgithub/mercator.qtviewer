@@ -212,7 +212,7 @@ QMap<QString,QString> qtvplugin_geomarker::xml_attribs_map(const QXmlStreamAttri
 	QMap<QString, QString > attr;
 	foreach(QXmlStreamAttribute a, ats)
 		attr[a.name().toString()] = a.value().toString();
-	return std::move(attr);
+	return /*std::move*/(attr);
 }
 bool qtvplugin_geomarker::xml_load(QString xmlfile)
 {

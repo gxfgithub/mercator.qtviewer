@@ -734,7 +734,7 @@ QMap<QString, QVariant> qtvplugin_grid::call_func(const  QMap<QString, QVariant>
 	}
 	else
 		res["error"] = "\"function\" keyword not specified, nothing to do.";
-	return std::move(res);
+	return /*std::move*/(res);
 }
 void qtvplugin_grid::on_pushButton_QTV_add_mark_clicked()
 {

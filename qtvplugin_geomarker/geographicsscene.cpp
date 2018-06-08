@@ -123,10 +123,10 @@ namespace QTVP_GEOMARKER{
 
 	QList<geoItemBase *> geoGraphicsScene::geo_items()
 	{
-		return std::move(m_map_items.values());
+		return /*std::move*/(m_map_items.values());
 	}
 	QList<QString> geoGraphicsScene::geo_item_names()
 	{
-		return std::move(m_map_items.keys());
+		return /*std::move*/(m_map_items.keys());
 	}
 }

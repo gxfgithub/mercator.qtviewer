@@ -416,7 +416,7 @@ QString qtaxviewer_planetosm::map_to_string(const QMap<QString, QVariant> & m)
 		s += p.value().toString();
 		s += ";";
 	}
-	return std::move(s);
+	return /*std::move*/(s);
 }
 
 QMap<QString, QVariant> qtaxviewer_planetosm::string_to_map(const QString & s)
@@ -433,7 +433,7 @@ QMap<QString, QVariant> qtaxviewer_planetosm::string_to_map(const QString & s)
 			res[name] = value;
 		}
 	}
-	return std::move(res);
+	return /*std::move*/(res);
 }
 
 /**

@@ -195,7 +195,7 @@ QString testcontainer::map_to_string(const QMap<QString, QVariant> & m)
 		s += p.value().toString();
 		s += ";";
 	}
-	return std::move(s);
+	return /*std::move*/(s);
 }
 
 QMap<QString, QVariant> testcontainer::string_to_map(const QString & s)
@@ -212,7 +212,7 @@ QMap<QString, QVariant> testcontainer::string_to_map(const QString & s)
 			res[name] = value;
 		}
 	}
-	return std::move(res);
+	return /*std::move*/(res);
 }
 void testcontainer::on_pushButton_QTV_test_grid_enable_clicked()
 {
