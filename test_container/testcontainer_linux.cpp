@@ -464,7 +464,7 @@ void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 {
 	if (p["name"] == QString("MOUSE_MOVE"))
 	{
-		QString message = this->map_to_string(p);
+		QString message = map_to_string(p);
 		ui->label_QTV_mouseMove->setText(message);
 	}
 	else
@@ -488,7 +488,7 @@ void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 			ui->osmmap->osm_layer_call_function("geomarker",para_d);
 		}
 
-		QString message = this->map_to_string(p);
+		QString message = map_to_string(p);
 		QList<QStandardItem *> list_newrow;
 		list_newrow << new QStandardItem(QString("%1").arg((quint64)ui->osmmap));
 		list_newrow << new QStandardItem(QString("%1").arg(message));
