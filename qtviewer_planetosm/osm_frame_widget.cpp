@@ -122,6 +122,7 @@ bool osm_frame_widget::eventFilter(QObject *obj, QEvent *event)
 	{
 		if (obj == ui->tab_map)
 		{
+			event->ignore();
 			QWidget * wig = qobject_cast<QWidget *>(obj);
 			if (wig)
 			{
@@ -138,11 +139,13 @@ bool osm_frame_widget::eventFilter(QObject *obj, QEvent *event)
 		}
 		else if (obj == ui->dockWidget_QTV_side)
 		{
+			event->ignore();
 			enableLiteMode(true);
 			return true;
 		}
 		else if (m_PropPageslayer.contains(obj))
 		{
+			event->ignore();
 			QWidget * wig = qobject_cast<QWidget *>(obj);
 			if (wig)
 			{
