@@ -8,6 +8,7 @@
 #include <functional>
 #include "osmtiles/tilesviewer.h"
 #include "osmtiles/layer_tiles.h"
+#include "interface_utils.h"
 qtaxviewer_planetosm::qtaxviewer_planetosm(QWidget *parent )
 	:osm_frame_widget(parent)
 {
@@ -406,36 +407,6 @@ int		qtaxviewer_planetosm::osm_layer_move_bottom(QString layerName)
 	}
 	return 0;
 }
-QString qtaxviewer_planetosm::map_to_string(const QMap<QString, QVariant> & m)
-{
-	QString s;
-	for(QMap<QString, QVariant>::const_iterator p = m.begin();p!=m.end();++p)
-	{
-		s += p.key();
-		s += "=";
-		s += p.value().toString();
-		s += ";";
-	}
-	return /*std::move*/(s);
-}
-
-QMap<QString, QVariant> qtaxviewer_planetosm::string_to_map(const QString & s)
-{
-	QMap<QString, QVariant> res;
-	QStringList lst = s.split(";");
-	foreach (QString s, lst)
-	{
-		int t = s.indexOf("=");
-		if (t>0 && t< s.size())
-		{
-			QString name = s.left(t).trimmed();
-			QString value = s.mid(t+1).trimmed();
-			res[name] = value;
-		}
-	}
-	return /*std::move*/(res);
-}
-
 /**
  * @brief	osm_layer_call_function call layers' call_func method from
  * outside the ocx ctrl. Please MAKE SURE that this function is called from UI thread,

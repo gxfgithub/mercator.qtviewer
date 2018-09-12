@@ -2,7 +2,7 @@
 #include <math.h>
 namespace QTVOSM
 {
-	/*! cProjectionMercator is a toolkit class that turns coordinates between LLA(4326) and Mercator(900913)
+	/*! cProjectionMercator is a toolkit class that turns coordinates between LLA(4326) and Mercator(3857 )
 	 cProjectionMercator cProjectionMercator.h "qtviewer_planetosm/osmtiles/cProjectionMercator.h"
 	  \author	goldenhawking	\date	2015-12-11
 	*/

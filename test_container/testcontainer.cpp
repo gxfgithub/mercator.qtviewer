@@ -3,6 +3,7 @@
 #include <QAxBase>
 #include <QDebug>
 #include <QMessageBox>
+#include "../qtviewer_planetosm/interface_utils.h"
 testcontainer::testcontainer(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::testcontainer)
@@ -26,27 +27,8 @@ testcontainer::testcontainer(QWidget *parent) :
 	connect (ui->axWidget_map1,SIGNAL(evt_Message(QString)),this,SLOT(slot_message(QString)));
 	connect (ui->axWidget_map2,SIGNAL(evt_Message(QString)),this,SLOT(slot_message(QString)));
 	m_nAnTimer = startTimer(150);
-
-	//confirmLayerNames();
 }
-//void testcontainer::confirmLayerNames()
-//{
-//	//Get Total layers
-//	QVariant vt_num = ui->axWidget_map1->dynamicCall("osm_layer_get_count()");
-//	int n_num = vt_num.toInt();
 
-//	//Get Layer names
-//	for (int i=0;i<n_num;++i)
-//	{
-//		QVariant vt_name = ui->axWidget_map1->dynamicCall("osm_layer_get_name(int)",i);
-//		QString strname = vt_name.toString();
-//		if (strname.indexOf("grid")>=0)
-//			m_str_gridLayerName = strname;
-//		else if (strname.indexOf("geomarker")>=0)
-//			m_str_markerLayerName = strname;
-//	}
-
-//}
 void testcontainer::show_message(QString message)
 {
 	QList<QStandardItem *> list_newrow;
@@ -237,35 +219,7 @@ void testcontainer::on_pushButton_QTV_test_layer_move_clicked()
 	av = ui->axWidget_map1->dynamicCall("osm_layer_set_active(QString,int)","OSM",av==0?-1:0).toInt();
 	QMessageBox::information(this,"active",QString("osm_layer_set_active(\"OSM\") returns  %1").arg(av));
 }
-QString testcontainer::map_to_string(const QMap<QString, QVariant> & m)
-{
-	QString s;
-	for(QMap<QString, QVariant>::const_iterator p = m.begin();p!=m.end();++p)
-	{
-		s += p.key();
-		s += "=";
-		s += p.value().toString();
-		s += ";";
-	}
-	return /*std::move*/(s);
-}
 
-QMap<QString, QVariant> testcontainer::string_to_map(const QString & s)
-{
-	QMap<QString, QVariant> res;
-	QStringList lst = s.split(";");
-	foreach (QString s, lst)
-	{
-		int t = s.indexOf("=");
-		if (t>0 && t< s.size())
-		{
-			QString name = s.left(t).trimmed();
-			QString value = s.mid(t+1).trimmed();
-			res[name] = value;
-		}
-	}
-	return /*std::move*/(res);
-}
 void testcontainer::on_pushButton_QTV_test_grid_enable_clicked()
 {
 	//Get the grid plugin's ruler status
@@ -563,7 +517,7 @@ void testcontainer::on_osmmap_map_event(QMap<QString, QVariant> p)
 {
 	QList<QStandardItem *> list_newrow;
 	list_newrow << new QStandardItem(QString("%1").arg((quint64)ui->osmmap));
-	QString message = this->map_to_string(p);
+	QString message = map_to_string(p);
 
 	if (message.contains("MOUSE_MOVE"))
 	{

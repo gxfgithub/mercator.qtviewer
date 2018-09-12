@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include "layer_interface.h"
+#include "interface_utils.h"
 namespace QTVOSM{
 	tilesviewer::tilesviewer(QWidget *parent) :
 		QWidget(parent)
@@ -707,7 +708,7 @@ namespace QTVOSM{
 	}
 
 	/*!
-	 \brief convert Mercator to LLA.Mercator coord is a projection with ID 900913.
+	 \brief convert Mercator to LLA.Mercator coord is a projection with ID 3857 .
 	 this method is NOT Level releated.
 
 	 \fn tilesviewer::CV_MK2LLA
@@ -726,7 +727,7 @@ namespace QTVOSM{
 	}
 
 	/*!
-	 \brief convert LLA to Mercator .Mercator coord is a projection with ID 900913.
+	 \brief convert LLA to Mercator .Mercator coord is a projection with ID 3857 .
 	 this method is NOT Level releated.
 
 	 \fn tilesviewer::CV_LLA2MK

@@ -30,7 +30,8 @@ HEADERS  += osm_frame_widget.h \
     osmtiles/layer_browser.h \
     osmtiles/layer_interface.h \
     osmtiles/viewer_interface.h \
-    osmtiles/layer_tiles_page.h
+    osmtiles/layer_tiles_page.h \
+    interface_utils.h
 
 FORMS    += osm_frame_widget.ui \
     osmtiles/layer_tiles_page.ui

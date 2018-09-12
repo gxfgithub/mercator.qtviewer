@@ -18,6 +18,7 @@
 #include "geographicspolygonitem.h"
 #include "geographicspixmapitem.h"
 #include "geographicsmultilineitem.h"
+#include "../qtviewer_planetosm/interface_utils.h"
 QMutex mutex_instances;
 QMap<viewer_interface *,  qtvplugin_geomarker * > map_instances;
 QMap<QString,  int > count_instances;

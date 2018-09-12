@@ -7,9 +7,6 @@
 #include <QVariant>
 #include <QMap>
 #define OSMLayerInterface_iid "org.goldenhawkingStudio.OSMViewer_iid.LayerInterface"
-#define QTVOSM_DEBUG(MSG) qDebug()<<"QTVOSM Debug>"<< MSG <<"\n\t"<<__FUNCTION__<<":"<<__FILE__<<__LINE__
-#define QTVOSM_WARNING(MSG) qWarning()<<"QTVOSM Debug>"<< MSG <<"\n\t"<<__FUNCTION__<<":"<<__FILE__<<__LINE__
-#define QTVOSM_FATAL(MSG) qFatal()<<"QTVOSM Debug>"<< MSG <<"\n\t"<<__FUNCTION__<<":"<<__FILE__<<__LINE__
 class osm_frame_widget;
 class qtaxviewer_planetosm;
 class qtwidget_planetosm;
@@ -95,9 +92,9 @@ namespace QTVOSM
 	public:
 		//user-def direct function calls
 		virtual QMap<QString, QVariant> call_func(const  QMap<QString, QVariant> & /*paras*/){return  ( QMap<QString, QVariant>());}
-
 	};
-
 }
 Q_DECLARE_INTERFACE(QTVOSM::layer_interface, OSMLayerInterface_iid)
+
+
 #endif // LAYER_BASE_H

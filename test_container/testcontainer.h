@@ -12,8 +12,6 @@ class testcontainer : public QDialog
 	Q_OBJECT
 private:
 	QStandardItemModel * m_pModel;
-	QString map_to_string(const QMap<QString, QVariant> & m);
-	QMap<QString, QVariant> string_to_map(const QString & s);
 public:
 	explicit testcontainer(QWidget *parent = 0);
 	~testcontainer();
@@ -23,9 +21,6 @@ protected:
 private:
 	Ui::testcontainer *ui;
 	int m_nAnTimer;
-	//QString m_str_gridLayerName;
-	//QString m_str_markerLayerName;
-	//void confirmLayerNames();
 	void show_message(QString);
 protected slots:
 	void slot_message(QString);

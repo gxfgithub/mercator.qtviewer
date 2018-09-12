@@ -11,7 +11,7 @@
 #include <QSettings>
 #include <QMessageBox>
 #include "osmtiles/viewer_interface.h"
-
+#include "interface_utils.h"
  QMutex osm_frame_widget::m_mutex_proteced;
 
 /*!

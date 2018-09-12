@@ -35,8 +35,7 @@ public:
 	//! slots below is designed for widget interfaces
 public:
 	QTVOSM::viewer_interface * viewer();
-	QString map_to_string(const QMap<QString, QVariant> & m);
-	QMap<QString, QVariant> string_to_map(const QString & s);
+
 	QString osm_get_remote_address(QString layerName) const;
 	void	osm_set_remote_address (QString layerName, QString addr);
 	QString osm_get_local_cache(QString layerName) const;

@@ -13,6 +13,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <math.h>
+#include "../qtviewer_planetosm/interface_utils.h"
 /*!
  * The plugin dynamic library (.dll in windows or .so in linux) will be loaded into memory only once.
  * for example, a windows app like test_container will contain 2 qtaxviewer_planetosm OCX  ctrls ,
@@ -450,8 +451,8 @@ void qtvplugin_grid::CalArea()
 		PointX [i] = dLonCurr;
 		PointY [i] = dLatCurr;
 	}
-	str_Polygon += (")\n)',4326),900913)\n");
-	str_LineString +=  (")',4326),900913)\n");
+	str_Polygon += (")\n)',4326),3857 )\n");
+	str_LineString +=  (")',4326),3857 )\n");
 
 	if (Valid==true)
 	{

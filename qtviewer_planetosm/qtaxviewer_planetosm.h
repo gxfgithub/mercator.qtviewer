@@ -17,9 +17,6 @@
 class qtaxviewer_planetosm :public osm_frame_widget, public QAxBindable
 {
 	Q_OBJECT
-private:
-	QString map_to_string(const QMap<QString, QVariant> & m);
-	QMap<QString, QVariant> string_to_map(const QString & s);
 protected:
 	QTranslator qtTranslator;
 	QTranslator appTranslator;
