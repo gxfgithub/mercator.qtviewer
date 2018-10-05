@@ -9,6 +9,8 @@
 #include <QPluginLoader>
 #include <QFileDialog>
 #include <QSettings>
+#include <QSet>
+#include <QList>
 #include <QMessageBox>
 #include "osmtiles/viewer_interface.h"
 #include "interface_utils.h"
@@ -38,26 +40,45 @@ osm_frame_widget::osm_frame_widget(QWidget *parent) :
 	connect(ui->dial_QTV_zoom,&QDial::valueChanged,ui->widget_QTV_mainMap,&tilesviewer::setLevel);
 
 
-	//add an osm layer
-	layer_tiles * pOSMTile =  new layer_tiles(ui->widget_QTV_mainMap);
-	pOSMTile->set_name("OSM");
-	pOSMTile->set_active(true);
-	pOSMTile->set_visible(true);
-	//pOSMTile->connectToTilesServer(true);
-	AppendLayer(QCoreApplication::applicationFilePath(),pOSMTile);
+	QSettings settings(QCoreApplication::applicationFilePath()+".ini",QSettings::IniFormat);
+	QSet<QString> set_tilesNames;
+	QList<QString> list_tilesNames;
+	for (int i=0;i<8;++i)
+	{
+		QString lk = QString("tiles/name%1").arg(i);
+		QString nk = settings.value(lk).toString().trimmed();
+		if (nk.size() && set_tilesNames.contains(nk)==false)
+		{
+			set_tilesNames.insert(nk);
+			list_tilesNames.push_back(nk);
+		}
+	}
+	if (set_tilesNames.empty())
+	{
+		set_tilesNames.insert("OSM");
+		list_tilesNames.push_back("OSM");
+	}
+	layer_tiles * pLastTileLayer = nullptr;
+	int tc = 0;
+	foreach(QString layerNameT, list_tilesNames)
+	{
+		//add tile layers
+		layer_tiles * pTile =  new layer_tiles(ui->widget_QTV_mainMap);
+		pTile->set_name(layerNameT);
+		pTile->set_active(true);
+		pTile->set_visible(true);
+		AppendLayer(QCoreApplication::applicationFilePath(),pTile);
+		pLastTileLayer = pTile;
+		QString lk = QString("tiles/name%1").arg(tc++);
+		settings.setValue(lk,layerNameT);
+	}
 
-/*
-	//add an sat layer
-	layer_tiles * pSatTile = new layer_tiles(ui->widget_QTV_mainMap);
-	pSatTile->set_name("SAT");
-	//pSatTile->connectToTilesServer(true);
-	AppendLayer(QCoreApplication::applicationFilePath(),pSatTile);
-*/
 	//add single layer to browser
 	layer_browser * pOSMTileBr = new layer_browser(ui->browserView);
-	pOSMTileBr->set_name("OSM");
+	pOSMTileBr->set_name(pLastTileLayer->get_name());
 	pOSMTileBr->load_initial_plugin(QCoreApplication::applicationFilePath(),ui->browserView);
 	ui->browserView->addLayer(pOSMTileBr);
+
 
 	//connect center change event
 	connect (ui->widget_QTV_mainMap,&tilesviewer::evt_center_changed,ui->browserView,&tilesviewer::setBrCenterLLA);
@@ -77,7 +98,7 @@ osm_frame_widget::osm_frame_widget(QWidget *parent) :
 
 	ui->tab_map->installEventFilter(this);
 	//adjust layers, make exclusive layrs being de-activated.
-	ui->widget_QTV_mainMap->adjust_layers(pOSMTile);
+	ui->widget_QTV_mainMap->adjust_layers(pLastTileLayer);
 	EnumPlugins();
 	UpdateLayerTable();
 	//Dock is closable

@@ -19,10 +19,12 @@ namespace QTVOSM{
 		QString strLocalCache = settings.value(QString("settings/LocalCache_%1").arg(layer->get_name()), QCoreApplication::applicationDirPath() +"/OSMCache").toString();
 		int nCacheExpireDays = settings.value(QString("settings/CacheExpireDays_%1").arg(layer->get_name()), 30).toInt();
 		int nAutoDownload = settings.value(QString("settings/nAutoDownload_%1").arg(layer->get_name()), 0).toInt();
+		int nAlpha = settings.value(QString("settings/nAlpha_%1").arg(layer->get_name()), 255).toInt();
 
 		ui->lineEdit_QTV_cacheFolder->setText(strLocalCache);
 		ui->lineEdit_QTV_addressUrl->setText(strServerURL);
 		ui->spinBox_QTV_cacheExpireDays->setValue(nCacheExpireDays);
+		ui->spinBox_QTV_Alpha->setValue(nAlpha);
 		this->setWindowTitle(layer->get_name());
 		//the pending tasks model
 		m_pPendingTasksModel = new QStandardItemModel(this);
@@ -61,6 +63,10 @@ namespace QTVOSM{
 		m_pLayer->setServerUrl(ui->lineEdit_QTV_addressUrl->text());
 		m_pLayer->setCacheExpireDays(ui->spinBox_QTV_cacheExpireDays->value());
 		m_pLayer->UpdateLayer();
+
+		QSettings settings(QCoreApplication::applicationFilePath()+".ini",QSettings::IniFormat);
+		settings.setValue(QString("settings/nAlpha_%1").arg(m_pLayer->get_name()), ui->spinBox_QTV_Alpha->value() );
+
 	}
 
 	void layer_tiles_page::on_checkBox_QTV_connect_clicked(bool ps)
@@ -74,4 +80,10 @@ namespace QTVOSM{
 			m_pPendingTasksModel->removeRows(0,m_pPendingTasksModel->rowCount()-128);
 		ui->listView_QTV_messages->scrollToBottom();
 	}
+
+	quint8 layer_tiles_page::alphaValue() const
+	{
+		return ui->spinBox_QTV_Alpha->value() % 256;
+	}
+
 }

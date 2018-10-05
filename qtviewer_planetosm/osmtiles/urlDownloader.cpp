@@ -51,8 +51,9 @@ namespace QTVOSM{
 					QString strDir = tk.str_destinDir;
 					QString strFile = tk.str_destinFile;
 					//mkdir
-					QDir dir(strDir);
-					dir.mkpath(strDir);
+					QDir dir;
+					const QString abpath = dir.absoluteFilePath(tk.str_destinDir);
+					dir.mkpath(abpath);
 					//saveFile
 					QFile file(strDir+"/"+strFile);
 					if (file.open(QIODevice::WriteOnly)==true)

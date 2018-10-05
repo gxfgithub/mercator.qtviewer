@@ -23,6 +23,7 @@ namespace QTVOSM{
 		~layer_tiles_page();
 		//re-translat
 		void reTransUI();
+		quint8 alphaValue() const;
 	private:
 		Ui::layer_tiles_page *ui ;
 		layer_tiles * m_pLayer ;
