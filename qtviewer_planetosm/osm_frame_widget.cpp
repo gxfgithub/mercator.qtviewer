@@ -58,7 +58,7 @@ osm_frame_widget::osm_frame_widget(QWidget *parent) :
 		set_tilesNames.insert("OSM");
 		list_tilesNames.push_back("OSM");
 	}
-	layer_tiles * pLastTileLayer = nullptr;
+	layer_tiles * pFirstTileLayer = nullptr;
 	int tc = 0;
 	foreach(QString layerNameT, list_tilesNames)
 	{
@@ -68,14 +68,15 @@ osm_frame_widget::osm_frame_widget(QWidget *parent) :
 		pTile->set_active(true);
 		pTile->set_visible(true);
 		AppendLayer(QCoreApplication::applicationFilePath(),pTile);
-		pLastTileLayer = pTile;
+		if (!pFirstTileLayer)
+			pFirstTileLayer = pTile;
 		QString lk = QString("tiles/name%1").arg(tc++);
 		settings.setValue(lk,layerNameT);
 	}
 
 	//add single layer to browser
 	layer_browser * pOSMTileBr = new layer_browser(ui->browserView);
-	pOSMTileBr->set_name(pLastTileLayer->get_name());
+	pOSMTileBr->set_name(pFirstTileLayer->get_name());
 	pOSMTileBr->load_initial_plugin(QCoreApplication::applicationFilePath(),ui->browserView);
 	ui->browserView->addLayer(pOSMTileBr);
 
@@ -98,7 +99,7 @@ osm_frame_widget::osm_frame_widget(QWidget *parent) :
 
 	ui->tab_map->installEventFilter(this);
 	//adjust layers, make exclusive layrs being de-activated.
-	ui->widget_QTV_mainMap->adjust_layers(pLastTileLayer);
+	ui->widget_QTV_mainMap->adjust_layers(pFirstTileLayer);
 	EnumPlugins();
 	UpdateLayerTable();
 	//Dock is closable
