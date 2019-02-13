@@ -334,14 +334,19 @@ bool qtvplugin_grid::cb_mouseMoveEvent(QMouseEvent * e )
 	m_mousePos = e->pos();
 	if (m_bVisible==true)
 	{
-		double clat,clon;
+		double clat,clon,pmx,pmy;
 		char buftmp[256];
 
 		m_pVi->CV_DP2LLA(m_mousePos.x(),m_mousePos.y(),&clat,&clon);
-		sprintf (buftmp,"Mouse LAT=%14.9lf, LON=%14.9lf\n",clat,clon);
+		m_pVi->CV_LLA2MK(clat,clon,&pmx,&pmy);
+
+		sprintf (buftmp,"Mouse LAT=%14.9lf, LON=%14.9lf\nMX=%lf,My=%lf\n",clat,clon
+				 ,pmx,pmy);
 		QString strMsg = buftmp;
 		m_pVi->centerLLA(&clat,&clon);
-		sprintf (buftmp,"Center LAT=%14.9lf, LON=%14.9lf",clat,clon);
+		m_pVi->CV_LLA2MK(clat,clon,&pmx,&pmy);
+		sprintf (buftmp,"Center LAT=%14.9lf, LON=%14.9lf\nMX=%lf,My=%lf",clat,clon
+				 ,pmx,pmy);
 		strMsg += buftmp;
 		ui->plainTextEdit_QTV_cursor->setPlainText(strMsg);
 	}
