@@ -16,7 +16,7 @@
         <translation type="vanished">缓存文件名</translation>
     </message>
     <message>
-        <location filename="osmtiles/layer_tiles_page.cpp" line="53"/>
+        <location filename="osmtiles/layer_tiles_page.cpp" line="55"/>
         <source>Select the local cache</source>
         <translation>选择本地缓存路径</translation>
     </message>
@@ -29,27 +29,27 @@
         <translation>下载重定向:%1</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="68"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="69"/>
         <source>reply is empty: %1</source>
         <translation>下载内容为空: %1</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="90"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="91"/>
         <source>task succeeded: %1;%2</source>
         <translation>下载成功: %1;%2</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="95"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="96"/>
         <source>task failed: %1,msg %2</source>
         <translation>下载失败:%1, 信息 %2</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="145"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="146"/>
         <source>Bring task %1 to front.</source>
         <translation>将任务 %1 提到最前.</translation>
     </message>
     <message>
-        <location filename="osmtiles/urlDownloader.cpp" line="158"/>
+        <location filename="osmtiles/urlDownloader.cpp" line="159"/>
         <source>Add task %1</source>
         <translation>开始任务 %1</translation>
     </message>
@@ -96,17 +96,22 @@
         <translation>天</translation>
     </message>
     <message>
-        <location filename="osmtiles/layer_tiles_page.ui" line="94"/>
+        <location filename="osmtiles/layer_tiles_page.ui" line="90"/>
+        <source>Aplha</source>
+        <translation>透明度</translation>
+    </message>
+    <message>
+        <location filename="osmtiles/layer_tiles_page.ui" line="111"/>
         <source>Cahce Folder</source>
         <translation>本地缓存文件夹</translation>
     </message>
     <message>
-        <location filename="osmtiles/layer_tiles_page.ui" line="104"/>
+        <location filename="osmtiles/layer_tiles_page.ui" line="121"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="osmtiles/layer_tiles_page.ui" line="111"/>
+        <location filename="osmtiles/layer_tiles_page.ui" line="128"/>
         <source>Apply</source>
         <translation>应用</translation>
     </message>
@@ -174,22 +179,22 @@
         <translation>置底</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.cpp" line="33"/>
+        <location filename="osm_frame_widget.cpp" line="35"/>
         <source>name</source>
         <translation>图层</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.cpp" line="34"/>
+        <location filename="osm_frame_widget.cpp" line="36"/>
         <source>active</source>
         <translation>激活</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.cpp" line="35"/>
+        <location filename="osm_frame_widget.cpp" line="37"/>
         <source>visible</source>
         <translation>可见</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.cpp" line="408"/>
+        <location filename="osm_frame_widget.cpp" line="433"/>
         <source>save to image</source>
         <translation>保存到图像</translation>
     </message>

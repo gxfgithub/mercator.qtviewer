@@ -88,17 +88,17 @@
         <translation type="vanished">漫游历史</translation>
     </message>
     <message>
-        <location filename="qtvplugin_grid.cpp" line="41"/>
+        <location filename="qtvplugin_grid.cpp" line="42"/>
         <source>POINT</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qtvplugin_grid.cpp" line="42"/>
+        <location filename="qtvplugin_grid.cpp" line="43"/>
         <source>LINE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qtvplugin_grid.cpp" line="43"/>
+        <location filename="qtvplugin_grid.cpp" line="44"/>
         <source>POLYGON</source>
         <translation></translation>
     </message>

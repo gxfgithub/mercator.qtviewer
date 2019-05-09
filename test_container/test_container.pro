@@ -20,17 +20,19 @@ INCLUDEPATH += $$PWD/../qtviewer_planetosm
 
 SOURCES += main.cpp
 HEADERS  += testcontainer.h
+#if you want to build activec ctrls, please uncomment this line
+DEFINES += BUILD_ACTIVEX_OSM
 
-win32{
- FORMS    += testcontainer.ui
- SOURCES += testcontainer.cpp
-}
-linux{
- FORMS    += testcontainer_linux.ui
- SOURCES += testcontainer_linux.cpp
-}
+win32:contains(DEFINES,BUILD_ACTIVEX_OSM){
+    FORMS    += testcontainer.ui
+    SOURCES += testcontainer.cpp
 win32-g++{
 	QMAKE_CXXFLAGS += -std=c++11
 	CONFIG += no_lflags_merge
 	LIBS += -lQt5AxContainer -lQt5AxBase -lole32 -loleaut32 -luser32 -lgdi32 -ladvapi32 -luuid
 }
+} else {
+    FORMS    += testcontainer_linux.ui
+    SOURCES += testcontainer_linux.cpp
+}
+

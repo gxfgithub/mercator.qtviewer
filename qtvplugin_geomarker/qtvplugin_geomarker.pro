@@ -10,7 +10,7 @@ win32-g++:QMAKE_CXXFLAGS += -std=c++11
 TARGET = ../../bin/qtvplugin_geomarker
 TEMPLATE = lib
 
-DEFINES += QTVPLUGIN_GRID_LIBRARY
+DEFINES += QTVPLUGIN_GEOMARKER_LIBRARY
 
 SOURCES += \
     qtvplugin_geomarker.cpp \

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <QVariant>
 #include <QMap>
 #include <QString>

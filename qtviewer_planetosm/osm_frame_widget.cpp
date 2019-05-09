@@ -14,7 +14,7 @@
 #include <QMessageBox>
 #include "osmtiles/viewer_interface.h"
 #include "interface_utils.h"
- QMutex osm_frame_widget::m_mutex_proteced;
+QMutex osm_frame_widget::m_mutex_proteced;
 
 /*!
  \brief osm_frame_widget is the main widget of this control.
