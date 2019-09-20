@@ -750,7 +750,7 @@ namespace QTVOSM{
 	/*!
 	 \brief convert Mercator to World. World Points is according to current level,
 	 point(0,0) stay at the left-top, point (SZ,SZ) in bottom-right
-	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 18
+	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 20
 	 This approach is devided into several steps, and it is LEVEL RELATED!
 
 	 \fn tilesviewer::CV_MK2World
@@ -779,7 +779,7 @@ namespace QTVOSM{
 	/*!
 	 \brief convert World to  Mercator. World Points is according to current level,
 	 point(0,0) stay at the left-top, point (SZ,SZ) in bottom-right
-	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 18
+	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 20
 	 This approach is devided into several steps, and it is LEVEL RELATED!
 
 	 \fn tilesviewer::CV_World2MK
@@ -807,7 +807,7 @@ namespace QTVOSM{
 	/*!
 	 \brief  convert LLA to world. World Points is according to current level,
 	 point(0,0) stay at the left-top, point (SZ,SZ) in bottom-right
-	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 18
+	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 20
 	 This approach is devided into several steps, and it is LEVEL RELATED!
 
 	 \fn tilesviewer::CV_LLA2World
@@ -838,7 +838,7 @@ namespace QTVOSM{
 	/*!
 	 \brief  convert world to LLA. World Points is according to current level,
 	 point(0,0) stay at the left-top, point (SZ,SZ) in bottom-right
-	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 18
+	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 20
 	 This approach is devided into several steps, and it is LEVEL RELATED!
 
 	 \fn tilesviewer::CV_World2LLA
@@ -870,7 +870,7 @@ namespace QTVOSM{
 	 \brief	 convert  Device Points to World. Device Points is according to current viewport,
 	 point(0,0) stay at the top-left, point (width-1,height-1) in bottom-right. World Points is according
 	 to current level,	 point(0,0) stay at the left-top, point (SZ,SZ) in bottom-right,
-	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 18
+	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 20
 	 This approach is devided into several steps, and it is LEVEL RELATED!
 
 	 \fn tilesviewer::CV_DP2World
@@ -902,7 +902,7 @@ namespace QTVOSM{
 	 \brief	 convert  World to Device Points. Device Points is according to current viewport,
 	 point(0,0) stay at the top-left, point (width-1,height-1) in bottom-right. World Points is according
 	 to current level,	 point(0,0) stay at the left-top, point (SZ,SZ) in bottom-right,
-	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 18
+	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 20
 	 This approach is devided into several steps, and it is LEVEL RELATED!
 
 	 \fn tilesviewer::CV_World2DP
@@ -935,7 +935,7 @@ namespace QTVOSM{
 	/*!
 	 \brief	 convert  percentage coord to world. World Points is according
 	 to current level,	 point(0,0) stay at the left-top, point (SZ,SZ) in bottom-right,
-	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 18. Percentage coord is a
+	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 20. Percentage coord is a
 	 level-unretated coord, take a range -0.5~0.5, the world center in 0,0, -0.5.-0.5
 	 at top-left, 0.5,0.5 at bottom-right
 	 This approach is LEVEL RELATED!
@@ -962,7 +962,7 @@ namespace QTVOSM{
 	/*!
 	 \brief	 convert world to   percentage coord. World Points is according
 	 to current level,	 point(0,0) stay at the left-top, point (SZ,SZ) in bottom-right,
-	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 18. Percentage coord is a
+	 the pixel size is 2^m_nLevel*256, m_nLevel between 0 and 20. Percentage coord is a
 	 level-unretated coord, take a range -0.5~0.5, the world center in 0,0, -0.5.-0.5
 	 at top-left, 0.5,0.5 at bottom-right
 	 This approach is LEVEL RELATED!

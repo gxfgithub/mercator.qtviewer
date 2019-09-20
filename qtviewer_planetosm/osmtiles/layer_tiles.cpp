@@ -192,8 +192,8 @@ namespace QTVOSM{
 		if (event->delta()<0)
 		{
 			nLevel++;
-			if (nLevel>18)
-				nLevel=18;
+			if (nLevel>20)
+				nLevel=20;
 		}
 		else if (event->delta()>0)
 		{
@@ -337,7 +337,7 @@ namespace QTVOSM{
 	 \fn layer_tiles::RegImages
 	 \param nX	col (x) tile id og this level nLevel
 	 \param nY	row (y) tile id og this level nLevel
-	 \param nLevel	current level. In osm, nlevel often take 0~18
+	 \param nLevel	current level. In osm, nlevel often take 0~20
 	 \return bool	succeeded.
 	*/
 	bool layer_tiles::RegImages(int nX, int nY,int nLevel)

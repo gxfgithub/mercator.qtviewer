@@ -13,7 +13,7 @@ namespace QTVP_GEOMARKER{
 	 *
 	 * The scene uses World Pixel Coordinate system, which has a commection between zoom level.
 	 * You can learn more principle about coordinates in the comments of class	viewer_interface. in zoom level 0,
-	 * world pixel size is 256x256, level 1 is 512x512, level 18 is 67108864 x 67108864
+	 * world pixel size is 256x256, level 1 is 512x512, level 18 is 67108864 x 67108864,level 20 will be 268435456 x 268435456.
 	 * Since the  scene coord will be zoomed in / out together with level change, all graphics items' coords should
 	 * be recalculated in time. the method adjust_item_coords will do this automatically,
 	 * and in this function, virtual function geoItemBase::adjust_coords will be called sequentially.
