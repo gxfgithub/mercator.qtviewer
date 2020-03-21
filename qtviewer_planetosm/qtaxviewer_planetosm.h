@@ -1,4 +1,4 @@
-#ifndef QTAXVIEWER_PLANETOSM_H
+﻿#ifndef QTAXVIEWER_PLANETOSM_H
 #define QTAXVIEWER_PLANETOSM_H
 #include <QAxBindable>
 #include <QTranslator>

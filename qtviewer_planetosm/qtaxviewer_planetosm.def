@@ -1,8 +1,7 @@
-; Declares the module parameters.
-
+﻿LIBRARY "qtaxviewer_planetosm"
 EXPORTS
-	DllCanUnloadNow	     PRIVATE
-	DllGetClassObject    PRIVATE
-	DllRegisterServer    PRIVATE
-	DllUnregisterServer  PRIVATE
-	DumpIDL		     PRIVATE
+DllCanUnloadNow @1
+DllGetClassObject @2
+DllRegisterServer @3
+DllUnregisterServer @4
+DumpIDL @5
