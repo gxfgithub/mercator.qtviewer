@@ -23,10 +23,11 @@ namespace QTVOSM{
 	 * 2.LLA, latitude, longitude and altitude
 	 *
 	 * 3.World Coordinate: uint:Pixel.
-	 *     Map system have different zoom level, from 0 to 18.
+	 *     Map system have different zoom level, from 0 to 20.
 	 *    At level 0, the Mercator Square is mapped onto a 256x256 tile.
 	 *    At level 1, the Mercator Square is mapped onto a 512x512 tile.
 	 *	  At level 18,the Mercator Square is mapped onto a 67108864 x 67108864 tile. (size is 256 * 2 ^18)
+	 *    At level 20,the Mercator Square is mapped onto a 268435456 x 268435456 tile. (size is 256 * 2 ^20)
 	 *    the coord direction of .World Coordinate is some different from Mercator projection.
 	 *    top-left is 0,0, right-bottom is  256 * 2 ^level-1,256 * 2 ^level-1
 	 *
