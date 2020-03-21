@@ -7,12 +7,11 @@
 QT       += widgets network designer
 linux:QMAKE_CXXFLAGS += -std=c++11
 win32-g++:QMAKE_CXXFLAGS += -std=c++11
-TARGET = ../../bin/qtwidget_planetosm_designer
+TARGET = qtwidget_planetosm_designer
+DESTDIR = $$OUT_PWD/../bin
 TEMPLATE = lib
 
-win32:LIBS += -L$$OUT_PWD/../bin
-linux:LIBS += -L$$OUT_PWD/../../bin
-
+LIBS += -L$$DESTDIR
 LIBS += -lqtwidget_planetosm
 
 DEFINES += QTWIDGET_PLANETOSM_DESIGNER_LIBRARY

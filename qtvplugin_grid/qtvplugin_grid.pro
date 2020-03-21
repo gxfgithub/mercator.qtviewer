@@ -7,9 +7,9 @@
 QT       += widgets
 linux:QMAKE_CXXFLAGS += -std=c++11
 win32-g++:QMAKE_CXXFLAGS += -std=c++11
-TARGET = ../../bin/qtvplugin_grid
+TARGET = qtvplugin_grid
 TEMPLATE = lib
-
+DESTDIR = $$OUT_PWD/../bin
 DEFINES += QTVPLUGIN_GRID_LIBRARY
 
 SOURCES += \

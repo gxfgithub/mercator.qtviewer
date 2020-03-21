@@ -7,9 +7,9 @@
 QT       += widgets
 linux:QMAKE_CXXFLAGS += -std=c++11
 win32-g++:QMAKE_CXXFLAGS += -std=c++11
-TARGET = ../../bin/qtvplugin_geomarker
+TARGET = qtvplugin_geomarker
 TEMPLATE = lib
-
+DESTDIR = $$OUT_PWD/../bin
 DEFINES += QTVPLUGIN_GEOMARKER_LIBRARY
 
 SOURCES += \
