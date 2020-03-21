@@ -42,7 +42,7 @@ namespace QTVOSM{
 		//Center Lat,Lon
 		double m_dCenterX;   //percentage, -0.5~0.5
 		double m_dCenterY;   //percentage, -0.5~0.5
-		int m_nLevel;        //0-18
+		int m_nLevel;        //0-20
 		//layers
 		QList < layer_interface * > m_listLayers;
 		QSet <  layer_interface * > m_setLayers;
