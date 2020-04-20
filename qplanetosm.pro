@@ -11,10 +11,11 @@ SUBDIRS += \
 
 qtwidget_planetosm.file = qtviewer_planetosm/qtwidget_planetosm.pro
 
-win32:{
-contains(DEFINES,BUILD_ACTIVEX_OSM){
+win32: contains(DEFINES,BUILD_ACTIVEX_OSM){
+    message ("Build ActiveX!")
     SUBDIRS +=\
 	qtaxviewer_planetosm
     qtaxviewer_planetosm.file = qtviewer_planetosm/qtaxviewer_planetosm.pro
-}
+}else{
+    message ("Do NOT Build ActiveX!")
 }

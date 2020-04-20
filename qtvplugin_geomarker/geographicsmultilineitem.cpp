@@ -1,4 +1,4 @@
-#include "geographicsmultilineitem.h"
+﻿#include "geographicsmultilineitem.h"
 #include "../qtviewer_planetosm/osmtiles/viewer_interface.h"
 #include <assert.h>
 #include <QGraphicsSceneMouseEvent>
@@ -67,6 +67,35 @@ namespace QTVP_GEOMARKER{
 			}
 			this->setPath(p);
 		}
+	}
+	void geoGraphicsMultilineItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /*= nullptr*/)
+	{
+		if (vi())
+		{
+			const int cv = vi()->level();
+			if (cv!=level())
+			{
+				adjust_coords(cv);
+				setLevel(cv);
+			}
+		}
+
+		QGraphicsPathItem::paint(painter,option,widget);
+	}
+	QRectF geoGraphicsMultilineItem::boundingRect() const
+	{
+		QRectF rect = QGraphicsPathItem::boundingRect();
+		auto v = vi();
+		if (v && v->level()!=level())
+		{
+			double ratio = pow(2.0,(v->level() - level()));
+			QPointF center = rect.center();
+			rect.setRect(center.x() * ratio - rect.width()/2,
+					center.y() * ratio - rect.height()/2,
+					rect.width(),
+					rect.height());
+		}
+		return rect;
 	}
 
 	void geoGraphicsMultilineItem::mousePressEvent(QGraphicsSceneMouseEvent * event)

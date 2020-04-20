@@ -1,4 +1,4 @@
-#ifndef GEOGRAPHICSMULTILINEITEM_H
+﻿#ifndef GEOGRAPHICSMULTILINEITEM_H
 #define GEOGRAPHICSMULTILINEITEM_H
 
 #include <QGraphicsPathItem>
@@ -11,24 +11,21 @@ namespace QTVP_GEOMARKER{
 		QPolygonF m_llap;
 		void unwarrp();
 	protected:
-		void mousePressEvent(QGraphicsSceneMouseEvent * event);
-		void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
-		void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
-		void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
+		void mousePressEvent(QGraphicsSceneMouseEvent * event) override;
+		void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) override;
+		void hoverEnterEvent(QGraphicsSceneHoverEvent * event) override;
+		void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) override;
+		void adjust_coords(int nNewLevel) override;
+		QPointF label_pos() override;
 	public:
 		explicit geoGraphicsMultilineItem(QString name,QTVOSM::viewer_interface * pVi,
 									 const QPolygonF & lla_polygon
 				);
+		void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+		QRectF boundingRect() const override;
 	public:
 		QPolygonF llas() const {return m_llap;}
 		void setGeo(const QPolygonF & lla_polygon);
-		void adjust_coords(int nNewLevel);
-		QPointF label_pos();
-		QPointF center_pos(){
-			qreal x = path().elementAt(0).x;
-			qreal y = path().elementAt(0).y;
-			return QPointF(x,y);
-		}
 	};
 }
 #endif // geoGraphicsMultilineItem_H

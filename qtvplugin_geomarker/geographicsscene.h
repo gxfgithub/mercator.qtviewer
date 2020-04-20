@@ -1,4 +1,4 @@
-#ifndef GEOGRAPHICSSCENE_H
+﻿#ifndef GEOGRAPHICSSCENE_H
 #define GEOGRAPHICSSCENE_H
 
 #include <QGraphicsScene>
@@ -26,10 +26,10 @@ namespace QTVP_GEOMARKER{
 		geoGraphicsScene(QObject *parent = 0);
 		geoGraphicsScene(const QRectF &sceneRect, QObject *parent = 0);
 		geoGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent = 0);
+		int currentLevel() const {return currentNewLevel;}
 	private:
 		QMap<QString, geoItemBase * > m_map_items;
 		int currentNewLevel;
-		QList<geoItemBase * > m_queue_level_change;
 		//Overload public functions to provate.
 		QGraphicsEllipseItem * addEllipse(const QRectF & rect, const QPen & pen = QPen(), const QBrush & brush = QBrush())
 		{return QGraphicsScene::addEllipse(rect,pen,brush);}
@@ -58,14 +58,10 @@ namespace QTVP_GEOMARKER{
 		void addItem(QGraphicsItem *item){return QGraphicsScene::addItem(item);}
 		void	removeItem(QGraphicsItem * item){return QGraphicsScene::removeItem(item);}
 	public :
-		//for many items, we just change level coords in timer, batch mode.
-		bool		deal_level_queue();
-		double		progress_queue()	{return 1-m_queue_level_change.size()*1.0 / m_map_items.size();}
 		//For mutithread opertaions, you should call lock_scene first, and call unlock scene when over
 		bool			addItem(geoItemBase *item,int /*reserved*/);
 		void			removeItem(geoItemBase * item, int /*reserved*/);
 		geoItemBase *	geoitem_by_name(const QString & name);
-		void			adjust_item_coords(int currentLevel);
 		QList<geoItemBase *>	geo_items();
 		QList<QString>			geo_item_names();
 		int						total_items() {return m_map_items.count();}

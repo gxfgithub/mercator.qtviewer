@@ -23,12 +23,14 @@ HEADERS  += testcontainer.h
 DEFINES += BUILD_ACTIVEX_OSM
 
 win32:contains(DEFINES,BUILD_ACTIVEX_OSM){
+    message ("Invoke ActiveX!");
     FORMS    += testcontainer.ui
     SOURCES += testcontainer.cpp
 win32-g++{
 	QMAKE_CXXFLAGS += -std=c++11
 }
 } else {
+    message ("Not Invoke ActiveX!");
     FORMS    += testcontainer_linux.ui
     SOURCES += testcontainer_linux.cpp
 }

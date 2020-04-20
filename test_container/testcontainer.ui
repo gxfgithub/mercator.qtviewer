@@ -16,111 +16,6 @@
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="3" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_cache">
-       <property name="text">
-        <string>cache Folder</string>
-       </property>
-      </widget>
-     </item>
-     <item row="13" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_polygon">
-       <property name="text">
-        <string>add a polygon</string>
-       </property>
-      </widget>
-     </item>
-     <item row="16" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_geo_selected_marks">
-       <property name="text">
-        <string>selected_marks</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_grid_enable">
-       <property name="text">
-        <string>measure on/off</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QLabel" name="label_QTV_5">
-       <property name="text">
-        <string>Grid measure</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="label_QTV_3">
-       <property name="text">
-        <string>Layer control</string>
-       </property>
-      </widget>
-     </item>
-     <item row="11" column="1">
-      <widget class="QPushButton" name="pushButton_QTV_test_line">
-       <property name="text">
-        <string>add a line</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_navigate">
-       <property name="text">
-        <string>navigate</string>
-       </property>
-      </widget>
-     </item>
-     <item row="13" column="1">
-      <widget class="QPushButton" name="pushButton_QTV_test_request">
-       <property name="text">
-        <string>get info</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="0">
-      <widget class="QLabel" name="label_QTV_6">
-       <property name="text">
-        <string>Plugin test:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_QTV_test_autodl">
-       <property name="text">
-        <string>connect</string>
-       </property>
-      </widget>
-     </item>
-     <item row="14" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_resource">
-       <property name="text">
-        <string>res save/load</string>
-       </property>
-      </widget>
-     </item>
-     <item row="15" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_geo_displayMod">
-       <property name="text">
-        <string>display mod</string>
-       </property>
-      </widget>
-     </item>
-     <item row="15" column="1">
-      <widget class="QPushButton" name="pushButton_QTV_test_geo_selectionMod">
-       <property name="text">
-        <string>selection mod</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="1">
-      <widget class="QLabel" name="label_QTV_7">
-       <property name="text">
-        <string>geo marker</string>
-       </property>
-      </widget>
-     </item>
      <item row="7" column="1">
       <widget class="QPushButton" name="pushButton_QTV_test_layer_move">
        <property name="text">
@@ -128,28 +23,7 @@
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="label_QTV_4">
-       <property name="text">
-        <string>Plugin test:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_adds">
-       <property name="text">
-        <string>address</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_QTV_2">
-       <property name="text">
-        <string>Navigate</string>
-       </property>
-      </widget>
-     </item>
-     <item row="18" column="0">
+     <item row="19" column="0">
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -162,10 +36,24 @@
        </property>
       </spacer>
      </item>
-     <item row="9" column="1">
-      <widget class="QPushButton" name="pushButton_QTV_test_grid_getPolygon">
+     <item row="13" column="1">
+      <widget class="QPushButton" name="pushButton_QTV_test_request">
        <property name="text">
-        <string>get polygon</string>
+        <string>get info</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLabel" name="label_QTV_5">
+       <property name="text">
+        <string>Grid measure</string>
+       </property>
+      </widget>
+     </item>
+     <item row="16" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_geo_selected_marks">
+       <property name="text">
+        <string>selected_marks</string>
        </property>
       </widget>
      </item>
@@ -173,6 +61,146 @@
       <widget class="QPushButton" name="pushButton_QTV_test_layers">
        <property name="text">
         <string>enum layers</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="pushButton_QTV_test_autodl">
+       <property name="text">
+        <string>connect</string>
+       </property>
+      </widget>
+     </item>
+     <item row="15" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_geo_displayMod">
+       <property name="text">
+        <string>display mod</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_adds">
+       <property name="text">
+        <string>address</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="1">
+      <widget class="QPushButton" name="pushButton_QTV_test_line">
+       <property name="text">
+        <string>add a line</string>
+       </property>
+      </widget>
+     </item>
+     <item row="17" column="1">
+      <widget class="QPushButton" name="pushButton_QTV_default_style">
+       <property name="text">
+        <string>default_style</string>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_resource">
+       <property name="text">
+        <string>res save/load</string>
+       </property>
+      </widget>
+     </item>
+     <item row="13" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_polygon">
+       <property name="text">
+        <string>add a polygon</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_grid_enable">
+       <property name="text">
+        <string>measure on/off</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0">
+      <widget class="QLabel" name="label_QTV_6">
+       <property name="text">
+        <string>Plugin test:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="15" column="1">
+      <widget class="QPushButton" name="pushButton_QTV_test_geo_selectionMod">
+       <property name="text">
+        <string>selection mod</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_QTV_2">
+       <property name="text">
+        <string>Navigate</string>
+       </property>
+      </widget>
+     </item>
+     <item row="17" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_geo_del_sel">
+       <property name="text">
+        <string>delete selection</string>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="1">
+      <widget class="QPushButton" name="pushButton_QTV_test_xml">
+       <property name="text">
+        <string>marks save/load</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_navigate">
+       <property name="text">
+        <string>navigate</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="1">
+      <widget class="QLabel" name="label_QTV_7">
+       <property name="text">
+        <string>geo marker</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_cache">
+       <property name="text">
+        <string>cache Folder</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_QTV_3">
+       <property name="text">
+        <string>Layer control</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="1">
+      <widget class="QPushButton" name="pushButton_QTV_test_grid_getPolygon">
+       <property name="text">
+        <string>get polygon</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="label_QTV_4">
+       <property name="text">
+        <string>Plugin test:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_qtv">
+       <property name="text">
+        <string>background osm conn</string>
        </property>
       </widget>
      </item>
@@ -190,31 +218,10 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_qtv">
+     <item row="18" column="0">
+      <widget class="QPushButton" name="pushButton_QTV_test_10000">
        <property name="text">
-        <string>background osm conn</string>
-       </property>
-      </widget>
-     </item>
-     <item row="14" column="1">
-      <widget class="QPushButton" name="pushButton_QTV_test_xml">
-       <property name="text">
-        <string>marks save/load</string>
-       </property>
-      </widget>
-     </item>
-     <item row="17" column="0">
-      <widget class="QPushButton" name="pushButton_QTV_test_geo_del_sel">
-       <property name="text">
-        <string>delete selection</string>
-       </property>
-      </widget>
-     </item>
-     <item row="17" column="1">
-      <widget class="QPushButton" name="pushButton_QTV_default_style">
-       <property name="text">
-        <string>default_style</string>
+        <string>10000 marks</string>
        </property>
       </widget>
      </item>

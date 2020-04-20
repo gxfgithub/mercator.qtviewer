@@ -1,4 +1,4 @@
-#include "geographicsrectitem.h"
+﻿#include "geographicsrectitem.h"
 #include "../qtviewer_planetosm/osmtiles/viewer_interface.h"
 #include <assert.h>
 #include <math.h>
@@ -43,6 +43,36 @@ namespace QTVP_GEOMARKER{
 					rect.width(),
 					rect.height());
 		}
+	}
+	void geoGraphicsRectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /*= nullptr*/)
+	{
+		if (vi())
+		{
+			const int cv = vi()->level();
+			if (cv!=level())
+			{
+				adjust_coords(cv);
+				setLevel(cv);
+			}
+		}
+
+		QGraphicsRectItem::paint(painter,option,widget);
+	}
+
+	QRectF geoGraphicsRectItem::boundingRect() const
+	{
+		QRectF rect = QGraphicsRectItem::boundingRect();
+		auto v = vi();
+		if (v && v->level()!=level())
+		{
+			double ratio = pow(2.0,(v->level() - level()));
+			QPointF center = rect.center();
+			rect.setRect(center.x() * ratio - rect.width()/2,
+					center.y() * ratio - rect.height()/2,
+					rect.width(),
+					rect.height());
+		}
+		return rect;
 	}
 
 	void geoGraphicsRectItem::setSize(qreal pxwidth,qreal pxheight)

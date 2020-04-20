@@ -1,4 +1,4 @@
-#include "testcontainer.h"
+﻿#include "testcontainer.h"
 #include "ui_testcontainer.h"
 #include <QAxBase>
 #include <QDebug>
@@ -583,4 +583,29 @@ void testcontainer::on_pushButton_QTV_default_style_clicked()
 	if (res.contains("error"))
 		QMessageBox::information(this,"geomarker::selection_delete",res);
 
+}
+void testcontainer::on_pushButton_QTV_test_10000_clicked()
+{
+
+	for (int i=0;i<10000;++i)
+	{
+		ui->osmmap->osm_layer_call_function("geomarker",
+													 QString(
+												"function=update_point;name=ID%1;type=%2;"
+													 "lat=%3;lon=%4;"
+													 "style_pen=1;color_pen=%5,%6,%7,128;"
+													 "width_pen=1;style_brush=1;color_brush=%7,%6,%5,128;"
+													 "width=%8;height=%9;")
+											.arg(i+10)
+											.arg(rand()%2+1)
+											.arg((rand()%17000-8500)/100.0)
+											.arg((rand()%18000-9000)/50.0)
+											.arg(rand()%255)
+											.arg(rand()%255)
+											.arg(rand()%255)
+											.arg(rand()%16+4)
+											.arg(rand()%16+4)
+											);
+
+	}
 }

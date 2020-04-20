@@ -1,4 +1,4 @@
-#ifndef GEOITEMBASE_H
+﻿#ifndef GEOITEMBASE_H
 #define GEOITEMBASE_H
 #include <QPointF>
 #include <QRectF>
@@ -69,8 +69,10 @@ namespace QTVP_GEOMARKER{
 	protected:
 		void			setLevel		(int currlevel);
 		QTVOSM::viewer_interface *	vi(){return m_pVi;}
+		virtual void adjust_coords(int nNewLevel) = 0;
+		virtual QPointF label_pos() = 0;
 	public:
-		int				level			()					{return m_nCurrentLevel;}
+		int				level			() const			{return m_nCurrentLevel;}
 		geo_item_type	item_type		() const			{return m_type;}
 		void			set_item_type	(geo_item_type tp)	{m_type = tp;}
 		QString			item_name		() const			{return m_name;}
@@ -93,10 +95,6 @@ namespace QTVP_GEOMARKER{
 		bool				props_visible	();
 		bool				is_selected		();
 		void				set_selected	(bool bsel);
-	public:
-		virtual void adjust_coords(int nNewLevel) = 0;
-		virtual QPointF label_pos() = 0;
-		virtual QPointF center_pos() = 0;
 	};
 }
 #endif // GEOITEMBASE_H

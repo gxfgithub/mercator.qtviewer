@@ -1,4 +1,4 @@
-#ifndef GEOGRAPHICSPIXMAPITEM_H
+﻿#ifndef GEOGRAPHICSPIXMAPITEM_H
 #define GEOGRAPHICSPIXMAPITEM_H
 
 #include <QGraphicsPixmapItem>
@@ -19,24 +19,25 @@ namespace QTVP_GEOMARKER{
 		qreal m_lon;
 		const tag_icon * m_pIcon;
 	protected:
-		void mousePressEvent(QGraphicsSceneMouseEvent * event);
-		void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
-		void hoverEnterEvent(QGraphicsSceneHoverEvent * event);
-		void hoverLeaveEvent(QGraphicsSceneHoverEvent * event);
+		void mousePressEvent(QGraphicsSceneMouseEvent * event) override;
+		void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) override;
+		void hoverEnterEvent(QGraphicsSceneHoverEvent * event) override;
+		void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) override;
+		void adjust_coords(int ncurrLevel) override;
+		QPointF label_pos() override;
 	public:
 		explicit geoGraphicsPixmapItem(QString name,QTVOSM::viewer_interface * pVi
 									   ,const tag_icon * pIcon,
 									   qreal cent_lat = 90,
 									   qreal cent_lon = 0);
+		void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+		QRectF boundingRect() const override;
 	public:
 		const tag_icon *  icon(){return m_pIcon;}
 		qreal lat() const {return m_lat;}
 		qreal lon() const {return m_lon;}
 		void setGeo(qreal cent_lat,qreal cent_lon);
 		void setPixmap(const tag_icon &icon);
-		void adjust_coords(int ncurrLevel);
-		QPointF label_pos();
-		QPointF center_pos(){return offset();}
 	};
 }
 #endif // GEOGRAPHICSELLIPSEITEM_H

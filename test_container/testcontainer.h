@@ -1,4 +1,4 @@
-#ifndef TESTCONTAINER_H
+﻿#ifndef TESTCONTAINER_H
 #define TESTCONTAINER_H
 
 #include <QDialog>
@@ -45,7 +45,7 @@ protected slots:
 	void on_pushButton_QTV_test_geo_del_sel_clicked();
 	void on_pushButton_QTV_default_style_clicked();
 	void on_osmmap_map_event(QMap<QString, QVariant> p);
-
+	void on_pushButton_QTV_test_10000_clicked();
 };
 
 #endif // TESTCONTAINER_H

@@ -1,4 +1,4 @@
-#include "qtvplugin_geomarker.h"
+﻿#include "qtvplugin_geomarker.h"
 #include "ui_qtvplugin_geomarker.h"
 #include <QSettings>
 #include <QColorDialog>
@@ -59,19 +59,6 @@ void		qtvplugin_geomarker::timerEvent(QTimerEvent * e)
 		m_nTimerID_refreshMap = -1;
 		m_pVi->UpdateWindow();
 		m_nTimerID_refreshMap = startTimer(97);
-	}
-	else if (m_nTimerID_levelQueue == e->timerId())
-	{
-		killTimer(m_nTimerID_levelQueue);
-		++m_nDivideTimer;
-		if (true==m_pScene->deal_level_queue())
-			m_pVi->UpdateWindow();
-		else if (m_nDivideTimer % 20 == 0)
-		{
-			if (m_pScene->progress_queue()<0.999)
-				m_pVi->UpdateWindow();
-		}
-		m_nTimerID_levelQueue = startTimer(119);
 	}
 }
 
@@ -814,18 +801,18 @@ void qtvplugin_geomarker::on_pushButton_QTV_save_clicked()
 								 );
 	if (newfm.size()>2)
 	{
-        if (newfm.right(3).toUpper()=="XML")
-        {
-            if (true==xml_save(newfm))
-            {
-                settings.setValue("history/last_save_xml_dir",newfm);
-                //QMessageBox::information(this,tr("succeed"),tr("Successfully saved XML file") + newfm);
-            }
-            else
-                QMessageBox::warning(this,tr("failed"),tr("Save XML file") + newfm + tr(" Failed"));
-        }
-        else
-        {
+	if (newfm.right(3).toUpper()=="XML")
+	{
+	    if (true==xml_save(newfm))
+	    {
+		settings.setValue("history/last_save_xml_dir",newfm);
+		//QMessageBox::information(this,tr("succeed"),tr("Successfully saved XML file") + newfm);
+	    }
+	    else
+		QMessageBox::warning(this,tr("failed"),tr("Save XML file") + newfm + tr(" Failed"));
+	}
+	else
+	{
 			if (true==cmd_save(newfm))
 			{
 				settings.setValue("history/last_save_xml_dir",newfm);
@@ -833,7 +820,7 @@ void qtvplugin_geomarker::on_pushButton_QTV_save_clicked()
 			}
 			else
 				QMessageBox::warning(this,tr("failed"),tr("Save CMD file") + newfm + tr(" Failed"));
-        }
+	}
 	}
 }
 
@@ -846,18 +833,18 @@ void qtvplugin_geomarker::on_pushButton_QTV_load_clicked()
 								 );
 	if (newfm.size()>2)
 	{
-        if (newfm.right(3).toUpper()=="XML")
-        {
-            if (true==xml_load(newfm))
-            {
-                settings.setValue("history/last_open_xml_dir",newfm);
-                //QMessageBox::information(this,tr("succeed"),tr("Successfully load XML file") + newfm);
-            }
-            else
-                QMessageBox::warning(this,tr("failed"),tr("Load XML file") + newfm + tr(" Failed"));
-        }
-        else
-        {
+	if (newfm.right(3).toUpper()=="XML")
+	{
+	    if (true==xml_load(newfm))
+	    {
+		settings.setValue("history/last_open_xml_dir",newfm);
+		//QMessageBox::information(this,tr("succeed"),tr("Successfully load XML file") + newfm);
+	    }
+	    else
+		QMessageBox::warning(this,tr("failed"),tr("Load XML file") + newfm + tr(" Failed"));
+	}
+	else
+	{
 			if (true==cmd_load(newfm))
 			{
 				settings.setValue("history/last_open_xml_dir",newfm);
@@ -865,7 +852,7 @@ void qtvplugin_geomarker::on_pushButton_QTV_load_clicked()
 			}
 			else
 				QMessageBox::warning(this,tr("failed"),tr("Load CMD file") + newfm + tr(" Failed"));
-        }
+	}
 	}
 	scheduleRefreshMarks();
 	m_pVi->UpdateWindow();
