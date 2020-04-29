@@ -235,21 +235,36 @@ void qtvplugin_geomarker::cb_paintEvent( QPainter * pImage )
 				rect.width(),
 				rect.height()
 				);
-	//Warpping 180, -180. because longitude +180 and -180 is the same point,
-	// but the map is plat, -180 and + 180 is quite different positions, we
-	// should draw 3 times, to slove cross 180 drawing problems.
-	for (int p = -1; p<=1 ;++p)
+	if (!too_many_items())
+	{
+		//Warpping 180, -180. because longitude +180 and -180 is the same point,
+		// but the map is plat, -180 and + 180 is quite different positions, we
+		// should draw 3 times, to slove cross 180 drawing problems.
+		for (int p = -1; p<=1 ;++p)
+		{
+			QRectF source(
+						leftcenx + p * winsz,
+						topceny,
+						(rightcenx - leftcenx),
+						(bottomceny - topceny)
+						);
+
+			m_pScene->render(pImage,destin,source);
+
+		}
+	}
+	else
 	{
 		QRectF source(
-					leftcenx + p * winsz,
+					leftcenx ,
 					topceny,
 					(rightcenx - leftcenx),
 					(bottomceny - topceny)
 					);
-
 		m_pScene->render(pImage,destin,source);
 
 	}
+
 
 
 	//draw current tools

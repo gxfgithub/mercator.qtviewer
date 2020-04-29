@@ -308,7 +308,7 @@
     </message>
     <message>
         <source>Level Re-Coord %1 %%</source>
-        <translation>正在重新计算坐标，完成 %1 %%</translation>
+        <translation type="vanished">正在重新计算坐标，完成 %1 %%</translation>
     </message>
     <message>
         <source>name could not be empty.</source>

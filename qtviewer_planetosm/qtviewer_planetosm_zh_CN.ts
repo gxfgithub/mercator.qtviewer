@@ -194,7 +194,7 @@
         <translation>可见</translation>
     </message>
     <message>
-        <location filename="osm_frame_widget.cpp" line="433"/>
+        <location filename="osm_frame_widget.cpp" line="428"/>
         <source>save to image</source>
         <translation>保存到图像</translation>
     </message>
