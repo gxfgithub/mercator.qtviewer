@@ -20,6 +20,27 @@ namespace QTVP_GEOMARKER{
 	{
 
 	}
+
+	/**
+	 * @brief  sequentially call virtual function geoItemBase::adjust_coords for every geoItemBase object.
+	 *
+	 * Since the  scene coord will be zoomed in / out together with level change, all graphics items' coords should
+	 * be recalculated in time. the method adjust_item_coords will do this automatically,
+	 * @param newLevel the level to which current map is zoomed.
+	 */
+	void geoGraphicsScene::adjust_item_coords(int newLevel)
+	{
+		currentNewLevel = newLevel;
+		for (QSet<geoItemBase * >::iterator p = m_set_iconitems.begin();p!=m_set_iconitems.end();++p)
+		{
+			geoItemBase * base = *p;
+			base->adjust_coords(newLevel);
+			//After adjust_coords above, the item "base" is considered to
+			// have a valid coord corresponds to current  newLevel
+			base->setLevel(newLevel);
+		}
+
+	}
 	bool geoGraphicsScene::addItem(geoItemBase * item,int /*reserved*/)
 	{
 		bool res = false;
@@ -35,12 +56,16 @@ namespace QTVP_GEOMARKER{
 					this->removeItem(oldItem,0);
 					this->m_map_items[namec] = item;
 					this->addItem(pg);
+					if (item->item_type()==ITEAMTYPE_PIXMAP)
+						m_set_iconitems.insert(item);
 				}
 			}
 			else
 			{
 				this->addItem(pg);
 				this->m_map_items[namec] = item;
+				if (item->item_type()==ITEAMTYPE_PIXMAP)
+					m_set_iconitems.insert(item);
 			}
 			res = true;
 		}
@@ -58,6 +83,8 @@ namespace QTVP_GEOMARKER{
 			{
 				this->removeItem(pg);
 				m_map_items.remove(c_name);
+				if (item->item_type()==ITEAMTYPE_PIXMAP)
+					m_set_iconitems.remove(item);
 				delete item;
 			}
 		}

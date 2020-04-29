@@ -3,6 +3,7 @@
 
 #include <QGraphicsScene>
 #include <QMap>
+#include <QSet>
 namespace QTVP_GEOMARKER{
 	class geoItemBase;
 	/**
@@ -27,8 +28,10 @@ namespace QTVP_GEOMARKER{
 		geoGraphicsScene(const QRectF &sceneRect, QObject *parent = 0);
 		geoGraphicsScene(qreal x, qreal y, qreal width, qreal height, QObject *parent = 0);
 		int currentLevel() const {return currentNewLevel;}
+		void			adjust_item_coords(int currentLevel);
 	private:
 		QMap<QString, geoItemBase * > m_map_items;
+		QSet<geoItemBase * > m_set_iconitems;
 		int currentNewLevel;
 		//Overload public functions to provate.
 		QGraphicsEllipseItem * addEllipse(const QRectF & rect, const QPen & pen = QPen(), const QBrush & brush = QBrush())

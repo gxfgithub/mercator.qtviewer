@@ -18,7 +18,7 @@ QMutex osm_frame_widget::m_mutex_proteced;
 
 /*!
  \brief osm_frame_widget is the main widget of this control.
- in this constructor, 2 OUTER message will be fired.
+ in this constructor,  2 OUTER message will be fired.
 
  \fn osm_frame_widget::osm_frame_widget
  \param parent

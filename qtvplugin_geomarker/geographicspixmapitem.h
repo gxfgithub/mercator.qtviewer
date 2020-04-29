@@ -30,8 +30,6 @@ namespace QTVP_GEOMARKER{
 									   ,const tag_icon * pIcon,
 									   qreal cent_lat = 90,
 									   qreal cent_lon = 0);
-		void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
-		QRectF boundingRect() const override;
 	public:
 		const tag_icon *  icon(){return m_pIcon;}
 		qreal lat() const {return m_lat;}
